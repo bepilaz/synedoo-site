@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>syndeoo | Brand Identity Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Core Palette */
+            --petrol: #4397A2;
+            --petrol-alpha: rgba(67, 151, 162, 0.7);
+            --black: #000000;
+            --white: #ffffff;
+            
+            /* Extended Palette */
+            --pitch-green: #2D5A27;  
+            --deep-navy: #0F172A;    
+            --action-gold: #D4AF37;  
+            --metric-coral: #E67E22; /* Alert & Dynamic metrics */
+            --mist-gray: #F1F5F9;    
+            --tactical-silver: #CBD5E1; /* Structure & Grid lines */
+            --slate: #2C3E50;
+            --border: #eeeeee;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            margin: 0;
+            padding: 80px 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .guide-container { max-width: 1000px; margin: 0 auto; }
+
+        section { margin-bottom: 120px; text-align: center; }
+
+        h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--petrol);
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+            text-align: left;
+        }
+
+        /* ICON ONLY SECTION */
+        .icon-showcase {
+            padding: 100px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .big-icon {
+            font-size: 15rem; 
+            font-weight: 800;
+            display: flex;
+            mix-blend-mode: multiply;
+        }
+        .o-mark {
+            color: var(--petrol-alpha);
+            margin-right: -0.25em; 
+            mix-blend-mode: multiply;
+            line-height: 1;
+        }
+
+        /* MASTER LOGO SECTION */
+        .master-logo {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            text-transform: lowercase;
+            margin: 40px 0;
+        }
+        .oo-join { display: inline-flex; }
+        .o-small { color: var(--petrol-alpha); margin-right: -0.21em; mix-blend-mode: multiply; }
+        .o-small:last-child { margin-right: 0; }
+
+        /* WEB IDENTITY */
+        .web-url { font-size: 2rem; font-weight: 600; color: var(--black); }
+        .dot-com { color: var(--petrol); }
+
+        /* PALETTE GRID */
+        .palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        .color-card { border: 1px solid var(--border); padding: 20px; border-radius: 12px; background: var(--white); }
+        .color-swatch { height: 100px; border-radius: 6px; margin-bottom: 15px; border: 1px solid rgba(0,0,0,0.05); }
+
+        .label { font-weight: 700; font-size: 0.9rem; display: block; margin-bottom: 2px; }
+        .value { font-family: monospace; color: var(--petrol); font-size: 0.8rem; font-weight: 600; }
+        .desc { font-size: 0.8rem; color: #666; margin-top: 10px; line-height: 1.4; }
+
+    </style>
+</head>
+<body>
+
+    <div class="guide-container">
+        
+        <section>
+            <h2>01. The Visual Mark (Icon Only)</h2>
+            <div class="icon-showcase">
+                <div class="big-icon">
+                    <span class="o-mark">o</span><span class="o-mark">o</span>
+                </div>
+            </div>
+            <p style="color: #999; font-size: 0.9rem;">High-resolution mark for exports and digital avatars.</p>
+        </section>
+
+        <section>
+            <h2>02. Master Logo & Web URL</h2>
+            <div class="master-logo">
+                synde<span class="oo-join"><span class="o-small">o</span><span class="o-small">o</span></span>
+            </div>
+            <div class="web-url">syndeoo<span class="dot-com">.com</span></div>
+        </section>
+
+        <section>
+            <h2>03. Extended Palette</h2>
+            <div class="palette">
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--petrol);"></div>
+                    <span class="label">Syndeoo Petrol</span>
+                    <span class="value">#4397A2</span>
+                    <p class="desc">Primary brand color. Represents the digital bridge and data flow.</p>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--deep-navy);"></div>
+                    <span class="label">Deep Navy</span>
+                    <span class="value">#0F172A</span>
+                    <p class="desc">Foundational contrast. Used for professional depth and trust.</p>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--pitch-green);"></div>
+                    <span class="label">Pitch Green</span>
+                    <span class="value">#2D5A27</span>
+                    <p class="desc">Field reference. Connects data to the grass and the game.</p>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--action-gold);"></div>
+                    <span class="label">Action Gold</span>
+                    <span class="value">#D4AF37</span>
+                    <p class="desc">Insight highlights. Reserved for key performance indicators.</p>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--metric-coral);"></div>
+                    <span class="label">Metric Coral</span>
+                    <span class="value">#E67E22</span>
+                    <p class="desc">Alerts and anomalies. Used for dynamic metrics requiring attention.</p>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--slate);"></div>
+                    <span class="label">Slate Gray</span>
+                    <span class="value">#2C3E50</span>
+                    <p class="desc">Technical color. Used for chart axes and secondary text labels.</p>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--tactical-silver);"></div>
+                    <span class="label">Tactical Silver</span>
+                    <span class="value">#CBD5E1</span>
+                    <p class="desc">Infrastructure. Used for grid lines, borders, and disabled states.</p>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--mist-gray);"></div>
+                    <span class="label">Mist Gray</span>
+                    <span class="value">#F1F5F9</span>
+                    <p class="desc">Canvas color. Ideal for background grouping in complex dashboards.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
