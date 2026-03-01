@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>synedoo | Data Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --petrol: #4397A2; /* Il tuo R67 G151 B162 */
+            --petrol-alpha: rgba(67, 151, 162, 0.7); /* Versione per l'effetto join */
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #666666;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 0 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 650px;
+            text-align: left;
+        }
+
+        /* LOGO STYLE */
+        .logo {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin: 0 0 8px 0;
+            color: var(--black);
+            text-transform: lowercase;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Effetto Inner Join sulle OO */
+        .oo-container {
+            display: inline-flex;
+            margin-left: -0.02em; /* Avvicina le OO al resto della parola */
+        }
+
+        .o {
+            color: var(--petrol-alpha); /* Colore petrolio con leggera trasparenza */
+            margin-right: -0.20em; /* Questo crea l'overlap (Inner Join) */
+            mix-blend-mode: multiply; /* Rende l'area di sovrapposizione più scura */
+        }
+
+        .o:last-child {
+            margin-right: 0;
+        }
+
+        .payoff {
+            font-size: 1.15rem;
+            color: var(--petrol);
+            font-weight: 500;
+            margin-bottom: 35px;
+            letter-spacing: -0.01em;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray);
+            font-weight: 300;
+            margin-bottom: 50px;
+        }
+
+        .description strong {
+            font-weight: 500;
+            color: var(--black);
+        }
+
+        .contact-link {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--black);
+            text-decoration: none;
+            border-bottom: 1.5px solid var(--petrol);
+            padding-bottom: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--petrol);
+            border-bottom-color: var(--black);
+        }
+
+        .footer-line {
+            position: absolute;
+            bottom: 40px;
+            font-size: 0.75rem;
+            color: #e0e0e0;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            synde<span class="oo-container"><span class="o">o</span><span class="o">o</span></span>
+        </div>
+        
+        <p class="payoff">Complex data. Human communication. Absolute clarity.</p>
+        
+        <p class="description">
+            Gain a decisive advantage by transforming fragmented datasets into <strong>intuitive visual intelligence</strong>. Backed by a team with a global track record in elite football, we provide the clarity needed to communicate strategy effectively and drive high-level performance.
+        </p>
+
+        <a href="mailto:syndeoo.staff@gmail.com" class="contact-link">Request a briefing —</a>
+    </div>
+
+    <div class="footer-line">© 2026 synedoo lab</div>
+</body>
+</html>
