@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>syndeoo | Brand Identity Guide</title>
+    <title>syndeoo | Strategic Brand Manual</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -21,9 +20,9 @@
             --pitch-green: #2D5A27;  
             --deep-navy: #0F172A;    
             --action-gold: #D4AF37;  
-            --metric-coral: #E67E22; /* Alert & Dynamic metrics */
+            --metric-coral: #E67E22;
             --mist-gray: #F1F5F9;    
-            --tactical-silver: #CBD5E1; /* Structure & Grid lines */
+            --tactical-silver: #CBD5E1;
             --slate: #2C3E50;
             --border: #eeeeee;
         }
@@ -33,73 +32,107 @@
             background-color: var(--white);
             color: var(--black);
             margin: 0;
-            padding: 80px 40px;
+            padding: 60px 40px;
             -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
         }
 
         .guide-container { max-width: 1000px; margin: 0 auto; }
 
-        section { margin-bottom: 120px; text-align: center; }
+        header { margin-bottom: 80px; border-bottom: 4px solid var(--black); padding-bottom: 40px; }
+        
+        section { margin-bottom: 100px; }
 
         h2 {
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.4em;
             color: var(--petrol);
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             border-bottom: 1px solid var(--border);
             padding-bottom: 15px;
-            text-align: left;
         }
 
-        /* ICON ONLY SECTION */
-        .icon-showcase {
-            padding: 100px 0;
-            display: flex;
+        h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.03em; }
+
+        .desc { color: var(--slate); margin-bottom: 30px; max-width: 800px; font-weight: 300; }
+
+        /* LOGO SYSTEMS */
+        .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+        .logo-box { 
+            background: var(--mist-gray); 
+            padding: 60px; 
+            border-radius: 4px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
             justify-content: center;
+            text-align: center;
         }
-        .big-icon {
-            font-size: 15rem; 
-            font-weight: 800;
-            display: flex;
-            mix-blend-mode: multiply;
-        }
-        .o-mark {
-            color: var(--petrol-alpha);
-            margin-right: -0.24em;   /* BEPI MODIFICA QUA PER DA DISTANZA OO LOGO */
-            mix-blend-mode: multiply;
-            line-height: 1;
-        }
-
-        /* MASTER LOGO SECTION */
-        .master-logo {
-            font-size: 5rem;
-            font-weight: 800;
-            letter-spacing: -0.05em;
-            text-transform: lowercase;
-            margin: 40px 0;
-        }
+        
+        /* Master Logo Settings */
+        .master-logo { font-size: 3.5rem; font-weight: 800; letter-spacing: -0.05em; text-transform: lowercase; }
         .oo-join { display: inline-flex; }
-        .o-small { color: var(--petrol-alpha); margin-right: -0.21em; mix-blend-mode: multiply; }
-        .o-small:last-child { margin-right: 0; }
 
-        /* WEB IDENTITY */
-        .web-url { font-size: 2rem; font-weight: 800; color: var(--black); }
-        .dot-com { color: var(--petrol); }
+        /* BEPI MODIFICA QUI: DISTANZA OO NELLA SCRITTA SYNDEOO (-0.20em) */
+        .o-written { color: var(--petrol-alpha); margin-right: -0.20em; mix-blend-mode: multiply; }
+        .o-written:last-child { margin-right: 0; }
+
+        /* Icon Only Settings */
+        .icon-only { font-size: 8rem; font-weight: 800; line-height: 1; display: flex; mix-blend-mode: multiply; }
+
+        /* BEPI MODIFICA QUI: DISTANZA OO NEL LOGO SINGOLO (-0.25em) */
+        .o-icon { color: var(--petrol-alpha); margin-right: -0.25em; mix-blend-mode: multiply; }
+        .o-icon:last-child { margin-right: 0; }
+
+        /* HUMAN INTELLIGENCE SECTION (CRISTIAN OSGNACH) */
+        .human-intelligence-section { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 60px; 
+            align-items: center; 
+            padding: 80px 0; 
+            border-top: 1px solid var(--border);
+        }
+        
+        .data-portrait { 
+            background: var(--white); /* SFONDO BIANCO */
+            border: 1px solid var(--border);
+            border-radius: 8px; 
+            height: 400px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 8px; 
+            line-height: 8px; 
+            color: var(--petrol); 
+            overflow: hidden; 
+            position: relative;
+        }
+
+        .portrait-overlay { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: radial-gradient(circle at center, transparent 30%, var(--white) 85%); 
+        }
 
         /* PALETTE GRID */
-        .palette {
+        .palette-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 30px;
-            text-align: left;
+            gap: 20px;
         }
-        .color-card { border: 1px solid var(--border); padding: 20px; border-radius: 12px; background: var(--white); }
-        .color-swatch { height: 100px; border-radius: 6px; margin-bottom: 15px; border: 1px solid rgba(0,0,0,0.05); }
+        .color-card { border: 1px solid var(--border); padding: 20px; border-radius: 8px; }
+        .swatch { height: 80px; border-radius: 4px; margin-bottom: 15px; border: 1px solid rgba(0,0,0,0.05); }
+        .color-name { font-weight: 800; font-size: 0.9rem; display: block; }
+        .color-hex { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--petrol); }
+        .usage { font-size: 0.75rem; margin-top: 10px; color: #666; line-height: 1.4; }
 
-        .label { font-weight: 700; font-size: 0.9rem; display: block; margin-bottom: 2px; }
-        .value { font-family: monospace; color: var(--petrol); font-size: 0.8rem; font-weight: 600; }
-        .desc { font-size: 0.8rem; color: #666; margin-top: 10px; line-height: 1.4; }
+        .typo-example { border-left: 3px solid var(--petrol); padding-left: 25px; margin-bottom: 40px; }
 
     </style>
 </head>
@@ -107,77 +140,129 @@
 
     <div class="guide-container">
         
+        <header>
+            <div class="master-logo" style="font-size: 1.2rem; margin-bottom: 20px;">
+                synde<span class="oo-join"><span class="o-written">o</span><span class="o-written">o</span></span>
+            </div>
+            <h1>Visual Identity System <br>v1.0 / 2026</h1>
+            <p class="desc">Official guidelines for syndeoo. We transform fragmented datasets into intuitive visual intelligence, providing a decisive advantage for elite football organisations.</p>
+        </header>
+
         <section>
-            <h2>01. The Visual Mark (Icon Only)</h2>
-            <div class="icon-showcase">
-                <div class="big-icon">
-                    <span class="o-mark">o</span><span class="o-mark">o</span>
+            <h2>01. Logo System</h2>
+            <h3>Master Logo & Visual Mark</h3>
+            <p class="desc">The syndeoo identity is built on the "Inner Join" principle. The overlapping 'o's symbolise the synthesis of complex data and human communication.</p>
+            
+            <div class="showcase-grid">
+                <div class="logo-box">
+                    <div class="master-logo">
+                        synde<span class="oo-join"><span class="o-written">o</span><span class="o-written">o</span></span>
+                    </div>
+                    <p style="font-size: 0.7rem; margin-top: 20px; text-transform: uppercase; letter-spacing: 0.1em;">Master Wordmark</p>
+                </div>
+                <div class="logo-box">
+                    <div class="icon-only">
+                        <span class="o-icon">o</span><span class="o-icon">o</span>
+                    </div>
+                    <p style="font-size: 0.7rem; margin-top: 20px; text-transform: uppercase; letter-spacing: 0.1em;">The Visual Mark (Icon Only)</p>
                 </div>
             </div>
-            <p style="color: #999; font-size: 0.9rem;">High-resolution mark for exports and digital avatars.</p>
         </section>
 
         <section>
-            <h2>02. Master Logo & Web URL</h2>
-            <div class="master-logo">
-                synde<span class="oo-join"><span class="o-small">o</span><span class="o-small">o</span></span>
+            <h2>02. Human Intelligence</h2>
+            <div class="human-intelligence-section">
+                <div class="data-portrait">
+                    <div style="opacity: 0.5; user-select: none;">
+                        01011111010101010101011111010101...<br>
+                        11000000001111111111000000001101...<br>
+                        11000000000011111100000000001111...<br>
+                        01111111111111111111111111111110...<br>
+                        11111100000011111111111100000011...<br>
+                        01010111111111110000111111111101...<br>
+                        11111111111111111111111111111111...<br>
+                        01011111111111100000011111111101...<br>
+                        11111111111111111111111111111111...<br>
+                        01111111111111111111111111111110...
+                    </div>
+                    <div class="portrait-overlay"></div>
+                </div>
+
+                <div>
+                    <h3 style="color: var(--petrol); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; margin-bottom: 10px;">Chief Scientific Officer</h3>
+                    <h2 style="font-size: 2.2rem; font-weight: 800; margin: 0 0 20px 0;">Cristian Osgnach</h2>
+                    <p style="color: var(--slate); line-height: 1.6; font-size: 1rem;">
+                        [cite_start]A pioneer in elite sports science, Cristian Osgnach is renowned for his research on metabolic power, which has redefined how high-intensity performance is quantified in professional football[cite: 1].
+                    </p>
+                    <p style="color: var(--slate); line-height: 1.6; font-size: 1rem;">
+                        At syndeoo, he ensures that visual intelligence is built upon rigorous physiological foundations, providing the clarity needed to communicate strategy effectively.
+                    </p>
+                </div>
             </div>
-            <div class="web-url">syndeoo<span class="dot-com">.com</span></div>
         </section>
 
         <section>
             <h2>03. Extended Palette</h2>
-            <div class="palette">
+            <div class="palette-grid">
                 <div class="color-card">
-                    <div class="color-swatch" style="background-color: var(--petrol);"></div>
-                    <span class="label">Syndeoo Petrol</span>
-                    <span class="value">#4397A2</span>
-                    <p class="desc">Primary brand color. Represents the digital bridge and data flow.</p>
+                    <div class="swatch" style="background: var(--petrol);"></div>
+                    <span class="color-name">Syndeoo Petrol</span>
+                    <span class="color-hex">#4397A2</span>
                 </div>
                 <div class="color-card">
-                    <div class="color-swatch" style="background-color: var(--deep-navy);"></div>
-                    <span class="label">Deep Navy</span>
-                    <span class="value">#0F172A</span>
-                    <p class="desc">Foundational contrast. Used for professional depth and trust.</p>
+                    <div class="swatch" style="background: var(--deep-navy);"></div>
+                    <span class="color-name">Deep Navy</span>
+                    <span class="color-hex">#0F172A</span>
                 </div>
                 <div class="color-card">
-                    <div class="color-swatch" style="background-color: var(--pitch-green);"></div>
-                    <span class="label">Pitch Green</span>
-                    <span class="value">#2D5A27</span>
-                    <p class="desc">Field reference. Connects data to the grass and the game.</p>
+                    <div class="swatch" style="background: var(--pitch-green);"></div>
+                    <span class="color-name">Pitch Green</span>
+                    <span class="color-hex">#2D5A27</span>
                 </div>
                 <div class="color-card">
-                    <div class="color-swatch" style="background-color: var(--action-gold);"></div>
-                    <span class="label">Action Gold</span>
-                    <span class="value">#D4AF37</span>
-                    <p class="desc">Insight highlights. Reserved for key performance indicators.</p>
+                    <div class="swatch" style="background: var(--action-gold);"></div>
+                    <span class="color-name">Action Gold</span>
+                    <span class="color-hex">#D4AF37</span>
                 </div>
                 <div class="color-card">
-                    <div class="color-swatch" style="background-color: var(--metric-coral);"></div>
-                    <span class="label">Metric Coral</span>
-                    <span class="value">#E67E22</span>
-                    <p class="desc">Alerts and anomalies. Used for dynamic metrics requiring attention.</p>
+                    <div class="swatch" style="background: var(--metric-coral);"></div>
+                    <span class="color-name">Metric Coral</span>
+                    <span class="color-hex">#E67E22</span>
                 </div>
                 <div class="color-card">
-                    <div class="color-swatch" style="background-color: var(--slate);"></div>
-                    <span class="label">Slate Gray</span>
-                    <span class="value">#2C3E50</span>
-                    <p class="desc">Technical color. Used for chart axes and secondary text labels.</p>
+                    <div class="swatch" style="background: var(--slate);"></div>
+                    <span class="color-name">Slate Gray</span>
+                    <span class="color-hex">#2C3E50</span>
                 </div>
                 <div class="color-card">
-                    <div class="color-swatch" style="background-color: var(--tactical-silver);"></div>
-                    <span class="label">Tactical Silver</span>
-                    <span class="value">#CBD5E1</span>
-                    <p class="desc">Infrastructure. Used for grid lines, borders, and disabled states.</p>
+                    <div class="swatch" style="background: var(--tactical-silver);"></div>
+                    <span class="color-name">Tactical Silver</span>
+                    <span class="color-hex">#CBD5E1</span>
                 </div>
                 <div class="color-card">
-                    <div class="color-swatch" style="background-color: var(--mist-gray);"></div>
-                    <span class="label">Mist Gray</span>
-                    <span class="value">#F1F5F9</span>
-                    <p class="desc">Canvas color. Ideal for background grouping in complex dashboards.</p>
+                    <div class="swatch" style="background: var(--mist-gray);"></div>
+                    <span class="color-name">Mist Gray</span>
+                    <span class="color-hex">#F1F5F9</span>
                 </div>
             </div>
         </section>
+
+        <section>
+            <h2>04. Typography</h2>
+            <div class="typo-example">
+                <p style="font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--petrol); margin-bottom: 10px;">PRIMARY FONT: INTER</p>
+                <h1 style="font-size: 3rem; font-weight: 800; margin: 0; letter-spacing: -0.04em;">Absolute Clarity.</h1>
+                <p style="font-size: 1.2rem; font-weight: 300; color: var(--slate);">Elite performance data, synthesised for action.</p>
+            </div>
+            <div class="typo-example" style="border-color: var(--slate);">
+                <p style="font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--slate); margin-bottom: 10px;">TECHNICAL FONT: JETBRAINS MONO</p>
+                <p style="font-family: 'JetBrains Mono'; font-size: 1.1rem; margin: 0;">HI_INTENSITY_DISTANCE: 1420m</p>
+            </div>
+        </section>
+
+        <footer style="margin-top: 80px; text-align: center; border-top: 1px solid var(--border); padding-top: 40px; font-size: 0.7rem; color: var(--tactical-silver); letter-spacing: 0.3em;">
+            SYNDEOO LAB // PIZZA DUOMO 3, UDINE // COMPLEX DATA MADE CLEAR
+        </footer>
 
     </div>
 
