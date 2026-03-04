@@ -74,8 +74,8 @@
         .master-logo { font-size: 3.5rem; font-weight: 800; letter-spacing: -0.05em; text-transform: lowercase; }
         .oo-join { display: inline-flex; }
 
-        /* BEPI MODIFICA QUI: DISTANZA OO NELLA SCRITTA SYNDEOO (-0.20em) */
-        .o-written { color: var(--petrol-alpha); margin-right: -0.20em; mix-blend-mode: multiply; }
+        /* BEPI MODIFICA QUI: DISTANZA OO NELLA SCRITTA SYNDEOO (-0.22em) */
+        .o-written { color: var(--petrol-alpha); margin-right: -0.22em; mix-blend-mode: multiply; }
         .o-written:last-child { margin-right: 0; }
 
         /* Icon Only Settings */
@@ -96,28 +96,15 @@
         }
         
         .data-portrait { 
-            background: var(--white); /* SFONDO BIANCO */
+            background: var(--white);
             border: 1px solid var(--border);
             border-radius: 8px; 
             height: 400px; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            font-family: 'JetBrains Mono', monospace; 
-            font-size: 8px; 
-            line-height: 8px; 
-            color: var(--petrol); 
             overflow: hidden; 
             position: relative;
-        }
-
-        .portrait-overlay { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: radial-gradient(circle at center, transparent 30%, var(--white) 85%); 
         }
 
         /* PALETTE GRID */
@@ -173,26 +160,32 @@
             <h2>02. Human Intelligence</h2>
             <div class="human-intelligence-section">
                 <div class="data-portrait">
-                    <div style="opacity: 0.5; user-select: none;">
-                        01011111010101010101011111010101...<br>
-                        11000000001111111111000000001101...<br>
-                        11000000000011111100000000001111...<br>
-                        01111111111111111111111111111110...<br>
-                        11111100000011111111111100000011...<br>
-                        01010111111111110000111111111101...<br>
-                        11111111111111111111111111111111...<br>
-                        01011111111111100000011111111101...<br>
-                        11111111111111111111111111111111...<br>
-                        01111111111111111111111111111110...
+                    <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box;">
+                        <svg viewBox="0 0 100 100" style="width: 100%; height: 100%; font-family: 'JetBrains Mono', monospace;">
+                            <style>
+                                .dot { fill: var(--petrol); }
+                                .text { font-size: 1.2px; fill: var(--petrol); opacity: 0.7; }
+                            </style>
+                            <text x="10" y="20" class="text">01011111010101010101011111010101</text>
+                            <text x="10" y="25" class="text">11000000001111111111000000001101</text>
+                            <text x="10" y="30" class="text">11000000000011111100000000001111</text>
+                            <text x="10" y="35" class="text">01111111111111111111111111111110</text>
+                            <text x="10" y="40" class="text">11111100000011111111111100000011</text>
+                            <text x="10" y="45" class="text">01010111111111110000111111111101</text>
+                            <text x="10" y="50" class="text">11111111111111111111111111111111</text>
+                            <text x="10" y="55" class="text">01011111111111100000011111111101</text>
+                            <text x="10" y="60" class="text">11111111111111111111111111111111</text>
+                            <text x="10" y="65" class="text">01111111111111111111111111111110</text>
+                            <circle cx="50" cy="45" r="25" fill="var(--white)" opacity="0.8"/>
+                            <text x="35" y="45" style="font-size: 3px; font-weight: 800; fill: var(--black);">DATA ART</text>
+                        </svg>
                     </div>
-                    <div class="portrait-overlay"></div>
                 </div>
-
                 <div>
                     <h3 style="color: var(--petrol); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; margin-bottom: 10px;">Chief Scientific Officer</h3>
                     <h2 style="font-size: 2.2rem; font-weight: 800; margin: 0 0 20px 0;">Cristian Osgnach</h2>
                     <p style="color: var(--slate); line-height: 1.6; font-size: 1rem;">
-                        [cite_start]A pioneer in elite sports science, Cristian Osgnach is renowned for his research on metabolic power, which has redefined how high-intensity performance is quantified in professional football[cite: 1].
+                        A pioneer in elite sports science, Cristian Osgnach is renowned for his research on metabolic power, which has redefined how high-intensity performance is quantified in professional football.
                     </p>
                     <p style="color: var(--slate); line-height: 1.6; font-size: 1rem;">
                         At syndeoo, he ensures that visual intelligence is built upon rigorous physiological foundations, providing the clarity needed to communicate strategy effectively.
