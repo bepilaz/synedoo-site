@@ -2,6 +2,7 @@
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>syndeoo | Absolute Clarity for Elite Football</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -51,8 +52,7 @@
         /* AUTHORITY BOX */
         .authority-box { background: var(--mist); padding: 60px; border-radius: 4px; }
         .bio-text { font-size: 1.1rem; font-weight: 400; margin-bottom: 25px; color: var(--slate); }
-        .link-research { font-family: 'JetBrains Mono'; color: var(--petrol); text-decoration: none; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; border-bottom: 1px solid var(--petrol); padding-bottom: 2px; transition: opacity 0.2s; }
-        .link-research:hover { opacity: 0.7; }
+        .link-research { font-family: 'JetBrains Mono'; color: var(--petrol); text-decoration: none; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; border-bottom: 1px solid var(--petrol); padding-bottom: 2px; }
 
         /* CALL TO ACTION */
         .cta-section { text-align: center; padding: 120px 0; border-top: none; }
@@ -67,6 +67,19 @@
         
         .contact-info { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--slate); line-height: 2; margin-top: 20px; }
         .email-link { color: var(--petrol); text-decoration: none; font-weight: 600; }
+
+        /* --- RESPONSIVE FIX (MOBILE) --- */
+        @media (max-width: 768px) {
+            .container { padding: 0 25px; }
+            h1 { font-size: 2.2rem; } /* Riduce il titolo su mobile */
+            .grid { 
+                grid-template-columns: 1fr; /* Una colonna sola invece di due */
+                gap: 40px; 
+            }
+            .hero-sub { font-size: 1.1rem; padding-left: 20px; }
+            .authority-box { padding: 30px; }
+            nav { flex-direction: column; gap: 15px; text-align: center; }
+        }
     </style>
 </head>
 <body>
@@ -84,7 +97,7 @@
             </div>
         </header>
 
-        <section>
+        <section id="approach">
             <span class="label">The Approach</span>
             <div class="grid">
                 <div class="feature">
@@ -122,7 +135,7 @@
                 SYNDEOO LAB // <a href="mailto:lab@syndeoo.com" class="email-link">lab@syndeoo.com</a><br>
                 Piazza Duomo 3, 33100 Udine, Italy<br>
                 VAT: IT02855020307<br>
-                <span style="opacity: 0.5; margin-top: 20px; display: block; letter-spacing: 0.3em;">ABSOLUTE CLARITY</span>
+                <span style="opacity: 0.5; margin-top: 20px; display: block; letter-spacing: 0.3em;">ABSOLUTE CLARITY UNIT</span>
             </div>
         </footer>
     </div>
