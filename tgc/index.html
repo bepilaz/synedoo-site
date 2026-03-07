@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <title>syndeoo | Visual Identity Standards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Core Palette */
+            --petrol: #4397A2;
+            --petrol-alpha: rgba(67, 151, 162, 0.7);
+            --black: #000000;
+            --white: #ffffff;
+            /* Extended Palette */
+            --pitch-green: #2D5A27;  
+            --deep-navy: #0F172A;    
+            --gold: #D4AF37;  
+            --coral: #E67E22;
+            --mist: #F1F5F9;    
+            --silver: #CBD5E1;
+            --slate: #2C3E50;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            color: var(--black); 
+            margin: 0; 
+            padding: 60px; 
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 950px; margin: 0 auto; }
+
+        /* HEADER */
+        .header-internal { 
+            border-bottom: 2px solid var(--petrol); 
+            padding-bottom: 20px; 
+            margin-bottom: 60px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--petrol); text-transform: uppercase; letter-spacing: 0.1em; }
+        h1 { font-size: 2.8rem; font-weight: 800; margin: 0; letter-spacing: -0.03em; }
+
+        /* SECTIONS */
+        .identity-section { margin-bottom: 100px; }
+        h2 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.4em; color: var(--petrol); margin-bottom: 30px; border-bottom: 1px solid var(--mist); padding-bottom: 10px; }
+
+        .visual-showcase { 
+            background: var(--mist); 
+            padding: 80px 40px; 
+            border-radius: 4px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 60px;
+            margin-bottom: 25px;
+        }
+
+        /* LOGO & ICON SETTINGS */
+        .oo-join { display: inline-flex; }
+        .master-logo { font-size: 4.5rem; font-weight: 800; letter-spacing: -0.05em; text-transform: lowercase; }
+        
+        /* BEPI: Overlap nella scritta syndeoo */
+        .o-written { color: var(--petrol-alpha); margin-right: -0.22em; mix-blend-mode: multiply; }
+        .o-written:last-child { margin-right: 0; }
+
+        .icon-only { font-size: 12rem; font-weight: 800; display: flex; mix-blend-mode: multiply; line-height: 1; }
+        
+        /* BEPI: Overlap nel logo solo oo */
+        .o-icon { color: var(--petrol-alpha); margin-right: -0.25em; mix-blend-mode: multiply; }
+        .o-icon:last-child { margin-right: 0; }
+
+        /* COLOR GRID */
+        .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 25px; }
+        .color-card { border: 1px solid #eee; padding: 20px; border-radius: 4px; background: white; }
+        .swatch { height: 70px; border-radius: 2px; margin-bottom: 12px; border: 1px solid rgba(0,0,0,0.03); }
+        .color-title { font-weight: 800; font-size: 0.9rem; display: block; margin-bottom: 2px; }
+        .color-hex { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--petrol); }
+
+        .note-internal { background: #FFF9E6; padding: 25px; border: 1px solid #FFE58F; font-size: 0.95rem; margin-top: 60px; border-radius: 4px; }
+
+        /* FOOTER BRANDING */
+        .footer-branding { text-align: center; margin-top: 120px; padding-bottom: 60px; }
+        .footer-icon { font-size: 6rem; font-weight: 800; display: inline-flex; mix-blend-mode: multiply; margin-bottom: 15px; }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="header-internal">
+            <div>
+                <span class="label">Brand Assets // Unit 00</span>
+                <h1>Visual Identity</h1>
+            </div>
+            <span class="label" style="color: var(--slate)">Official Standard</span>
+        </div>
+
+        <section class="identity-section">
+            <h2>01. Logo Systems</h2>
+            <div class="visual-showcase">
+                <div class="master-logo">
+                    synde<span class="oo-join"><span class="o-written">o</span><span class="o-written">o</span></span>
+                </div>
+                <div class="icon-only">
+                    <span class="o-icon">o</span><span class="o-icon">o</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="identity-section">
+            <h2>02. Extended Colour Palette</h2>
+            <div class="color-grid">
+                <div class="color-card"><div class="swatch" style="background: var(--petrol)"></div><span class="color-title">Syndeoo Petrol</span><span class="color-hex">#4397A2</span></div>
+                <div class="color-card"><div class="swatch" style="background: var(--black)"></div><span class="color-title">Pure Black</span><span class="color-hex">#000000</span></div>
+                <div class="color-card"><div class="swatch" style="background: var(--deep-navy)"></div><span class="color-title">Deep Navy</span><span class="color-hex">#0F172A</span></div>
+                <div class="color-card"><div class="swatch" style="background: var(--pitch-green)"></div><span class="color-title">Pitch Green</span><span class="color-hex">#2D5A27</span></div>
+                <div class="color-card"><div class="swatch" style="background: var(--gold)"></div><span class="color-title">Action Gold</span><span class="color-hex">#D4AF37</span></div>
+                <div class="color-card"><div class="swatch" style="background: var(--coral)"></div><span class="color-title">Metric Coral</span><span class="color-hex">#E67E22</span></div>
+                <div class="color-card"><div class="swatch" style="background: var(--slate)"></div><span class="color-title">Slate Gray</span><span class="color-hex">#2C3E50</span></div>
+                <div class="color-card"><div class="swatch" style="background: var(--silver)"></div><span class="color-title">Tactical Silver</span><span class="color-hex">#CBD5E1</span></div>
+            </div>
+        </section>
+
+        <section class="identity-section">
+            <h2>03. Typography</h2>
+            <div style="border-left: 4px solid var(--petrol); padding-left: 30px;">
+                <p style="font-size: 2.2rem; font-weight: 800; margin: 0; letter-spacing: -0.02em;">Inter Extra Bold</p>
+                <p style="font-size: 1.1rem; font-weight: 300; color: var(--slate); margin-bottom: 40px;">Primary font for high-impact communication.</p>
+                
+                <p style="font-family: 'JetBrains Mono'; font-size: 1.2rem; color: var(--petrol); margin: 0;">JetBrains Mono Regular</p>
+                <p style="font-size: 1rem; color: var(--slate);">Technical font for data visualisations.</p>
+            </div>
+        </section>
+
+        <div class="note-internal">
+            <strong>Internal Note:</strong> Visual clarity is non-negotiable. Every element on the page must serve a purpose.
+        </div>
+
+        <div class="footer-branding">
+            <div class="footer-icon">
+                <span class="o-icon">o</span><span class="o-icon">o</span>
+            </div>
+            <div style="margin-top: 10px;">
+                <span class="label" style="opacity: 0.5;">syndeoo // Absolute Clarity Unit</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
