@@ -27,11 +27,19 @@
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 40px; }
 
-        /* NAVIGATION - Iconic Logo Size Update */
-        nav { padding: 60px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; }
+        /* NAVIGATION - Iconic Logo & Petrol Line Added */
+        nav { 
+            padding: 60px 0 40px 0; /* Padding bilanciato per la riga */
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            flex-wrap: wrap; 
+            gap: 30px;
+            border-bottom: 2px solid var(--petrol); /* RIGA PETROL AGGIUNTA */
+            margin-bottom: 20px;
+        }
         
         .master-logo { 
-            /* Aumentato a 3.2rem per massima memorabilità */
             font-size: clamp(2.2rem, 6vw, 3.2rem); 
             font-weight: 800; 
             letter-spacing: -0.06em; 
@@ -41,8 +49,6 @@
         }
         
         .oo-join { display: inline-flex; }
-        
-        /* OVERLAP syndeoo - Precision adjustment */
         .o-written { color: var(--petrol-alpha); margin-right: -0.22em; mix-blend-mode: multiply; }
         .o-written:last-child { margin-right: 0; }
 
@@ -65,8 +71,7 @@
         /* AUTHORITY BOX */
         .authority-box { background: var(--mist); padding: clamp(30px, 8vw, 60px); border-radius: 4px; }
         .bio-text { font-size: 1.15rem; font-weight: 400; margin-bottom: 25px; color: var(--slate); }
-        .link-research { font-family: 'JetBrains Mono'; color: var(--petrol); text-decoration: none; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; border-bottom: 2px solid var(--petrol); padding-bottom: 4px; transition: all 0.2s; }
-        .link-research:hover { color: var(--black); border-color: var(--black); }
+        .link-research { font-family: 'JetBrains Mono'; color: var(--petrol); text-decoration: none; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; border-bottom: 2px solid var(--petrol); padding-bottom: 4px; }
 
         /* CALL TO ACTION */
         .cta-section { text-align: center; padding: 120px 0; border-top: none; }
