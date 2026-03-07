@@ -27,9 +27,32 @@
 
         .container { max-width: 950px; margin: 0 auto; padding: 0 40px; }
 
-        /* NAVIGATION / HEADER */
-        nav { padding: 40px 0; display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--petrol); margin-bottom: 60px; flex-wrap: wrap; gap: 20px; }
-        .label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--petrol); text-transform: uppercase; letter-spacing: 0.15em; }
+        /* NAVIGATION - Iconic Logo Size Update */
+        nav { 
+            padding: 60px 0 40px 0; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-end; 
+            border-bottom: 2px solid var(--petrol); 
+            margin-bottom: 60px; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+        }
+        
+        .master-logo { 
+            font-size: clamp(2.2rem, 6vw, 3.2rem); 
+            font-weight: 800; 
+            letter-spacing: -0.06em; 
+            text-transform: lowercase; 
+            line-height: 1;
+        }
+        .oo-join { display: inline-flex; }
+        
+        /* OVERLAP syndeoo */
+        .o-written { color: var(--petrol-alpha); margin-right: -0.22em; mix-blend-mode: multiply; }
+        .o-written:last-child { margin-right: 0; }
+
+        .label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--petrol); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; }
         h1 { font-size: clamp(2rem, 8vw, 2.8rem); font-weight: 800; margin: 0; letter-spacing: -0.03em; }
 
         /* SECTIONS */
@@ -49,13 +72,6 @@
         }
 
         /* LOGO & ICON SETTINGS */
-        .oo-join { display: inline-flex; }
-        .master-logo { font-size: clamp(2.5rem, 10vw, 4.5rem); font-weight: 800; letter-spacing: -0.05em; text-transform: lowercase; }
-        
-        /* OVERLAP syndeoo */
-        .o-written { color: var(--petrol-alpha); margin-right: -0.22em; mix-blend-mode: multiply; }
-        .o-written:last-child { margin-right: 0; }
-
         .icon-only { font-size: clamp(6rem, 25vw, 12rem); font-weight: 800; display: flex; mix-blend-mode: multiply; line-height: 1; }
         
         /* OVERLAP icon only */
@@ -82,14 +98,15 @@
 
         /* MANDATORY FOOTER STYLING */
         footer { text-align: center; padding: 100px 0 60px 0; border-top: 1px solid var(--mist); }
-        .footer-icon { font-size: clamp(4rem, 15vw, 6rem); font-weight: 800; display: inline-flex; mix-blend-mode: multiply; margin-bottom: 30px; line-height: 1; }
+        .footer-icon { font-size: clamp(4.5rem, 18vw, 6.5rem); font-weight: 800; display: inline-flex; mix-blend-mode: multiply; margin-bottom: 30px; line-height: 1; }
+        
         .contact-info { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--slate); line-height: 2; margin-top: 20px; text-transform: uppercase; }
         .email-link { color: var(--petrol); text-decoration: none; font-weight: 600; }
 
         /* RESPONSIVE FIX */
         @media (max-width: 768px) {
             .container { padding: 0 25px; }
-            nav { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            nav { flex-direction: column; align-items: center; text-align: center; gap: 20px; padding: 40px 0; }
             .color-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
         }
     </style>
@@ -99,16 +116,22 @@
     <div class="container">
         <nav>
             <div>
-                <span class="label">Brand Assets // Unit 00</span>
-                <h1>Visual Identity</h1>
+                <div class="master-logo">
+                    synde<span class="oo-join"><span class="o-written">o</span><span class="o-written">o</span></span>
+                </div>
+                <span class="label" style="display:block; margin-top:5px;">Brand Assets // Unit 00</span>
             </div>
             <span class="label">Absolute Clarity Unit</span>
         </nav>
 
+        <header style="margin-bottom: 60px;">
+            <h1>Visual Identity</h1>
+        </header>
+
         <section class="identity-section">
             <h2>01. Logo Systems</h2>
             <div class="visual-showcase">
-                <div class="master-logo">
+                <div class="master-logo" style="font-size: clamp(3rem, 12vw, 5rem);">
                     synde<span class="oo-join"><span class="o-written">o</span><span class="o-written">o</span></span>
                 </div>
                 <div class="icon-only">
