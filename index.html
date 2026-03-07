@@ -1,130 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>synedoo | Data Intelligence</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
-    
+    <title>syndeoo | Absolute Clarity for Elite Football</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --petrol: #4397A2; /* Il tuo R67 G151 B162 */
-            --petrol-alpha: rgba(67, 151, 162, 0.7); /* Versione per l'effetto join */
+            --petrol: #4397A2;
+            --petrol-alpha: rgba(67, 151, 162, 0.7);
             --black: #000000;
             --white: #ffffff;
-            --gray: #666666;
+            --mist: #F1F5F9;
+            --slate: #2C3E50;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            color: var(--black); 
+            margin: 0; 
+            padding: 0;
             background-color: var(--white);
-            color: var(--black);
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            padding: 0 40px;
             -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 650px;
-            text-align: left;
-        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 40px; }
 
-        /* LOGO STYLE */
-        .logo {
-            font-size: 3.2rem;
-            font-weight: 800;
-            letter-spacing: -0.05em;
-            margin: 0 0 8px 0;
-            color: var(--black);
-            text-transform: lowercase;
-            display: flex;
-            align-items: center;
-        }
+        /* NAVIGATION */
+        nav { padding: 40px 0; display: flex; justify-content: space-between; align-items: center; }
+        .master-logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.05em; text-transform: lowercase; }
+        .oo-join { display: inline-flex; }
+        .o-written { color: var(--petrol-alpha); margin-right: -0.22em; mix-blend-mode: multiply; }
+        .o-written:last-child { margin-right: 0; }
 
-        /* Effetto Inner Join sulle OO */
-        .oo-container {
-            display: inline-flex;
-            margin-left: -0.02em; /* Avvicina le OO al resto della parola */
-        }
+        /* HERO SECTION */
+        header { padding: 100px 0 60px 0; }
+        h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 30px; }
+        .hero-sub { font-size: 1.4rem; font-weight: 300; color: var(--slate); max-width: 700px; border-left: 3px solid var(--petrol); padding-left: 30px; }
 
-        .o {
-            color: var(--petrol-alpha); /* Colore petrolio con leggera trasparenza */
-            margin-right: -0.20em; /* Questo crea l'overlap (Inner Join) */
-            mix-blend-mode: multiply; /* Rende l'area di sovrapposizione più scura */
-        }
+        /* SECTIONS */
+        section { padding: 80px 0; border-top: 1px solid var(--mist); }
+        .label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--petrol); text-transform: uppercase; letter-spacing: 0.2em; display: block; margin-bottom: 20px; }
+        h2 { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 40px; }
 
-        .o:last-child {
-            margin-right: 0;
-        }
+        /* FEATURES GRID */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .feature h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 15px; }
+        .feature p { color: var(--slate); font-weight: 300; font-size: 1.05rem; }
 
-        .payoff {
-            font-size: 1.15rem;
-            color: var(--petrol);
-            font-weight: 500;
-            margin-bottom: 35px;
-            letter-spacing: -0.01em;
-        }
+        /* AUTHORITY BOX */
+        .authority-box { background: var(--mist); padding: 60px; border-radius: 4px; }
+        .bio-text { font-size: 1.1rem; font-weight: 400; margin-bottom: 25px; color: var(--slate); }
+        .link-research { font-family: 'JetBrains Mono'; color: var(--petrol); text-decoration: none; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; border-bottom: 1px solid var(--petrol); padding-bottom: 2px; transition: opacity 0.2s; }
+        .link-research:hover { opacity: 0.7; }
 
-        .description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--gray);
-            font-weight: 300;
-            margin-bottom: 50px;
-        }
+        /* CALL TO ACTION */
+        .cta-section { text-align: center; padding: 120px 0; border-top: none; }
+        .cta-button { display: inline-block; background: var(--black); color: var(--white); padding: 20px 40px; text-decoration: none; font-weight: 600; letter-spacing: 0.05em; border-radius: 2px; margin-top: 30px; transition: background 0.3s; }
+        .cta-button:hover { background: var(--petrol); }
 
-        .description strong {
-            font-weight: 500;
-            color: var(--black);
-        }
-
-        .contact-link {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--black);
-            text-decoration: none;
-            border-bottom: 1.5px solid var(--petrol);
-            padding-bottom: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-link:hover {
-            color: var(--petrol);
-            border-bottom-color: var(--black);
-        }
-
-        .footer-line {
-            position: absolute;
-            bottom: 40px;
-            font-size: 0.75rem;
-            color: #e0e0e0;
-            letter-spacing: 0.05em;
-        }
+        /* FOOTER */
+        footer { text-align: center; padding: 100px 0 60px 0; border-top: 1px solid var(--mist); }
+        .footer-icon { font-size: 5rem; font-weight: 800; display: inline-flex; mix-blend-mode: multiply; margin-bottom: 30px; line-height: 1; }
+        .o-icon { color: var(--petrol-alpha); margin-right: -0.25em; mix-blend-mode: multiply; }
+        .o-icon:last-child { margin-right: 0; }
+        
+        .contact-info { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--slate); line-height: 2; margin-top: 20px; }
+        .email-link { color: var(--petrol); text-decoration: none; font-weight: 600; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">
-            synde<span class="oo-container"><span class="o">o</span><span class="o">o</span></span>
-        </div>
-        
-        <p class="payoff">Complex data, human communication, absolute clarity.</p>
-        
-        <p class="description">
-            Gain a decisive advantage by transforming fragmented datasets into <strong>intuitive visual intelligence</strong>. Backed by a team with a global track record in elite football, we provide the clarity needed to communicate strategy effectively and drive high-level performance.
-        </p>
 
-        <a href="mailto:lab@syndeoo.com" class="contact-link">Request a briefing —</a>
+    <div class="container">
+        <nav>
+            <div class="master-logo">synde<span class="oo-join"><span class="o-written">o</span><span class="o-written">o</span></span></div>
+            <div class="label" style="color: var(--slate)">Visual Intelligence Unit</div>
+        </nav>
+
+        <header>
+            <h1>Decision-making should never be a gamble.</h1>
+            <div class="hero-sub">
+                We transform fragmented football data into certified strategic certainty for League Executives and Decision Makers.
+            </div>
+        </header>
+
+        <section>
+            <span class="label">The Approach</span>
+            <div class="grid">
+                <div class="feature">
+                    <h3>Data Governance</h3>
+                    <p>Truth precedes science. We provide a bridge between diverse tracking systems, ensuring every bit of data collected across the league is clean, standardised, and ready for high-level analysis.</p>
+                </div>
+                <div class="feature">
+                    <h3>Transversal Insights</h3>
+                    <p>Performance doesn't live in silos. Our visual intelligence connects physical output with technical tactics, offering a unified "brain" for league-wide performance monitoring.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="authority-box">
+            <span class="label">Scientific Leadership</span>
+            <h2>Rooted in Elite Experience.</h2>
+            <p class="bio-text">
+                Led by <strong>Cristian Osgnach</strong>, our team combines a decade of on-field experience—from Serie A to the Italian National Team—with world-renowned scientific rigour. We don't just process data; we interpret it through the lens of elite performance.
+            </p>
+            <a href="https://www.researchgate.net/profile/Cristian-Osgnach" target="_blank" class="link-research">View Scientific Publications</a>
+        </section>
+
+        <section class="cta-section">
+            <span class="label">Next Steps</span>
+            <h2 style="font-weight: 300; font-size: 1.8rem; margin-bottom: 10px;">Ready to unlock the value of your league's data?</h2>
+            <p style="color: var(--slate); font-weight: 300;">Our unit works bespoke with a limited number of top-tier organisations.</p>
+            <a href="mailto:lab@syndeoo.com?subject=Briefing%20Request" class="cta-button">REQUEST A BRIEFING</a>
+        </section>
+
+        <footer>
+            <div class="footer-icon">
+                <span class="o-icon">o</span><span class="o-icon">o</span>
+            </div>
+            <div class="contact-info">
+                SYNDEOO LAB // <a href="mailto:lab@syndeoo.com" class="email-link">lab@syndeoo.com</a><br>
+                Piazza Duomo 3, 33100 Udine, Italy<br>
+                VAT: IT02855020307<br>
+                <span style="opacity: 0.5; margin-top: 20px; display: block; letter-spacing: 0.3em;">ABSOLUTE CLARITY</span>
+            </div>
+        </footer>
     </div>
 
-    <div class="footer-line">© 2026 synedoo lab</div>
 </body>
 </html>
