@@ -4,21 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>syndeoo | Visual Identity Standards</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Core Palette */
             --petrol: #4397A2;
             --petrol-alpha: rgba(67, 151, 162, 0.7);
             --black: #000000;
             --white: #ffffff;
-            /* Extended Palette */
-            --pitch-green: #2D5A27;  
-            --deep-navy: #0F172A;    
-            --gold: #D4AF37;  
-            --coral: #E67E22;
-            --mist: #F1F5F9;    
-            --silver: #CBD5E1;
+            --mist: #F1F5F9;
             --slate: #2C3E50;
         }
 
@@ -27,27 +20,17 @@
             line-height: 1.6; 
             color: var(--black); 
             margin: 0; 
-            padding: 60px 20px; 
+            padding: 0;
             background-color: var(--white);
             -webkit-font-smoothing: antialiased;
         }
 
-        .container { max-width: 950px; margin: 0 auto; }
+        .container { max-width: 950px; margin: 0 auto; padding: 0 40px; }
 
-        /* HEADER */
-        .header-internal { 
-            border-bottom: 2px solid var(--petrol); 
-            padding-bottom: 20px; 
-            margin-bottom: 60px; 
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
+        /* NAVIGATION / HEADER */
+        nav { padding: 40px 0; display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--petrol); margin-bottom: 60px; flex-wrap: wrap; gap: 20px; }
         .label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--petrol); text-transform: uppercase; letter-spacing: 0.15em; }
-        h1 { font-size: 2.8rem; font-weight: 800; margin: 0; letter-spacing: -0.03em; }
+        h1 { font-size: clamp(2rem, 8vw, 2.8rem); font-weight: 800; margin: 0; letter-spacing: -0.03em; }
 
         /* SECTIONS */
         .identity-section { margin-bottom: 100px; }
@@ -55,7 +38,7 @@
 
         .visual-showcase { 
             background: var(--mist); 
-            padding: 80px 20px; 
+            padding: clamp(40px, 10vw, 80px) 20px; 
             border-radius: 4px; 
             display: flex; 
             flex-direction: column; 
@@ -67,15 +50,15 @@
 
         /* LOGO & ICON SETTINGS */
         .oo-join { display: inline-flex; }
-        .master-logo { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -0.05em; text-transform: lowercase; }
+        .master-logo { font-size: clamp(2.5rem, 10vw, 4.5rem); font-weight: 800; letter-spacing: -0.05em; text-transform: lowercase; }
         
-        /* BEPI: Overlap nella scritta syndeoo */
+        /* BEPI: Overlap syndeoo */
         .o-written { color: var(--petrol-alpha); margin-right: -0.22em; mix-blend-mode: multiply; }
         .o-written:last-child { margin-right: 0; }
 
-        .icon-only { font-size: clamp(6rem, 20vw, 12rem); font-weight: 800; display: flex; mix-blend-mode: multiply; line-height: 1; }
+        .icon-only { font-size: clamp(6rem, 25vw, 12rem); font-weight: 800; display: flex; mix-blend-mode: multiply; line-height: 1; }
         
-        /* BEPI: Overlap nel logo solo oo */
+        /* BEPI: Overlap icon only */
         .o-icon { color: var(--petrol-alpha); margin-right: -0.25em; mix-blend-mode: multiply; }
         .o-icon:last-child { margin-right: 0; }
 
@@ -90,39 +73,37 @@
         .color-title { font-weight: 800; font-size: 0.9rem; display: block; margin-bottom: 2px; }
         .color-hex { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--petrol); }
 
-        /* TYPOGRAPHY RESPONSIVE */
+        /* TYPOGRAPHY */
         .typo-container { border-left: 4px solid var(--petrol); padding-left: 30px; }
         .typo-main { font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 800; margin: 0; letter-spacing: -0.02em; }
         .typo-sub { font-size: 1.1rem; font-weight: 300; color: var(--slate); margin-bottom: 40px; }
 
-        .note-internal { background: #FFF9E6; padding: 25px; border: 1px solid #FFE58F; font-size: 0.95rem; margin-top: 60px; border-radius: 4px; }
+        .note-internal { background: #FFF9E6; padding: 25px; border: 1px solid #FFE58F; font-size: 0.95rem; margin: 60px 0; border-radius: 4px; }
 
-        /* FOOTER BRANDING */
-        .footer-branding { text-align: center; margin-top: 120px; padding-bottom: 60px; }
-        .footer-icon { font-size: clamp(4rem, 12vw, 6rem); font-weight: 800; display: inline-flex; mix-blend-mode: multiply; margin-bottom: 15px; }
+        /* MANDATORY FOOTER STYLING */
+        footer { text-align: center; padding: 100px 0 60px 0; border-top: 1px solid var(--mist); }
+        .footer-icon { font-size: clamp(4rem, 15vw, 6rem); font-weight: 800; display: inline-flex; mix-blend-mode: multiply; margin-bottom: 30px; line-height: 1; }
+        .contact-info { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--slate); line-height: 2; margin-top: 20px; text-transform: uppercase; }
+        .email-link { color: var(--petrol); text-decoration: none; font-weight: 600; }
 
-        /* MOBILE FIXES */
-        @media (max-width: 600px) {
-            body { padding: 40px 20px; }
-            .header-internal { flex-direction: column; align-items: flex-start; margin-bottom: 40px; }
-            h1 { font-size: 2rem; }
-            .visual-showcase { padding: 40px 10px; gap: 40px; }
+        /* RESPONSIVE FIX */
+        @media (max-width: 768px) {
+            .container { padding: 0 25px; }
+            nav { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
             .color-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
-            .color-card { padding: 10px; }
-            .swatch { height: 50px; }
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        
-        <div class="header-internal">
+        <nav>
             <div>
                 <span class="label">Brand Assets // Unit 00</span>
                 <h1>Visual Identity</h1>
             </div>
-            <span class="label" style="color: var(--slate)">Official Standard</span>
-        </div>
+            <span class="label" style="color: var(--slate)">Absolute Clarity Unit</span>
+        </nav>
 
         <section class="identity-section">
             <h2>01. Logo Systems</h2>
@@ -139,14 +120,14 @@
         <section class="identity-section">
             <h2>02. Extended Colour Palette</h2>
             <div class="color-grid">
-                <div class="color-card"><div class="swatch" style="background: var(--petrol)"></div><span class="color-title">Syndeoo Petrol</span><span class="color-hex">#4397A2</span></div>
-                <div class="color-card"><div class="swatch" style="background: var(--black)"></div><span class="color-title">Pure Black</span><span class="color-hex">#000000</span></div>
-                <div class="color-card"><div class="swatch" style="background: var(--deep-navy)"></div><span class="color-title">Deep Navy</span><span class="color-hex">#0F172A</span></div>
-                <div class="color-card"><div class="swatch" style="background: var(--pitch-green)"></div><span class="color-title">Pitch Green</span><span class="color-hex">#2D5A27</span></div>
-                <div class="color-card"><div class="swatch" style="background: var(--gold)"></div><span class="color-title">Action Gold</span><span class="color-hex">#D4AF37</span></div>
-                <div class="color-card"><div class="swatch" style="background: var(--coral)"></div><span class="color-title">Metric Coral</span><span class="color-hex">#E67E22</span></div>
-                <div class="color-card"><div class="swatch" style="background: var(--slate)"></div><span class="color-title">Slate Gray</span><span class="color-hex">#2C3E50</span></div>
-                <div class="color-card"><div class="swatch" style="background: var(--silver)"></div><span class="color-title">Tactical Silver</span><span class="color-hex">#CBD5E1</span></div>
+                <div class="color-card"><div class="swatch" style="background: #4397A2"></div><span class="color-title">Syndeoo Petrol</span><span class="color-hex">#4397A2</span></div>
+                <div class="color-card"><div class="swatch" style="background: #000000"></div><span class="color-title">Pure Black</span><span class="color-hex">#000000</span></div>
+                <div class="color-card"><div class="swatch" style="background: #0F172A"></div><span class="color-title">Deep Navy</span><span class="color-hex">#0F172A</span></div>
+                <div class="color-card"><div class="swatch" style="background: #2D5A27"></div><span class="color-title">Pitch Green</span><span class="color-hex">#2D5A27</span></div>
+                <div class="color-card"><div class="swatch" style="background: #D4AF37"></div><span class="color-title">Action Gold</span><span class="color-hex">#D4AF37</span></div>
+                <div class="color-card"><div class="swatch" style="background: #E67E22"></div><span class="color-title">Metric Coral</span><span class="color-hex">#E67E22</span></div>
+                <div class="color-card"><div class="swatch" style="background: #2C3E50"></div><span class="color-title">Slate Gray</span><span class="color-hex">#2C3E50</span></div>
+                <div class="color-card"><div class="swatch" style="background: #CBD5E1"></div><span class="color-title">Tactical Silver</span><span class="color-hex">#CBD5E1</span></div>
             </div>
         </section>
 
@@ -155,7 +136,6 @@
             <div class="typo-container">
                 <p class="typo-main">Inter Extra Bold</p>
                 <p class="typo-sub">Primary font for high-impact communication.</p>
-                
                 <p style="font-family: 'JetBrains Mono'; font-size: 1.2rem; color: var(--petrol); margin: 0;">JetBrains Mono Regular</p>
                 <p style="font-size: 1rem; color: var(--slate);">Technical font for data visualisations.</p>
             </div>
@@ -165,14 +145,18 @@
             <strong>Internal Note:</strong> Visual clarity is non-negotiable. Every element on the page must serve a purpose.
         </div>
 
-        <div class="footer-branding">
+        <footer>
             <div class="footer-icon">
                 <span class="o-icon">o</span><span class="o-icon">o</span>
             </div>
-            <div style="margin-top: 10px;">
-                <span class="label" style="opacity: 0.5;">syndeoo // Absolute Clarity Unit</span>
+            <div class="contact-info">
+                SYNDEOO // ABSOLUTE CLARITY UNIT<br>
+                <a href="mailto:lab@syndeoo.com" class="email-link">lab@syndeoo.com</a><br>
+                Piazza Duomo 3, 33100 Udine, Italy<br>
+                VAT: IT02855020307
             </div>
-        </div>
+        </footer>
     </div>
+
 </body>
 </html>
