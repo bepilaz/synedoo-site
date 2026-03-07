@@ -27,34 +27,50 @@
 
         .container { max-width: 950px; margin: 0 auto; padding: 0 40px; }
 
-        /* NAVIGATION / HEADER */
-        nav { padding: 40px 0; display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--petrol); margin-bottom: 60px; flex-wrap: wrap; gap: 20px; }
+        /* NAVIGATION - Iconic Logo Size Update */
+        nav { 
+            padding: 60px 0 40px 0; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 2px solid var(--petrol); 
+            margin-bottom: 60px; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+        }
         
-        .master-logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.05em; text-transform: lowercase; }
+        .master-logo { 
+            font-size: clamp(2.2rem, 6vw, 3.2rem); 
+            font-weight: 800; 
+            letter-spacing: -0.06em; 
+            text-transform: lowercase; 
+            line-height: 1;
+        }
         .oo-join { display: inline-flex; }
         
-        /* BEPI OVERLAP: Scritta in alto */
+        /* OVERLAP syndeoo */
         .o-unit { color: var(--petrol-alpha); margin-right: -0.22em; mix-blend-mode: multiply; }
         .o-unit:last-child { margin-right: 0; }
 
-        .label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--petrol); text-transform: uppercase; letter-spacing: 0.15em; }
-        h1 { font-size: clamp(2rem, 8vw, 2.8rem); font-weight: 800; margin: 0; letter-spacing: -0.03em; }
+        .label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--petrol); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; }
+
+        header { margin-bottom: 60px; }
+        h1 { font-size: clamp(2.2rem, 8vw, 3rem); font-weight: 800; margin: 0; letter-spacing: -0.03em; line-height: 1.1; }
 
         /* GOLDEN CIRCLE BOXES */
         .circle-box { background: var(--mist); padding: clamp(30px, 5vw, 50px); border-radius: 4px; margin-bottom: 40px; border-left: 5px solid var(--petrol); }
         .circle-title { font-weight: 800; color: var(--petrol); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.3em; margin-bottom: 20px; display: block; }
         
         .manifesto-point { margin-bottom: 35px; }
-        .manifesto-point strong { display: block; font-size: clamp(1.1rem, 4vw, 1.3rem); margin-bottom: 8px; letter-spacing: -0.01em; }
+        .manifesto-point strong { display: block; font-size: clamp(1.15rem, 4vw, 1.35rem); margin-bottom: 8px; letter-spacing: -0.01em; font-weight: 800; }
         .manifesto-point p { margin: 0; color: var(--slate); font-weight: 300; font-size: 1.1rem; }
 
-        .note-internal { background: #FFF9E6; padding: 25px; border: 1px solid #FFE58F; font-size: 0.95rem; margin: 60px 0; border-radius: 4px; color: var(--slate); }
+        .note-internal { background: #FFF9E6; padding: 30px; border: 1px solid #FFE58F; font-size: 0.95rem; margin: 60px 0; border-radius: 4px; color: var(--slate); }
 
         /* MANDATORY FOOTER STYLING */
         footer { text-align: center; padding: 100px 0 60px 0; border-top: 1px solid var(--mist); margin-top: 60px; }
-        .footer-icon { font-size: clamp(4rem, 15vw, 6rem); font-weight: 800; display: inline-flex; mix-blend-mode: multiply; margin-bottom: 30px; line-height: 1; }
+        .footer-icon { font-size: clamp(4.5rem, 18vw, 6.5rem); font-weight: 800; display: inline-flex; mix-blend-mode: multiply; margin-bottom: 30px; line-height: 1; }
         
-        /* BEPI OVERLAP: Logo in fondo */
         .o-icon { color: var(--petrol-alpha); margin-right: -0.25em; mix-blend-mode: multiply; }
         .o-icon:last-child { margin-right: 0; }
         
@@ -64,7 +80,7 @@
         /* RESPONSIVE FIX */
         @media (max-width: 768px) {
             .container { padding: 0 25px; }
-            nav { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+            nav { flex-direction: column; align-items: center; text-align: center; padding: 40px 0; gap: 20px; }
         }
     </style>
 </head>
@@ -78,7 +94,7 @@
             <span class="label">Absolute Clarity Unit</span>
         </nav>
 
-        <header style="margin-bottom: 60px;">
+        <header>
             <span class="label">Strategic Framework // Lab 01</span>
             <h1>The Golden Circle</h1>
         </header>
