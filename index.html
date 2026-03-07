@@ -68,17 +68,13 @@
         .contact-info { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--slate); line-height: 2; margin-top: 20px; }
         .email-link { color: var(--petrol); text-decoration: none; font-weight: 600; }
 
-        /* --- RESPONSIVE FIX (MOBILE) --- */
+        /* RESPONSIVE FIX */
         @media (max-width: 768px) {
             .container { padding: 0 25px; }
-            h1 { font-size: 2.2rem; } /* Riduce il titolo su mobile */
-            .grid { 
-                grid-template-columns: 1fr; /* Una colonna sola invece di due */
-                gap: 40px; 
-            }
-            .hero-sub { font-size: 1.1rem; padding-left: 20px; }
-            .authority-box { padding: 30px; }
-            nav { flex-direction: column; gap: 15px; text-align: center; }
+            h1 { font-size: 2.2rem; }
+            .grid { grid-template-columns: 1fr; gap: 40px; }
+            nav { flex-direction: column; gap: 10px; text-align: center; }
+            .hero-sub { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -87,7 +83,7 @@
     <div class="container">
         <nav>
             <div class="master-logo">synde<span class="oo-join"><span class="o-written">o</span><span class="o-written">o</span></span></div>
-            <div class="label" style="color: var(--slate)">Visual Intelligence Unit</div>
+            <div class="label">Absolute Clarity Unit</div>
         </nav>
 
         <header>
@@ -115,7 +111,7 @@
             <span class="label">Scientific Leadership</span>
             <h2>Rooted in Elite Experience.</h2>
             <p class="bio-text">
-                Led by <strong>Cristian Osgnach</strong>, our team combines two decades of on-field experience—from Serie A to the Italian National Team—with world-renowned scientific rigour. We don't just process data; we interpret it through the lens of elite performance.
+                Led by <strong>Cristian Osgnach</strong>, our team combines a decade of on-field experience—from Serie A to the Italian National Team—with world-renowned scientific rigour. We don't just process data; we interpret it through the lens of elite performance.
             </p>
             <a href="https://www.researchgate.net/profile/Cristian-Osgnach" target="_blank" class="link-research">View Scientific Publications</a>
         </section>
@@ -132,10 +128,10 @@
                 <span class="o-icon">o</span><span class="o-icon">o</span>
             </div>
             <div class="contact-info">
-                SYNDEOO LAB // <a href="mailto:lab@syndeoo.com" class="email-link">lab@syndeoo.com</a><br>
+                SYNDEOO // ABSOLUTE CLARITY UNIT<br>
+                <a href="mailto:lab@syndeoo.com" class="email-link">lab@syndeoo.com</a><br>
                 Piazza Duomo 3, 33100 Udine, Italy<br>
-                VAT: IT02855020307<br>
-                <span style="opacity: 0.5; margin-top: 20px; display: block; letter-spacing: 0.3em;">ABSOLUTE CLARITY UNIT</span>
+                VAT: IT02855020307
             </div>
         </footer>
     </div>
