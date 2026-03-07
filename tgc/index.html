@@ -2,13 +2,14 @@
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>syndeoo | Internal Strategy Manifesto</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --petrol: #4397A2;
             --petrol-alpha: rgba(67, 151, 162, 0.7);
-            --deep-navy: #0F172A;
+            --black: #000000;
             --white: #ffffff;
             --mist: #F1F5F9;
             --slate: #2C3E50;
@@ -17,68 +18,70 @@
         body { 
             font-family: 'Inter', sans-serif; 
             line-height: 1.6; 
-            color: var(--deep-navy); 
+            color: var(--black); 
             margin: 0; 
-            padding: 60px; 
+            padding: 0;
             background-color: var(--white);
             -webkit-font-smoothing: antialiased;
         }
 
-        .container { max-width: 900px; margin: 0 auto; }
+        .container { max-width: 950px; margin: 0 auto; padding: 0 40px; }
 
-        /* BRANDING ELEMENTS */
-        .master-logo { font-size: 2rem; font-weight: 800; letter-spacing: -0.05em; text-transform: lowercase; margin-bottom: 40px; }
+        /* NAVIGATION / HEADER */
+        nav { padding: 40px 0; display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--petrol); margin-bottom: 60px; flex-wrap: wrap; gap: 20px; }
+        
+        .master-logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.05em; text-transform: lowercase; }
         .oo-join { display: inline-flex; }
         
-        /* BEPI MODIFICA QUI: OVERLAP NELLA SCRITTA "syndeoo" IN ALTO */
+        /* BEPI OVERLAP: Scritta in alto */
         .o-unit { color: var(--petrol-alpha); margin-right: -0.22em; mix-blend-mode: multiply; }
         .o-unit:last-child { margin-right: 0; }
 
-        /* BEPI MODIFICA QUI: OVERLAP NEL LOGO "oo" IN FONDO */
-        .o-icon { color: var(--petrol-alpha); margin-right: -0.25em; mix-blend-mode: multiply; }
-        .o-icon:last-child { margin-right: 0; }
+        .label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--petrol); text-transform: uppercase; letter-spacing: 0.15em; }
+        h1 { font-size: clamp(2rem, 8vw, 2.8rem); font-weight: 800; margin: 0; letter-spacing: -0.03em; }
 
-        .header-internal { 
-            border-bottom: 2px solid var(--petrol); 
-            padding-bottom: 20px; 
-            margin-bottom: 60px; 
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--petrol); text-transform: uppercase; letter-spacing: 0.1em; }
-        h1 { font-size: 2.8rem; font-weight: 800; margin: 0; letter-spacing: -0.03em; }
-        
         /* GOLDEN CIRCLE BOXES */
-        .circle-box { background: var(--mist); padding: 50px; border-radius: 4px; margin-bottom: 40px; border-left: 5px solid var(--petrol); }
+        .circle-box { background: var(--mist); padding: clamp(30px, 5vw, 50px); border-radius: 4px; margin-bottom: 40px; border-left: 5px solid var(--petrol); }
         .circle-title { font-weight: 800; color: var(--petrol); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.3em; margin-bottom: 20px; display: block; }
         
         .manifesto-point { margin-bottom: 35px; }
-        .manifesto-point strong { display: block; font-size: 1.3rem; margin-bottom: 8px; letter-spacing: -0.01em; }
+        .manifesto-point strong { display: block; font-size: clamp(1.1rem, 4vw, 1.3rem); margin-bottom: 8px; letter-spacing: -0.01em; }
         .manifesto-point p { margin: 0; color: var(--slate); font-weight: 300; font-size: 1.1rem; }
 
-        /* FOOTER BRANDING */
-        .footer-branding { text-align: center; margin-top: 120px; padding-bottom: 60px; }
-        .footer-icon { font-size: 6rem; font-weight: 800; display: inline-flex; mix-blend-mode: multiply; margin-bottom: 15px; line-height: 1; }
+        .note-internal { background: #FFF9E6; padding: 25px; border: 1px solid #FFE58F; font-size: 0.95rem; margin: 60px 0; border-radius: 4px; color: var(--slate); }
 
-        .note-internal { background: #FFF9E6; padding: 25px; border: 1px solid #FFE58F; font-size: 0.95rem; margin-top: 60px; border-radius: 4px; color: var(--deep-navy); }
+        /* MANDATORY FOOTER STYLING */
+        footer { text-align: center; padding: 100px 0 60px 0; border-top: 1px solid var(--mist); margin-top: 60px; }
+        .footer-icon { font-size: clamp(4rem, 15vw, 6rem); font-weight: 800; display: inline-flex; mix-blend-mode: multiply; margin-bottom: 30px; line-height: 1; }
+        
+        /* BEPI OVERLAP: Logo in fondo */
+        .o-icon { color: var(--petrol-alpha); margin-right: -0.25em; mix-blend-mode: multiply; }
+        .o-icon:last-child { margin-right: 0; }
+        
+        .contact-info { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--slate); line-height: 2; margin-top: 20px; text-transform: uppercase; }
+        .email-link { color: var(--petrol); text-decoration: none; font-weight: 600; }
+
+        /* RESPONSIVE FIX */
+        @media (max-width: 768px) {
+            .container { padding: 0 25px; }
+            nav { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        
-        <div class="master-logo">
-            synde<span class="oo-join"><span class="o-unit">o</span><span class="o-unit">o</span></span>
-        </div>
 
-        <div class="header-internal">
-            <div>
-                <span class="label">Strategic Framework // Lab 01</span>
-                <h1>The Golden Circle</h1>
+    <div class="container">
+        <nav>
+            <div class="master-logo">
+                synde<span class="oo-join"><span class="o-unit">o</span><span class="o-unit">o</span></span>
             </div>
-            <span class="label" style="color: var(--slate)">Confidential</span>
-        </div>
+            <span class="label">Absolute Clarity Unit</span>
+        </nav>
+
+        <header style="margin-bottom: 60px;">
+            <span class="label">Strategic Framework // Lab 01</span>
+            <h1>The Golden Circle</h1>
+        </header>
 
         <section class="circle-box">
             <span class="circle-title">01. WHY (The Purpose)</span>
@@ -116,14 +119,18 @@
             <strong>Internal Note:</strong> Our value proposition is not "data analysis", it is <strong>Peace of Mind</strong> for decision-makers. The technical rigour is our method; their confidence in taking the right step is our product.
         </div>
 
-        <div class="footer-branding">
+        <footer>
             <div class="footer-icon">
                 <span class="o-icon">o</span><span class="o-icon">o</span>
             </div>
-            <div style="margin-top: 10px;">
-                <span class="label" style="opacity: 0.5;">syndeoo // Absolute Clarity Unit</span>
+            <div class="contact-info">
+                SYNDEOO // ABSOLUTE CLARITY UNIT<br>
+                <a href="mailto:lab@syndeoo.com" class="email-link">lab@syndeoo.com</a><br>
+                Piazza Duomo 3, 33100 Udine, Italy<br>
+                VAT: IT02855020307
             </div>
-        </div>
+        </footer>
     </div>
+
 </body>
 </html>
