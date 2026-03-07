@@ -2,6 +2,7 @@
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>syndeoo | Visual Identity Standards</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
@@ -26,7 +27,7 @@
             line-height: 1.6; 
             color: var(--black); 
             margin: 0; 
-            padding: 60px; 
+            padding: 60px 20px; 
             background-color: var(--white);
             -webkit-font-smoothing: antialiased;
         }
@@ -41,9 +42,11 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--petrol); text-transform: uppercase; letter-spacing: 0.1em; }
+        .label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--petrol); text-transform: uppercase; letter-spacing: 0.15em; }
         h1 { font-size: 2.8rem; font-weight: 800; margin: 0; letter-spacing: -0.03em; }
 
         /* SECTIONS */
@@ -52,42 +55,62 @@
 
         .visual-showcase { 
             background: var(--mist); 
-            padding: 80px 40px; 
+            padding: 80px 20px; 
             border-radius: 4px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             gap: 60px;
             margin-bottom: 25px;
+            text-align: center;
         }
 
         /* LOGO & ICON SETTINGS */
         .oo-join { display: inline-flex; }
-        .master-logo { font-size: 4.5rem; font-weight: 800; letter-spacing: -0.05em; text-transform: lowercase; }
+        .master-logo { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -0.05em; text-transform: lowercase; }
         
         /* BEPI: Overlap nella scritta syndeoo */
         .o-written { color: var(--petrol-alpha); margin-right: -0.22em; mix-blend-mode: multiply; }
         .o-written:last-child { margin-right: 0; }
 
-        .icon-only { font-size: 12rem; font-weight: 800; display: flex; mix-blend-mode: multiply; line-height: 1; }
+        .icon-only { font-size: clamp(6rem, 20vw, 12rem); font-weight: 800; display: flex; mix-blend-mode: multiply; line-height: 1; }
         
         /* BEPI: Overlap nel logo solo oo */
         .o-icon { color: var(--petrol-alpha); margin-right: -0.25em; mix-blend-mode: multiply; }
         .o-icon:last-child { margin-right: 0; }
 
         /* COLOR GRID */
-        .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 25px; }
+        .color-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+            gap: 25px; 
+        }
         .color-card { border: 1px solid #eee; padding: 20px; border-radius: 4px; background: white; }
         .swatch { height: 70px; border-radius: 2px; margin-bottom: 12px; border: 1px solid rgba(0,0,0,0.03); }
         .color-title { font-weight: 800; font-size: 0.9rem; display: block; margin-bottom: 2px; }
         .color-hex { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--petrol); }
 
+        /* TYPOGRAPHY RESPONSIVE */
+        .typo-container { border-left: 4px solid var(--petrol); padding-left: 30px; }
+        .typo-main { font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 800; margin: 0; letter-spacing: -0.02em; }
+        .typo-sub { font-size: 1.1rem; font-weight: 300; color: var(--slate); margin-bottom: 40px; }
+
         .note-internal { background: #FFF9E6; padding: 25px; border: 1px solid #FFE58F; font-size: 0.95rem; margin-top: 60px; border-radius: 4px; }
 
         /* FOOTER BRANDING */
         .footer-branding { text-align: center; margin-top: 120px; padding-bottom: 60px; }
-        .footer-icon { font-size: 6rem; font-weight: 800; display: inline-flex; mix-blend-mode: multiply; margin-bottom: 15px; }
+        .footer-icon { font-size: clamp(4rem, 12vw, 6rem); font-weight: 800; display: inline-flex; mix-blend-mode: multiply; margin-bottom: 15px; }
 
+        /* MOBILE FIXES */
+        @media (max-width: 600px) {
+            body { padding: 40px 20px; }
+            .header-internal { flex-direction: column; align-items: flex-start; margin-bottom: 40px; }
+            h1 { font-size: 2rem; }
+            .visual-showcase { padding: 40px 10px; gap: 40px; }
+            .color-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+            .color-card { padding: 10px; }
+            .swatch { height: 50px; }
+        }
     </style>
 </head>
 <body>
@@ -129,9 +152,9 @@
 
         <section class="identity-section">
             <h2>03. Typography</h2>
-            <div style="border-left: 4px solid var(--petrol); padding-left: 30px;">
-                <p style="font-size: 2.2rem; font-weight: 800; margin: 0; letter-spacing: -0.02em;">Inter Extra Bold</p>
-                <p style="font-size: 1.1rem; font-weight: 300; color: var(--slate); margin-bottom: 40px;">Primary font for high-impact communication.</p>
+            <div class="typo-container">
+                <p class="typo-main">Inter Extra Bold</p>
+                <p class="typo-sub">Primary font for high-impact communication.</p>
                 
                 <p style="font-family: 'JetBrains Mono'; font-size: 1.2rem; color: var(--petrol); margin: 0;">JetBrains Mono Regular</p>
                 <p style="font-size: 1rem; color: var(--slate);">Technical font for data visualisations.</p>
