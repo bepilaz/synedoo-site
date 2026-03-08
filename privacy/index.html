@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>syndeoo | Privacy & Data Protocol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --petrol: #4397A2;
+            --petrol-alpha: rgba(67, 151, 162, 0.7);
+            --black: #000000;
+            --white: #ffffff;
+            --mist: #F1F5F9;
+            --slate: #2C3E50;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            color: var(--black); 
+            margin: 0; 
+            padding: 0;
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 950px; margin: 0 auto; padding: 0 40px; }
+
+        /* NAVIGATION - Iconic Logo Size */
+        nav { 
+            padding: 60px 0 40px 0; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 2px solid var(--petrol); 
+            margin-bottom: 60px; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+        }
+        
+        .master-logo { 
+            font-size: clamp(2.2rem, 6vw, 3.2rem); 
+            font-weight: 800; 
+            letter-spacing: -0.06em; 
+            text-transform: lowercase; 
+            line-height: 1;
+        }
+        .oo-join { display: inline-flex; }
+        .o-unit { color: var(--petrol-alpha); margin-right: -0.22em; mix-blend-mode: multiply; }
+        .o-unit:last-child { margin-right: 0; }
+
+        .label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--petrol); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; }
+
+        /* CONTENT */
+        header { margin-bottom: 60px; }
+        h1 { font-size: clamp(2.2rem, 8vw, 3rem); font-weight: 800; margin: 0; letter-spacing: -0.03em; line-height: 1.1; }
+
+        section { padding: 40px 0; border-top: 1px solid var(--mist); }
+        h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--petrol); margin-bottom: 25px; }
+        
+        .policy-text { color: var(--slate); font-weight: 300; font-size: 1.05rem; margin-bottom: 20px; }
+        .policy-text strong { font-weight: 600; color: var(--black); }
+
+        ul { padding-left: 20px; color: var(--slate); font-weight: 300; }
+        li { margin-bottom: 10px; }
+
+        /* MANDATORY FOOTER STYLING */
+        footer { text-align: center; padding: 100px 0 60px 0; border-top: 1px solid var(--mist); margin-top: 60px; }
+        .footer-icon { font-size: clamp(4.5rem, 18vw, 6.5rem); font-weight: 800; display: inline-flex; mix-blend-mode: multiply; margin-bottom: 30px; line-height: 1; }
+        .o-icon { color: var(--petrol-alpha); margin-right: -0.25em; mix-blend-mode: multiply; }
+        .o-icon:last-child { margin-right: 0; }
+        
+        .contact-info { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--slate); line-height: 2; margin-top: 20px; text-transform: uppercase; }
+        .email-link { color: var(--petrol); text-decoration: none; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 25px; }
+            nav { flex-direction: column; align-items: center; text-align: center; gap: 20px; padding: 40px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <div class="master-logo">
+                synde<span class="oo-join"><span class="o-unit">o</span><span class="o-unit">o</span></span>
+            </div>
+            <span class="label">Absolute Clarity Unit</span>
+        </nav>
+
+        <header>
+            <span class="label">Legal Protocol // Privacy</span>
+            <h1>Data Privacy Policy</h1>
+        </header>
+
+        <section>
+            <h2>01. Data Controller</h2>
+            <p class="policy-text">
+                The data controller is <strong>syndeoo</strong>, with registered office at Piazza Duomo 3, 33100 Udine, Italy. 
+                For any enquiries regarding your data, please contact the unit via <a href="mailto:lab@syndeoo.com" class="email-link">lab@syndeoo.com</a>.
+            </p>
+        </section>
+
+        <section>
+            <h2>02. Data Collection</h2>
+            <p class="policy-text">
+                We collect information strictly necessary to provide our professional services:
+            </p>
+            <ul>
+                <li><strong>Identity Data:</strong> Full name and professional title.</li>
+                <li><strong>Contact Data:</strong> Official email address and organisation details.</li>
+                <li><strong>Usage Data:</strong> Technical logs for security and performance monitoring.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>03. Purpose of Processing</h2>
+            <p class="policy-text">
+                Your data is processed in accordance with GDPR (EU 2016/679) for the following purposes:
+            </p>
+            <ul>
+                <li>Managing briefing requests and strategic consultations.</li>
+                <li>Ensuring the security and integrity of our digital framework.</li>
+                <li>Fulfilling legal and fiscal obligations.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>04. Cookie Protocol</h2>
+            <p class="policy-text">
+                This unit utilizes only <strong>technical and essential cookies</strong> required for the correct functioning of the digital interface. No profiling or third-party marketing cookies are deployed without explicit consent.
+            </p>
+        </section>
+
+        <section>
+            <h2>05. Your Rights</h2>
+            <p class="policy-text">
+                Under European law, you have the right to access, rectify, or erase your personal data at any time. To exercise these rights, please initiate a request to our lab email.
+            </p>
+        </section>
+
+        <footer>
+            <div class="footer-icon">
+                <span class="o-icon">o</span><span class="o-icon">o</span>
+            </div>
+            <div class="contact-info">
+                SYNDEOO // ABSOLUTE CLARITY UNIT<br>
+                <a href="mailto:lab@syndeoo.com" class="email-link">lab@syndeoo.com</a><br>
+                Piazza Duomo 3, 33100 Udine, Italy<br>
+                VAT: IT02855020307
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
