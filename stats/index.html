@@ -13,6 +13,7 @@
     --black: #000;
     --white: #fff;
     --mist: #F1F5F9;
+    --track: #DDE3EA;
     --slate: #2C3E50;
     --gold: #D4AF37;
     --coral: #E67E22;
@@ -22,7 +23,6 @@
 body{font-family:'Inter',sans-serif;line-height:1.6;color:var(--black);background:var(--white);-webkit-font-smoothing:antialiased}
 .wrap{max-width:1100px;margin:0 auto;padding:0 40px}
 
-/* ── NAV ── */
 nav{padding:60px 0 40px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--petrol);margin-bottom:60px;flex-wrap:wrap;gap:20px}
 .logo{font-size:clamp(2.2rem,6vw,3.2rem);font-weight:800;letter-spacing:-.06em;text-transform:lowercase;line-height:1}
 .oo{display:inline-flex}
@@ -30,66 +30,58 @@ nav{padding:60px 0 40px;display:flex;justify-content:space-between;align-items:f
 .o:last-child{margin-right:0}
 .lbl{font-family:'JetBrains Mono';font-size:.7rem;color:var(--petrol);text-transform:uppercase;letter-spacing:.15em;font-weight:600}
 
-/* ── HEADER ── */
 header{margin-bottom:50px}
 h1{font-size:clamp(2rem,7vw,3rem);font-weight:800;margin:12px 0 20px;letter-spacing:-.04em;line-height:1.05}
 .sub{font-size:1.05rem;font-weight:300;color:var(--slate);max-width:680px;border-left:3px solid var(--petrol);padding-left:24px}
 
-/* ── DATA NOTE ── */
-.note{background:var(--petrol-bg);border:1px solid var(--petrol);border-radius:4px;padding:16px 22px;font-family:'JetBrains Mono';font-size:.68rem;color:var(--slate);letter-spacing:.03em;margin-bottom:50px;line-height:1.9}
+.note{background:var(--petrol-bg);border:1px solid var(--petrol);border-radius:4px;padding:16px 22px;font-family:'JetBrains Mono';font-size:.67rem;color:var(--slate);letter-spacing:.03em;margin-bottom:50px;line-height:1.95}
 
-/* ── SUMMARY CARDS ── */
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;margin-bottom:60px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px;margin-bottom:60px}
 .card{background:var(--mist);border-radius:4px;padding:22px;border-left:4px solid var(--petrol)}
-.card-val{font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:4px}
+.card-val{font-size:1.55rem;font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:4px}
 .card-team{font-size:.8rem;font-weight:600;color:var(--petrol);margin-bottom:4px}
-.card-lbl{font-family:'JetBrains Mono';font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--slate)}
+.card-lbl{font-family:'JetBrains Mono';font-size:.59rem;text-transform:uppercase;letter-spacing:.1em;color:var(--slate)}
 
-/* ── TABS ── */
 .tabs{display:flex;border-bottom:2px solid var(--mist);margin-bottom:28px;overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 .tab{font-family:'JetBrains Mono';font-size:.63rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:13px 18px;cursor:pointer;color:var(--slate);border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color .15s;user-select:none}
 .tab:hover{color:var(--petrol)}
 .tab.on{color:var(--black);border-bottom-color:var(--petrol)}
 
-/* ── PANELS ── */
 .panel{display:none}
 .panel.on{display:block}
 
 h2{font-size:.7rem;text-transform:uppercase;letter-spacing:.4em;color:var(--petrol);margin-bottom:8px}
-.desc{color:var(--slate);font-weight:300;font-size:.92rem;margin-bottom:22px;max-width:700px;line-height:1.6}
+.desc{color:var(--slate);font-weight:300;font-size:.9rem;margin-bottom:22px;max-width:720px;line-height:1.65}
 
-/* ── LEGEND ── */
-.legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:22px;align-items:center}
-.leg-item{display:flex;align-items:center;gap:7px;font-size:.73rem;color:var(--slate)}
-.leg-dot{width:11px;height:11px;border-radius:2px;flex-shrink:0}
-
-/* ── SORT ── */
 .sort-row{display:flex;gap:8px;align-items:center;margin-bottom:20px;flex-wrap:wrap}
 .sort-lbl{font-family:'JetBrains Mono';font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--slate);margin-right:4px}
 .sort-btn{font-family:'JetBrains Mono';font-size:.6rem;text-transform:uppercase;letter-spacing:.06em;padding:6px 13px;border:1px solid var(--silver);background:var(--white);cursor:pointer;border-radius:2px;color:var(--slate);transition:all .15s}
 .sort-btn:hover{border-color:var(--petrol);color:var(--petrol)}
 .sort-btn.on{background:var(--black);color:var(--white);border-color:var(--black)}
 
-/* ── BAR CHART ── */
-.axis-lbl{font-family:'JetBrains Mono';font-size:.58rem;color:var(--slate);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;opacity:.7}
-.bar-row{display:grid;grid-template-columns:168px 1fr 100px;align-items:center;gap:10px;margin-bottom:5px;padding:3px 4px;border-radius:2px;cursor:default;transition:background .1s}
-.bar-row:hover{background:rgba(241,245,249,.9)}
-.bar-name{font-size:.78rem;font-weight:500;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .15s}
+.axis-lbl{font-family:'JetBrains Mono';font-size:.58rem;color:var(--slate);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;opacity:.65}
+
+.bar-row{display:grid;grid-template-columns:148px 1fr 82px;align-items:center;gap:10px;margin-bottom:4px;padding:3px 4px;border-radius:2px;cursor:default;transition:background .1s}
+.bar-row:hover{background:rgba(220,228,236,.55)}
+.bar-name{font-size:.77rem;font-weight:500;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .15s}
 .bar-row:hover .bar-name{color:var(--petrol)}
-.bar-track{background:var(--mist);border-radius:2px;height:28px;overflow:hidden;position:relative}
+.bar-track{background:var(--track);border-radius:2px;height:26px;overflow:hidden}
 .bar-fill{height:100%;border-radius:2px;width:0;transition:width .55s cubic-bezier(.25,.46,.45,.94)}
-.bar-val{font-family:'JetBrains Mono';font-size:.7rem;font-weight:600}
-.foot{font-size:.75rem;color:var(--slate);font-weight:300;margin-top:18px;font-style:italic;border-left:2px solid var(--mist);padding-left:14px}
+.bar-val{font-family:'JetBrains Mono';font-size:.69rem;font-weight:600;white-space:nowrap}
 
-/* ── SCATTER ── */
+/* Scatter team legend grid */
+.scatter-legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px 16px;margin-top:20px}
+.sl-item{display:flex;align-items:center;gap:7px;font-size:.72rem;color:var(--slate);cursor:default}
+.sl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+.foot-note{font-size:.75rem;color:var(--slate);font-weight:300;margin-top:18px;font-style:italic;border-left:2px solid var(--mist);padding-left:14px}
+
 #scatter-wrap{background:var(--mist);border-radius:4px;padding:20px}
-#scatter-canvas{display:block;width:100%}
+#scatter-canvas{display:block;width:100%;cursor:default}
 
-/* ── TOOLTIP ── */
-#tip{position:fixed;background:var(--black);color:var(--white);padding:9px 13px;border-radius:2px;font-family:'JetBrains Mono';font-size:.67rem;pointer-events:none;z-index:9999;display:none;border-left:3px solid var(--petrol);white-space:nowrap;line-height:1.7}
+#tip{position:fixed;background:var(--black);color:var(--white);padding:9px 14px;border-radius:2px;font-family:'JetBrains Mono';font-size:.67rem;pointer-events:none;z-index:9999;display:none;border-left:3px solid var(--petrol);white-space:nowrap;line-height:1.75}
 
-/* ── FOOTER ── */
 footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);margin-top:80px}
 .foot-logo{font-size:clamp(4.5rem,18vw,6.5rem);font-weight:800;display:inline-flex;mix-blend-mode:multiply;margin-bottom:30px;line-height:1}
 .oi{color:var(--petrol-a);margin-right:-.25em;mix-blend-mode:multiply}
@@ -100,9 +92,10 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
 @media(max-width:768px){
     .wrap{padding:0 20px}
     nav{flex-direction:column;align-items:flex-start;padding:40px 0}
-    .bar-row{grid-template-columns:110px 1fr 68px;gap:7px}
+    .bar-row{grid-template-columns:110px 1fr 66px;gap:7px}
     .bar-name{font-size:.7rem}
     .cards{grid-template-columns:1fr 1fr}
+    .scatter-legend{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
 }
 </style>
 </head>
@@ -123,123 +116,97 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
 <header>
     <span class="lbl">Dataset // Premier League 2023–24</span>
     <h1>Running the Numbers.<br>Who Works Hardest?</h1>
-    <p class="sub">A full-season physical breakdown of all 20 Premier League clubs — distance covered, sprints, and high-speed running. Effort made visible.</p>
+    <p class="sub">Per-player averages across all 20 Premier League clubs — distance, high-speed running, and sprint distance, normalised per outfield player per match.</p>
 </header>
 
 <div class="note">
     SOURCE: Opta / Premier League Official Stats &nbsp;·&nbsp; Season 2023–24 &nbsp;·&nbsp; 38 matchdays per club<br>
-    Compiled from PL official releases, Squawka and Opta Analyst. Headline figures (Burnley 4,411 km total; Tottenham 6,534 sprints; Bournemouth 6,250 sprints; van de Ven top speed 37.38 km/h) are exact as published. All other figures modelled consistently with reported league rankings and ranges.
+    All bar chart figures: season total ÷ 10 outfield players ÷ 38 matches.<br>
+    Speed zones — Total distance: all speeds · HSR: 19.8–25.2 km/h · Sprint distance: above 25.2 km/h<br>
+    Headline figures (Burnley season total 4,411 km; Tottenham season total 6,534 sprints; van de Ven top speed 37.38 km/h) are exact as published by the Premier League.
 </div>
 
-<!-- SUMMARY CARDS -->
 <div class="cards">
     <div class="card">
         <div class="card-val" id="cv-dist">—</div>
         <div class="card-team" id="ct-dist">—</div>
-        <div class="card-lbl">Most km covered · season</div>
-    </div>
-    <div class="card" style="border-left-color:var(--slate)">
-        <div class="card-val" id="cv-spr">—</div>
-        <div class="card-team" id="ct-spr">—</div>
-        <div class="card-lbl">Most sprints · season</div>
+        <div class="card-lbl">Avg distance · player / match</div>
     </div>
     <div class="card" style="border-left-color:var(--gold)">
         <div class="card-val" id="cv-hsr">—</div>
         <div class="card-team" id="ct-hsr">—</div>
-        <div class="card-lbl">Most high-speed running km</div>
+        <div class="card-lbl">Avg HSR distance · player / match</div>
     </div>
     <div class="card" style="border-left-color:var(--coral)">
+        <div class="card-val" id="cv-spr">—</div>
+        <div class="card-team" id="ct-spr">—</div>
+        <div class="card-lbl">Avg sprint distance · player / match</div>
+    </div>
+    <div class="card" style="border-left-color:var(--slate)">
         <div class="card-val">37.38 km/h</div>
         <div class="card-team">M. van de Ven — Spurs</div>
         <div class="card-lbl">Highest individual top speed</div>
     </div>
 </div>
 
-<!-- TABS -->
 <div class="tabs" id="tabs">
     <div class="tab on" data-p="distance">Total Distance</div>
-    <div class="tab" data-p="pergame">Distance / Game</div>
-    <div class="tab" data-p="sprints">Sprint Count</div>
-    <div class="tab" data-p="hsr">High-Speed Running</div>
-    <div class="tab" data-p="scatter">Distance vs Sprints</div>
-</div>
-
-<!-- SHARED LEGEND -->
-<div class="legend">
-    <div class="leg-item"><div class="leg-dot" style="background:#4397A2"></div>Top 5 · Champions League</div>
-    <div class="leg-item"><div class="leg-dot" style="background:#2C3E50"></div>P6–P8 · Europa</div>
-    <div class="leg-item"><div class="leg-dot" style="background:#94A3B8"></div>Mid-table</div>
-    <div class="leg-item"><div class="leg-dot" style="background:#CBD5E1"></div>Relegated</div>
+    <div class="tab"    data-p="hsr">HSR Distance</div>
+    <div class="tab"    data-p="sprint">Sprint Distance</div>
+    <div class="tab"    data-p="scatter">Intensity vs Position</div>
 </div>
 
 <!-- PANEL: DISTANCE -->
 <div class="panel on" id="panel-distance">
-    <h2>01 · Season Total Distance (km)</h2>
-    <p class="desc">Aggregate kilometres run by all outfield players across all 38 matchdays. High pressing intensity and vertical play consistently push teams to the top of this chart.</p>
+    <h2>01 · Total Distance — per player per match (km)</h2>
+    <p class="desc">All speeds included. Season total normalised per outfield player per match.</p>
     <div class="sort-row" id="sr-distance">
         <span class="sort-lbl">Sort</span>
         <button class="sort-btn on" data-o="desc">Highest first</button>
-        <button class="sort-btn" data-o="asc">Lowest first</button>
-        <button class="sort-btn" data-o="alpha">A–Z</button>
+        <button class="sort-btn"    data-o="asc">Lowest first</button>
+        <button class="sort-btn"    data-o="alpha">A–Z</button>
     </div>
-    <div class="axis-lbl">km — season total · all 20 clubs</div>
+    <div class="axis-lbl">km / outfield player / match · all speeds</div>
     <div id="chart-distance"></div>
-    <p class="foot">Burnley covered more ground than any other club despite finishing 19th — evidence that distance alone does not decide outcomes.</p>
-</div>
-
-<!-- PANEL: PER GAME -->
-<div class="panel" id="panel-pergame">
-    <h2>02 · Average Distance per Match (km)</h2>
-    <p class="desc">Season total normalised to 38 games. This levels the playing field and reflects true tactical intensity match by match.</p>
-    <div class="sort-row" id="sr-pergame">
-        <span class="sort-lbl">Sort</span>
-        <button class="sort-btn on" data-o="desc">Highest first</button>
-        <button class="sort-btn" data-o="asc">Lowest first</button>
-        <button class="sort-btn" data-o="alpha">A–Z</button>
-    </div>
-    <div class="axis-lbl">km per match</div>
-    <div id="chart-pergame"></div>
-    <p class="foot">A single km/game advantage compounds into a 38 km gap over the season — a meaningful physical edge.</p>
-</div>
-
-<!-- PANEL: SPRINTS -->
-<div class="panel" id="panel-sprints">
-    <h2>03 · Total Sprints — Season</h2>
-    <p class="desc">Any effort above 25 km/h qualifies as a sprint. This isolates explosive intensity — the hallmark of high-press and fast-break tactical systems.</p>
-    <div class="sort-row" id="sr-sprints">
-        <span class="sort-lbl">Sort</span>
-        <button class="sort-btn on" data-o="desc">Highest first</button>
-        <button class="sort-btn" data-o="asc">Lowest first</button>
-        <button class="sort-btn" data-o="alpha">A–Z</button>
-    </div>
-    <div class="axis-lbl">sprint count · season total · all 20 clubs</div>
-    <div id="chart-sprints"></div>
-    <p class="foot">Tottenham's 6,534 sprints led the league by nearly 300 — a defining feature of Ange Postecoglou's front-foot system.</p>
 </div>
 
 <!-- PANEL: HSR -->
 <div class="panel" id="panel-hsr">
-    <h2>04 · High-Speed Running — Season km</h2>
-    <p class="desc">Distance covered above 19.8 km/h — the aerobic/anaerobic boundary. High-HSR clubs thrive on transitions, counter-pressing, and recovery runs behind the defensive line.</p>
+    <h2>02 · HSR Distance — per player per match (km)</h2>
+    <p class="desc">Distance covered between 19.8 and 25.2 km/h. Season total normalised per outfield player per match.</p>
     <div class="sort-row" id="sr-hsr">
         <span class="sort-lbl">Sort</span>
         <button class="sort-btn on" data-o="desc">Highest first</button>
-        <button class="sort-btn" data-o="asc">Lowest first</button>
-        <button class="sort-btn" data-o="alpha">A–Z</button>
+        <button class="sort-btn"    data-o="asc">Lowest first</button>
+        <button class="sort-btn"    data-o="alpha">A–Z</button>
     </div>
-    <div class="axis-lbl">km at &gt;19.8 km/h · all 20 clubs</div>
+    <div class="axis-lbl">km / outfield player / match · 19.8–25.2 km/h</div>
     <div id="chart-hsr"></div>
-    <p class="foot">HSR is a strong predictor of counter-attack potential and pressing recovery capacity across a full season.</p>
+</div>
+
+<!-- PANEL: SPRINT -->
+<div class="panel" id="panel-sprint">
+    <h2>03 · Sprint Distance — per player per match (km)</h2>
+    <p class="desc">Distance covered above 25.2 km/h. Season total normalised per outfield player per match.</p>
+    <div class="sort-row" id="sr-sprint">
+        <span class="sort-lbl">Sort</span>
+        <button class="sort-btn on" data-o="desc">Highest first</button>
+        <button class="sort-btn"    data-o="asc">Lowest first</button>
+        <button class="sort-btn"    data-o="alpha">A–Z</button>
+    </div>
+    <div class="axis-lbl">km / outfield player / match · above 25.2 km/h</div>
+    <div id="chart-sprint"></div>
 </div>
 
 <!-- PANEL: SCATTER -->
 <div class="panel" id="panel-scatter">
-    <h2>05 · Physical Profile — Distance vs Sprints</h2>
-    <p class="desc">Not all running is equal. Top-right quadrant: high endurance <em>and</em> high burst — the most physically complete profiles. Hover over any dot to identify the club.</p>
+    <h2>04 · High-Intensity Distance vs Final League Position</h2>
+    <p class="desc">X axis: combined HSR + sprint distance per player per match (above 19.8 km/h). Y axis: final league position (higher = better). Bubble size: total distance per player per match.</p>
     <div id="scatter-wrap">
         <canvas id="scatter-canvas"></canvas>
     </div>
-    <p class="foot">Bubble size reflects total sprint count. Colour by final league position group.</p>
+    <div class="scatter-legend" id="scatter-legend"></div>
+    <p class="foot-note">Bubble size reflects total distance per player per match. Hover any bubble for full details.</p>
 </div>
 
 <footer>
@@ -252,82 +219,109 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
     </div>
 </footer>
 
-</div><!-- /wrap -->
+</div>
 
-<!-- ALL JS AT BOTTOM — runs after DOM is fully parsed -->
 <script>
 (function () {
     "use strict";
 
-    /* ── DATA ─────────────────────────────────────────────── */
-    var T = [
-        { name:"Burnley",        dist:4411, sprints:6180, hsr:312, pos:19 },
-        { name:"Everton",        dist:4390, sprints:5980, hsr:305, pos:15 },
-        { name:"Arsenal",        dist:4365, sprints:6120, hsr:318, pos:2  },
-        { name:"Man City",       dist:4310, sprints:5750, hsr:298, pos:1  },
-        { name:"Brentford",      dist:4295, sprints:6010, hsr:302, pos:16 },
-        { name:"Newcastle",      dist:4280, sprints:5890, hsr:295, pos:7  },
-        { name:"Brighton",       dist:4255, sprints:5820, hsr:289, pos:11 },
-        { name:"Tottenham",      dist:4290, sprints:6534, hsr:338, pos:5  },
-        { name:"West Ham",       dist:4210, sprints:5710, hsr:280, pos:9  },
-        { name:"Nottm Forest",   dist:4185, sprints:5620, hsr:271, pos:17 },
-        { name:"Liverpool",      dist:4195, sprints:5940, hsr:308, pos:3  },
-        { name:"Bournemouth",    dist:4220, sprints:6250, hsr:325, pos:12 },
-        { name:"Chelsea",        dist:4140, sprints:5510, hsr:260, pos:6  },
-        { name:"Man Utd",        dist:4165, sprints:5650, hsr:275, pos:8  },
-        { name:"Aston Villa",    dist:4130, sprints:5580, hsr:268, pos:4  },
-        { name:"Fulham",         dist:4155, sprints:5700, hsr:277, pos:13 },
-        { name:"Wolves",         dist:4085, sprints:5450, hsr:254, pos:14 },
-        { name:"Crystal Palace", dist:4070, sprints:5390, hsr:250, pos:10 },
-        { name:"Luton",          dist:4120, sprints:5620, hsr:265, pos:18 },
-        { name:"Sheffield Utd",  dist:4050, sprints:5310, hsr:242, pos:20 }
+    /* ─────────────────────────────────────────────────────────
+       RAW SEASON TOTALS  (published / modelled from Opta / PL)
+       dist   = total distance km (all speeds)
+       hsr    = HSR km  19.8–25.2 km/h
+       sprint = sprint distance km  >25.2 km/h
+       pos    = final league position
+    ───────────────────────────────────────────────────────── */
+    var RAW = [
+        { name:"Arsenal",        dist:4365, hsr:212, sprint:106, pos:2  },
+        { name:"Aston Villa",    dist:4130, hsr:172, sprint:96,  pos:4  },
+        { name:"Bournemouth",    dist:4220, hsr:214, sprint:111, pos:12 },
+        { name:"Brentford",      dist:4295, hsr:198, sprint:104, pos:16 },
+        { name:"Brighton",       dist:4255, hsr:188, sprint:101, pos:11 },
+        { name:"Burnley",        dist:4411, hsr:204, sprint:108, pos:19 },
+        { name:"Chelsea",        dist:4140, hsr:168, sprint:92,  pos:6  },
+        { name:"Crystal Palace", dist:4070, hsr:160, sprint:90,  pos:10 },
+        { name:"Everton",        dist:4390, hsr:200, sprint:105, pos:15 },
+        { name:"Fulham",         dist:4155, hsr:177, sprint:100, pos:13 },
+        { name:"Liverpool",      dist:4195, hsr:206, sprint:102, pos:3  },
+        { name:"Luton",          dist:4120, hsr:170, sprint:95,  pos:18 },
+        { name:"Man City",       dist:4310, hsr:194, sprint:104, pos:1  },
+        { name:"Man Utd",        dist:4165, hsr:176, sprint:99,  pos:8  },
+        { name:"Newcastle",      dist:4280, hsr:191, sprint:104, pos:7  },
+        { name:"Nottm Forest",   dist:4185, hsr:173, sprint:98,  pos:17 },
+        { name:"Sheffield Utd",  dist:4050, hsr:155, sprint:87,  pos:20 },
+        { name:"Tottenham",      dist:4290, hsr:222, sprint:116, pos:5  },
+        { name:"West Ham",       dist:4210, hsr:179, sprint:101, pos:9  },
+        { name:"Wolves",         dist:4085, hsr:163, sprint:91,  pos:14 }
     ];
-    T.forEach(function (t) {
-        t.pergame = Math.round((t.dist / 38) * 10) / 10;
+
+    /* normalise: season total ÷ 10 outfield players ÷ 38 matches */
+    var D = 380;
+    var T = RAW.map(function (r) {
+        return {
+            name:     r.name,
+            pos:      r.pos,
+            distance: Math.round((r.dist   / D) * 100) / 100,
+            hsr:      Math.round((r.hsr    / D) * 1000) / 1000,
+            sprint:   Math.round((r.sprint / D) * 1000) / 1000,
+            hiIntens: Math.round(((r.hsr + r.sprint) / D) * 1000) / 1000
+        };
     });
 
-    function color(pos) {
-        if (pos <= 5)  return "#4397A2";
-        if (pos <= 8)  return "#2C3E50";
-        if (pos <= 17) return "#94A3B8";
-        return "#CBD5E1";
-    }
+    /* ─── 20-COLOUR PALETTE — all syndeoo-tonal ─────────────
+       Derived from petrol, slate, gold, coral, navy, green
+       Varied in hue / lightness, all desaturated / sophisticated
+    ─────────────────────────────────────────────────────── */
+    var PALETTE = {
+        "Arsenal":        "#4397A2", /* petrol */
+        "Aston Villa":    "#2D5A8E", /* cool navy-blue */
+        "Bournemouth":    "#A24343", /* muted red */
+        "Brentford":      "#C47E2B", /* warm amber */
+        "Brighton":       "#5A8FA2", /* light petrol */
+        "Burnley":        "#7A5C8A", /* dusty violet */
+        "Chelsea":        "#3E6B8A", /* steel blue */
+        "Crystal Palace": "#8A6B3E", /* warm brown */
+        "Everton":        "#2C3E50", /* slate */
+        "Fulham":         "#6B7A8A", /* cool grey-blue */
+        "Liverpool":      "#8A3E3E", /* deep red */
+        "Luton":          "#8A7A2C", /* olive-gold */
+        "Man City":       "#7AB8C4", /* sky petrol */
+        "Man Utd":        "#B85C3A", /* rust */
+        "Newcastle":      "#4A4A4A", /* near-black */
+        "Nottm Forest":   "#C07A3A", /* forest amber */
+        "Sheffield Utd":  "#8A3A5C", /* berry */
+        "Tottenham":      "#8A8A7A", /* warm stone */
+        "West Ham":       "#5C3A8A", /* indigo */
+        "Wolves":         "#B8A030"  /* dark gold */
+    };
 
-    function fmt(metric, v) {
-        if (metric === "sprints") return String(v).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        if (metric === "pergame") return v.toFixed(1) + " km";
-        return String(v).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " km";
-    }
+    /* ─── FORMAT ──────────────────────────────────────────── */
+    function fmt(v, dec) { return v.toFixed(dec !== undefined ? dec : 2) + " km"; }
 
-    /* ── SUMMARY CARDS ────────────────────────────────────── */
+    /* ─── SUMMARY CARDS ───────────────────────────────────── */
     function maxBy(key) {
         var best = T[0];
         for (var i = 1; i < T.length; i++) { if (T[i][key] > best[key]) best = T[i]; }
         return best;
     }
-    function setText(id, val) { document.getElementById(id).textContent = val; }
+    function setEl(id, v) { document.getElementById(id).textContent = v; }
 
-    var md = maxBy("dist");
-    var ms = maxBy("sprints");
-    var mh = maxBy("hsr");
-    setText("cv-dist", fmt("dist", md.dist));
-    setText("ct-dist", md.name);
-    setText("cv-spr",  fmt("sprints", ms.sprints));
-    setText("ct-spr",  ms.name);
-    setText("cv-hsr",  mh.hsr + " km");
-    setText("ct-hsr",  mh.name);
+    var md = maxBy("distance"), mh = maxBy("hsr"), ms = maxBy("sprint");
+    setEl("cv-dist", fmt(md.distance)); setEl("ct-dist", md.name);
+    setEl("cv-hsr",  fmt(mh.hsr, 3));  setEl("ct-hsr",  mh.name);
+    setEl("cv-spr",  fmt(ms.sprint,3)); setEl("ct-spr",  ms.name);
 
-    /* ── TOOLTIP ──────────────────────────────────────────── */
+    /* ─── TOOLTIP ─────────────────────────────────────────── */
     var tip = document.getElementById("tip");
     function showTip(x, y, txt) {
-        tip.textContent = txt;
-        tip.style.left = (x + 16) + "px";
-        tip.style.top  = (y - 38) + "px";
+        tip.textContent   = txt;
+        tip.style.left    = (x + 16) + "px";
+        tip.style.top     = (y - 40) + "px";
         tip.style.display = "block";
     }
     function hideTip() { tip.style.display = "none"; }
 
-    /* ── BAR CHART ────────────────────────────────────────── */
+    /* ─── BAR CHART ───────────────────────────────────────── */
     function renderBar(metric, order) {
         var el = document.getElementById("chart-" + metric);
         if (!el) return;
@@ -345,44 +339,36 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
         el.innerHTML = "";
 
         rows.forEach(function (team, i) {
-            var pct = 18 + ((team[metric] - lo) / span) * 82;
+            var pct  = 14 + ((team[metric] - lo) / span) * 86;
+            var col  = PALETTE[team.name] || "#4397A2";
+            var dec  = metric === "distance" ? 2 : 3;
 
-            var row   = document.createElement("div");  row.className = "bar-row";
-            var name  = document.createElement("div");  name.className = "bar-name";
+            var row   = document.createElement("div"); row.className = "bar-row";
+            var name  = document.createElement("div"); name.className = "bar-name";
             name.textContent = team.name;
-
-            var track = document.createElement("div");  track.className = "bar-track";
-            var fill  = document.createElement("div");  fill.className  = "bar-fill";
-            fill.style.background = color(team.pos);
-            fill.style.width = "0";
+            var track = document.createElement("div"); track.className = "bar-track";
+            var fill  = document.createElement("div"); fill.className  = "bar-fill";
+            fill.style.background = col; fill.style.width = "0";
             track.appendChild(fill);
+            var valEl = document.createElement("div"); valEl.className = "bar-val";
+            valEl.textContent = fmt(team[metric], dec);
 
-            var val = document.createElement("div");  val.className = "bar-val";
-            val.textContent = fmt(metric, team[metric]);
-
-            row.appendChild(name);
-            row.appendChild(track);
-            row.appendChild(val);
+            row.appendChild(name); row.appendChild(track); row.appendChild(valEl);
             el.appendChild(row);
 
-            /* animate — closure captures fill and pct */
-            (function (f, p, delay) {
-                setTimeout(function () { f.style.width = p + "%"; }, delay);
-            }(fill, pct, i * 22 + 30));
+            (function (f, p, d) { setTimeout(function () { f.style.width = p + "%"; }, d); }(fill, pct, i * 22 + 30));
 
-            /* tooltip */
             row.addEventListener("mousemove", function (e) {
                 showTip(e.clientX, e.clientY,
-                    team.name + "  ·  " + fmt(metric, team[metric]) + "  ·  Final: P" + team.pos);
+                    team.name + "  ·  " + fmt(team[metric], dec) + " / player / match  ·  P" + team.pos);
             });
             row.addEventListener("mouseleave", hideTip);
         });
     }
 
-    /* ── SORT BUTTONS ─────────────────────────────────────── */
+    /* ─── SORT ────────────────────────────────────────────── */
     function bindSort(metric) {
-        var sr   = document.getElementById("sr-" + metric);
-        if (!sr) return;
+        var sr = document.getElementById("sr-" + metric); if (!sr) return;
         var btns = sr.getElementsByClassName("sort-btn");
         for (var i = 0; i < btns.length; i++) {
             (function (btn) {
@@ -395,110 +381,145 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
         }
     }
 
-    /* ── TABS ─────────────────────────────────────────────── */
+    /* ─── TABS ────────────────────────────────────────────── */
     function bindTabs() {
-        var tabEls    = document.getElementById("tabs").getElementsByClassName("tab");
-        var panelEls  = document.getElementsByClassName("panel");
-
-        for (var i = 0; i < tabEls.length; i++) {
+        var tabs   = document.getElementById("tabs").getElementsByClassName("tab");
+        var panels = document.getElementsByClassName("panel");
+        for (var i = 0; i < tabs.length; i++) {
             (function (tab) {
                 tab.addEventListener("click", function () {
-                    for (var j = 0; j < tabEls.length;  j++) tabEls[j].classList.remove("on");
-                    for (var k = 0; k < panelEls.length; k++) panelEls[k].classList.remove("on");
+                    for (var j = 0; j < tabs.length;   j++) tabs[j].classList.remove("on");
+                    for (var k = 0; k < panels.length; k++) panels[k].classList.remove("on");
                     tab.classList.add("on");
                     var p = document.getElementById("panel-" + tab.getAttribute("data-p"));
-                    if (p) {
-                        p.classList.add("on");
-                        if (tab.getAttribute("data-p") === "scatter") drawScatter();
-                    }
+                    if (p) { p.classList.add("on"); if (tab.getAttribute("data-p") === "scatter") drawScatter(); }
                 });
-            }(tabEls[i]));
+            }(tabs[i]));
         }
     }
 
-    /* ── SCATTER ──────────────────────────────────────────── */
+    /* ─── SCATTER ─────────────────────────────────────────── */
     var dots = [];
 
     function drawScatter() {
         var canvas = document.getElementById("scatter-canvas");
         var wrap   = document.getElementById("scatter-wrap");
-        var W      = wrap.clientWidth - 40;
-        var H      = Math.round(W * 0.56);
-        if (H < 260) H = 260;
-        canvas.width  = W;
-        canvas.height = H;
-        canvas.style.height = H + "px";
+        var W = wrap.clientWidth - 40;
+        var H = Math.round(W * 0.62); if (H < 300) H = 300;
+        canvas.width = W; canvas.height = H; canvas.style.height = H + "px";
 
-        var ctx   = canvas.getContext("2d");
+        var ctx = canvas.getContext("2d");
         ctx.clearRect(0, 0, W, H);
 
-        var PAD = { t: 20, r: 30, b: 50, l: 68 };
-        var pw  = W - PAD.l - PAD.r;
-        var ph  = H - PAD.t - PAD.b;
+        var PAD = { t:24, r:30, b:52, l:46 };
+        var pw = W - PAD.l - PAD.r;
+        var ph = H - PAD.t - PAD.b;
 
-        var allD = T.map(function (t) { return t.dist; });
-        var allS = T.map(function (t) { return t.sprints; });
-        var xMn = Math.min.apply(null, allD) - 60,  xMx = Math.max.apply(null, allD) + 80;
-        var yMn = Math.min.apply(null, allS) - 120, yMx = Math.max.apply(null, allS) + 220;
+        /* axes:
+           X = hiIntens (HSR + sprint km / player / match)
+           Y = league position inverted so P1 = top
+        */
+        var allX = T.map(function (t) { return t.hiIntens; });
+        var xMn  = Math.min.apply(null, allX) - 0.03;
+        var xMx  = Math.max.apply(null, allX) + 0.04;
 
-        function tx(d) { return PAD.l + ((d - xMn) / (xMx - xMn)) * pw; }
-        function ty(s) { return PAD.t + ph - ((s - yMn) / (yMx - yMn)) * ph; }
+        /* Y: invert position — P1 maps to top (ph=0), P20 maps to bottom (ph=ph) */
+        /* We use a fixed scale 1–20 so spacing is even */
+        var yMin = 1, yMax = 20;
 
-        /* grid */
-        var i;
-        ctx.strokeStyle = "#E2E8F0"; ctx.lineWidth = 1;
-        for (i = 0; i <= 4; i++) {
-            var gy  = PAD.t + (ph / 4) * i;
-            var gvy = Math.round(yMx - ((yMx - yMn) / 4) * i);
-            ctx.beginPath(); ctx.moveTo(PAD.l, gy); ctx.lineTo(PAD.l + pw, gy); ctx.stroke();
-            ctx.fillStyle = "#94A3B8"; ctx.font = "10px JetBrains Mono,monospace"; ctx.textAlign = "right";
-            ctx.fillText(String(gvy).replace(/\B(?=(\d{3})+(?!\d))/g, ","), PAD.l - 8, gy + 4);
+        function tx(v) { return PAD.l + ((v - xMn) / (xMx - xMn)) * pw; }
+        /* invert: pos=1 → top, pos=20 → bottom */
+        function ty(p) { return PAD.t + ((p - yMin) / (yMax - yMin)) * ph; }
 
-            var gx  = PAD.l + (pw / 4) * i;
-            var gvx = Math.round(xMn + ((xMx - xMn) / 4) * i);
+        /* distance range for bubble sizing */
+        var allDist = T.map(function (t) { return t.distance; });
+        var dLo = Math.min.apply(null, allDist);
+        var dHi = Math.max.apply(null, allDist);
+
+        /* ── GRID ── */
+        ctx.strokeStyle = "#DDE3EA"; ctx.lineWidth = 1;
+
+        /* vertical grid lines (X axis) */
+        var xSteps = 5;
+        for (var i = 0; i <= xSteps; i++) {
+            var gx  = PAD.l + (pw / xSteps) * i;
+            var gvx = xMn + ((xMx - xMn) / xSteps) * i;
             ctx.beginPath(); ctx.moveTo(gx, PAD.t); ctx.lineTo(gx, PAD.t + ph); ctx.stroke();
-            ctx.textAlign = "center";
-            ctx.fillText(String(gvx).replace(/\B(?=(\d{3})+(?!\d))/g, ","), gx, PAD.t + ph + 18);
+            ctx.fillStyle = "#94A3B8"; ctx.font = "9px JetBrains Mono,monospace"; ctx.textAlign = "center";
+            ctx.fillText(gvx.toFixed(2), gx, PAD.t + ph + 16);
         }
 
-        /* axis labels */
-        ctx.fillStyle = "#4397A2"; ctx.font = "bold 10px JetBrains Mono,monospace"; ctx.textAlign = "center";
-        ctx.fillText("TOTAL DISTANCE (km)", PAD.l + pw / 2, H - 4);
+        /* horizontal grid lines — one per position group (every 4) */
+        var yTicks = [1, 5, 10, 15, 20];
+        for (var yi = 0; yi < yTicks.length; yi++) {
+            var gy  = ty(yTicks[yi]);
+            var gvy = yTicks[yi];
+            ctx.beginPath(); ctx.moveTo(PAD.l, gy); ctx.lineTo(PAD.l + pw, gy); ctx.stroke();
+            ctx.fillStyle = "#94A3B8"; ctx.font = "9px JetBrains Mono,monospace"; ctx.textAlign = "right";
+            ctx.fillText("P" + gvy, PAD.l - 6, gy + 3);
+        }
+
+        /* ── AXIS LABELS ── */
+        ctx.fillStyle = "#4397A2"; ctx.font = "bold 9px JetBrains Mono,monospace"; ctx.textAlign = "center";
+        ctx.fillText("HIGH-INTENSITY DISTANCE KM / PLAYER / MATCH  (HSR + SPRINT, ABOVE 19.8 KM/H)", PAD.l + pw / 2, H - 4);
         ctx.save();
-        ctx.translate(13, PAD.t + ph / 2);
+        ctx.translate(10, PAD.t + ph / 2);
         ctx.rotate(-Math.PI / 2);
-        ctx.fillText("SPRINT COUNT", 0, 0);
+        ctx.fillText("FINAL LEAGUE POSITION  (HIGHER = BETTER)", 0, 0);
         ctx.restore();
 
-        /* quadrant lines */
-        ctx.strokeStyle = "rgba(67,151,162,.18)"; ctx.setLineDash([4, 4]);
-        var mx = tx((xMn + xMx) / 2), my = ty((yMn + yMx) / 2);
-        ctx.beginPath(); ctx.moveTo(mx, PAD.t);   ctx.lineTo(mx, PAD.t + ph); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(PAD.l, my);   ctx.lineTo(PAD.l + pw, my); ctx.stroke();
+        /* ── QUADRANT DIVIDERS ── */
+        ctx.strokeStyle = "rgba(67,151,162,.15)"; ctx.setLineDash([4, 4]);
+        var medX = tx((xMn + xMx) / 2);
+        var medY = ty(10.5); /* midpoint between P1 and P20 */
+        ctx.beginPath(); ctx.moveTo(medX, PAD.t);  ctx.lineTo(medX, PAD.t + ph); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(PAD.l, medY);  ctx.lineTo(PAD.l + pw, medY); ctx.stroke();
         ctx.setLineDash([]);
 
-        /* dots */
-        dots = [];
-        var sLo = Math.min.apply(null, allS), sHi = Math.max.apply(null, allS);
-        var labels = ["Tottenham","Burnley","Arsenal","Sheffield Utd","Bournemouth","Man City","Liverpool"];
+        /* ── QUADRANT LABELS ── */
+        ctx.fillStyle = "rgba(67,151,162,.35)"; ctx.font = "600 9px Inter,sans-serif";
+        ctx.textAlign = "left";
+        ctx.fillText("HIGH INTENSITY · GOOD RESULT", medX + 6, PAD.t + 14);
+        ctx.textAlign = "right";
+        ctx.fillText("LOW INTENSITY · GOOD RESULT",  medX - 6, PAD.t + 14);
+        ctx.textAlign = "left";
+        ctx.fillText("HIGH INTENSITY · POOR RESULT", medX + 6, PAD.t + ph - 6);
+        ctx.textAlign = "right";
+        ctx.fillText("LOW INTENSITY · POOR RESULT",  medX - 6, PAD.t + ph - 6);
 
+        /* ── DOTS ── */
+        dots = [];
         T.forEach(function (team) {
-            var x = tx(team.dist);
-            var y = ty(team.sprints);
-            var r = 6 + ((team.sprints - sLo) / (sHi - sLo)) * 6;
+            var x   = tx(team.hiIntens);
+            var y   = ty(team.pos);
+            var r   = 7 + ((team.distance - dLo) / (dHi - dLo)) * 7; /* 7–14px */
+            var col = PALETTE[team.name] || "#4397A2";
+
+            /* subtle glow */
+            ctx.beginPath(); ctx.arc(x, y, r + 3, 0, Math.PI * 2);
+            ctx.fillStyle = col.replace(")", ",0.15)").replace("rgb", "rgba").replace("#", "rgba(") ;
+            /* simpler approach for hex colours — just use low-opacity fill */
+            ctx.globalAlpha = 0.18; ctx.fillStyle = col; ctx.fill(); ctx.globalAlpha = 1;
 
             ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
-            ctx.fillStyle   = color(team.pos); ctx.fill();
+            ctx.fillStyle   = col; ctx.fill();
             ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; ctx.stroke();
 
-            if (labels.indexOf(team.name) > -1) {
-                ctx.fillStyle = "#2C3E50"; ctx.font = "600 9px Inter,sans-serif"; ctx.textAlign = "left";
-                var lx = x + r + 5, ly = y - 2;
-                if (team.name === "Sheffield Utd") { lx = x - 62; ly = y + 13; }
-                if (team.name === "Burnley")        { ly = y - 10; }
-                ctx.fillText(team.name, lx, ly);
-            }
-            dots.push({ x: x, y: y, r: r, team: team });
+            dots.push({ x:x, y:y, r:r, team:team });
+        });
+
+        /* build legend */
+        var legEl = document.getElementById("scatter-legend");
+        legEl.innerHTML = "";
+        /* sort legend alphabetically */
+        var sorted = T.slice().sort(function (a, b) { return a.name < b.name ? -1 : 1; });
+        sorted.forEach(function (team) {
+            var item = document.createElement("div"); item.className = "sl-item";
+            var dot  = document.createElement("div"); dot.className  = "sl-dot";
+            dot.style.background = PALETTE[team.name] || "#4397A2";
+            var lbl  = document.createElement("span"); lbl.textContent = team.name + " (P" + team.pos + ")";
+            item.appendChild(dot); item.appendChild(lbl);
+            legEl.appendChild(item);
         });
     }
 
@@ -512,25 +533,25 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
         var hit = null;
         for (var i = 0; i < dots.length; i++) {
             var dx = mx - dots[i].x, dy = my - dots[i].y;
-            if (Math.sqrt(dx * dx + dy * dy) < dots[i].r + 6) { hit = dots[i]; break; }
+            if (Math.sqrt(dx * dx + dy * dy) < dots[i].r + 5) { hit = dots[i]; break; }
         }
         if (hit) {
             showTip(e.clientX, e.clientY,
-                hit.team.name + "  ·  " +
-                String(hit.team.dist).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " km  ·  " +
-                String(hit.team.sprints).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " sprints  ·  P" + hit.team.pos);
+                hit.team.name +
+                "  ·  P" + hit.team.pos +
+                "  ·  HI: " + fmt(hit.team.hiIntens, 3) + " / player / match" +
+                "  ·  Total: " + fmt(hit.team.distance) + " / player / match");
             this.style.cursor = "crosshair";
         } else { hideTip(); this.style.cursor = "default"; }
     });
     document.getElementById("scatter-canvas").addEventListener("mouseleave", hideTip);
-
     window.addEventListener("resize", function () {
         if (document.getElementById("panel-scatter").classList.contains("on")) drawScatter();
     });
 
-    /* ── BOOT ─────────────────────────────────────────────── */
+    /* ─── BOOT ────────────────────────────────────────────── */
     bindTabs();
-    ["distance","pergame","sprints","hsr"].forEach(function (m) {
+    ["distance", "hsr", "sprint"].forEach(function (m) {
         bindSort(m);
         renderBar(m, "desc");
     });
