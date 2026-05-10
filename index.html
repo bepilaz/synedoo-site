@@ -8,307 +8,286 @@
     <style>
         :root {
             --petrol: #4397A2;
-            --petrol-alpha: rgba(67, 151, 162, 0.7);
-            --black: #000000;
-            --white: #ffffff;
+            --petrol-alpha: rgba(67,151,162,0.7);
+            --black: #000;
+            --white: #fff;
             --mist: #F1F5F9;
             --slate: #2C3E50;
         }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter',sans-serif;line-height:1.6;color:var(--black);background:var(--white);-webkit-font-smoothing:antialiased}
+        .container{max-width:1000px;margin:0 auto;padding:0 40px}
 
-        body { 
-            font-family: 'Inter', sans-serif; 
-            line-height: 1.6; 
-            color: var(--black); 
-            margin: 0; 
-            padding: 0;
-            background-color: var(--white);
-            -webkit-font-smoothing: antialiased;
-        }
+        nav{padding:60px 0 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:30px;border-bottom:2px solid var(--petrol);margin-bottom:20px}
+        .master-logo{font-size:clamp(2.2rem,6vw,3.2rem);font-weight:800;letter-spacing:-.06em;text-transform:lowercase;line-height:1;cursor:default}
+        .oo-join{display:inline-flex}
+        .o-written{color:var(--petrol-alpha);margin-right:-.22em;mix-blend-mode:multiply}
+        .o-written:last-child{margin-right:0}
+        .label{font-family:'JetBrains Mono';font-size:.75rem;color:var(--petrol);text-transform:uppercase;letter-spacing:.25em;font-weight:600}
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 40px; }
+        header{padding:clamp(40px,6vh,60px) 0 60px}
+        h1{font-size:clamp(2.2rem,8vw,3.5rem);font-weight:800;line-height:1.1;letter-spacing:-.04em;margin-bottom:30px}
+        .hero-sub{font-size:clamp(1.1rem,4vw,1.4rem);font-weight:300;color:var(--slate);max-width:700px;border-left:3px solid var(--petrol);padding-left:clamp(20px,5vw,30px)}
 
-        nav { 
-            padding: 60px 0 40px 0; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            flex-wrap: wrap; 
-            gap: 30px;
-            border-bottom: 2px solid var(--petrol); 
-            margin-bottom: 20px;
-        }
-        .master-logo { 
-            font-size: clamp(2.2rem, 6vw, 3.2rem); 
-            font-weight: 800; 
-            letter-spacing: -0.06em; 
-            text-transform: lowercase; 
-            line-height: 1;
-            cursor: default;
-        }
-        .oo-join { display: inline-flex; }
-        .o-written { color: var(--petrol-alpha); margin-right: -0.22em; mix-blend-mode: multiply; }
-        .o-written:last-child { margin-right: 0; }
-        .label { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--petrol); text-transform: uppercase; letter-spacing: 0.25em; font-weight: 600; }
+        section{padding:80px 0;border-top:1px solid var(--mist)}
+        h2{font-size:clamp(1.6rem,5vw,2rem);font-weight:800;letter-spacing:-.02em;margin-bottom:40px}
+        .grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+        .feature h3{font-size:1.25rem;font-weight:800;margin-bottom:15px}
+        .feature p{color:var(--slate);font-weight:300;font-size:1.05rem}
 
-        header { padding: clamp(40px, 6vh, 60px) 0 60px 0; }
-        h1 { font-size: clamp(2.2rem, 8vw, 3.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 30px; }
-        .hero-sub { font-size: clamp(1.1rem, 4vw, 1.4rem); font-weight: 300; color: var(--slate); max-width: 700px; border-left: 3px solid var(--petrol); padding-left: clamp(20px, 5vw, 30px); }
+        .authority-box{background:var(--mist);padding:clamp(30px,8vw,60px);border-radius:4px}
+        .bio-text{font-size:1.15rem;font-weight:400;margin-bottom:25px;color:var(--slate)}
+        .link-research{font-family:'JetBrains Mono';color:var(--petrol);text-decoration:none;font-size:.8rem;font-weight:600;text-transform:uppercase;border-bottom:2px solid var(--petrol);padding-bottom:4px}
 
-        section { padding: 80px 0; border-top: 1px solid var(--mist); }
-        h2 { font-size: clamp(1.6rem, 5vw, 2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 40px; }
+        /* ── DATA LAB ── */
+        .datalab-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:18px;
+            margin-top:40px;
+        }
+        .datalab-card{
+            display:block;
+            text-decoration:none;
+            background:var(--mist);
+            border-radius:4px;
+            padding:26px 28px 22px;
+            border-left:4px solid var(--petrol);
+            transition:border-left-color .2s,background .2s,box-shadow .2s;
+            position:relative;
+            overflow:hidden;
+        }
+        .datalab-card:hover{background:#E6EDF3;border-left-color:var(--black);box-shadow:0 4px 24px rgba(0,0,0,0.07)}
+        .datalab-card:hover .datalab-arrow{opacity:1;transform:translateX(0)}
 
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-        .feature h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 15px; }
-        .feature p { color: var(--slate); font-weight: 300; font-size: 1.05rem; }
+        .datalab-season{font-family:'JetBrains Mono';font-size:.6rem;color:var(--petrol);text-transform:uppercase;letter-spacing:.15em;font-weight:600;margin-bottom:10px;display:block}
+        .datalab-league{font-size:1.25rem;font-weight:800;letter-spacing:-.03em;color:var(--black);margin-bottom:4px;line-height:1.1}
+        .datalab-country{font-size:.8rem;font-weight:300;color:var(--slate);margin-bottom:14px}
 
-        .authority-box { background: var(--mist); padding: clamp(30px, 8vw, 60px); border-radius: 4px; }
-        .bio-text { font-size: 1.15rem; font-weight: 400; margin-bottom: 25px; color: var(--slate); }
-        .link-research { font-family: 'JetBrains Mono'; color: var(--petrol); text-decoration: none; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; border-bottom: 2px solid var(--petrol); padding-bottom: 4px; }
+        /* Mini SVG chart area */
+        .datalab-chart{margin-bottom:16px;line-height:0}
+        .datalab-chart svg{width:100%;height:44px;display:block;border-radius:2px;overflow:hidden}
 
-        /* DATA LAB SECTION */
-        .datalab-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 40px;
-        }
-        .datalab-card {
-            display: block;
-            text-decoration: none;
-            background: var(--mist);
-            border-radius: 4px;
-            padding: 32px 36px;
-            border-left: 4px solid var(--petrol);
-            transition: border-left-color 0.2s, background 0.2s;
-            position: relative;
-            overflow: hidden;
-        }
-        .datalab-card:hover {
-            background: #E8EEF3;
-            border-left-color: var(--black);
-        }
-        .datalab-card:hover .datalab-arrow { opacity: 1; transform: translateX(0); }
-        .datalab-season {
-            font-family: 'JetBrains Mono';
-            font-size: 0.65rem;
-            color: var(--petrol);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-weight: 600;
-            margin-bottom: 12px;
-            display: block;
-        }
-        .datalab-league {
-            font-size: 1.35rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            color: var(--black);
-            margin-bottom: 6px;
-            line-height: 1.1;
-        }
-        .datalab-sub {
-            font-size: 0.85rem;
-            font-weight: 300;
-            color: var(--slate);
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-        .datalab-meta {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .datalab-tag {
-            font-family: 'JetBrains Mono';
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--slate);
-            background: rgba(44,62,80,0.08);
-            padding: 4px 10px;
-            border-radius: 2px;
-        }
-        .datalab-arrow {
-            position: absolute;
-            bottom: 28px;
-            right: 32px;
-            font-family: 'JetBrains Mono';
-            font-size: 0.65rem;
-            font-weight: 600;
-            color: var(--petrol);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            opacity: 0;
-            transform: translateX(-6px);
-            transition: all 0.2s;
-        }
+        .datalab-sub{font-size:.82rem;font-weight:300;color:var(--slate);margin-bottom:18px;line-height:1.55}
+        .datalab-meta{display:flex;gap:8px;flex-wrap:wrap}
+        .datalab-tag{font-family:'JetBrains Mono';font-size:.57rem;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);background:rgba(44,62,80,0.08);padding:3px 8px;border-radius:2px}
+        .datalab-arrow{position:absolute;bottom:22px;right:24px;font-family:'JetBrains Mono';font-size:.62rem;font-weight:600;color:var(--petrol);text-transform:uppercase;letter-spacing:.1em;opacity:0;transform:translateX(-6px);transition:all .2s}
 
-        .cta-section { text-align: center; padding: 120px 0; border-top: none; }
-        .cta-button { display: inline-block; background: var(--black); color: var(--white); padding: 22px 48px; text-decoration: none; font-weight: 600; letter-spacing: 0.05em; border-radius: 2px; margin-top: 30px; transition: background 0.3s; }
-        .cta-button:hover { background: var(--petrol); }
+        .cta-section{text-align:center;padding:120px 0;border-top:none}
+        .cta-button{display:inline-block;background:var(--black);color:var(--white);padding:22px 48px;text-decoration:none;font-weight:600;letter-spacing:.05em;border-radius:2px;margin-top:30px;transition:background .3s}
+        .cta-button:hover{background:var(--petrol)}
 
-        footer { text-align: center; padding: 100px 0 60px 0; border-top: 1px solid var(--mist); }
-        .footer-icon { font-size: clamp(4.5rem, 18vw, 6.5rem); font-weight: 800; display: inline-flex; mix-blend-mode: multiply; margin-bottom: 30px; line-height: 1; }
-        .o-icon { color: var(--petrol-alpha); margin-right: -0.25em; mix-blend-mode: multiply; }
-        .o-icon:last-child { margin-right: 0; }
-        .contact-info { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--slate); line-height: 2; margin-top: 20px; text-transform: uppercase; }
-        .email-link { color: var(--petrol); text-decoration: none; font-weight: 600; }
-        .legal-link { color: var(--slate); font-size: 0.65rem; text-decoration: none; margin-top: 15px; display: inline-block; letter-spacing: 0.05em; border-bottom: 1px solid transparent; }
-        .legal-link:hover { border-bottom: 1px solid var(--slate); }
+        footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist)}
+        .footer-icon{font-size:clamp(4.5rem,18vw,6.5rem);font-weight:800;display:inline-flex;mix-blend-mode:multiply;margin-bottom:30px;line-height:1}
+        .o-icon{color:var(--petrol-alpha);margin-right:-.25em;mix-blend-mode:multiply}
+        .o-icon:last-child{margin-right:0}
+        .contact-info{font-family:'JetBrains Mono';font-size:.75rem;color:var(--slate);line-height:2;margin-top:20px;text-transform:uppercase}
+        .email-link{color:var(--petrol);text-decoration:none;font-weight:600}
+        .legal-link{color:var(--slate);font-size:.65rem;text-decoration:none;margin-top:15px;display:inline-block;letter-spacing:.05em;border-bottom:1px solid transparent}
+        .legal-link:hover{border-bottom:1px solid var(--slate)}
 
-        #cookie-banner {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 60px);
-            max-width: 850px;
-            background: var(--black);
-            color: var(--white);
-            padding: 25px 35px;
-            z-index: 9999;
-            display: none; 
-            justify-content: space-between;
-            align-items: center;
-            border-radius: 2px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-            border-left: 4px solid var(--petrol);
-        }
-        .cookie-text { font-size: 0.85rem; font-weight: 300; letter-spacing: 0.02em; line-height: 1.5; }
-        .cookie-text strong { color: var(--petrol); font-weight: 600; }
-        .cookie-text a { color: var(--white); text-decoration: underline; }
-        .cookie-accept { 
-            background: var(--petrol); color: var(--white); border: none; 
-            padding: 12px 25px; font-family: 'JetBrains Mono'; font-size: 0.75rem; 
-            font-weight: 600; cursor: pointer; margin-left: 30px;
-            text-transform: uppercase; white-space: nowrap;
-        }
+        #cookie-banner{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);width:calc(100% - 60px);max-width:850px;background:var(--black);color:var(--white);padding:25px 35px;z-index:9999;display:none;justify-content:space-between;align-items:center;border-radius:2px;box-shadow:0 20px 50px rgba(0,0,0,0.4);border-left:4px solid var(--petrol)}
+        .cookie-text{font-size:.85rem;font-weight:300;letter-spacing:.02em;line-height:1.5}
+        .cookie-text strong{color:var(--petrol);font-weight:600}
+        .cookie-text a{color:var(--white);text-decoration:underline}
+        .cookie-accept{background:var(--petrol);color:var(--white);border:none;padding:12px 25px;font-family:'JetBrains Mono';font-size:.75rem;font-weight:600;cursor:pointer;margin-left:30px;text-transform:uppercase;white-space:nowrap}
 
-        @media (max-width: 768px) {
-            .container { padding: 0 25px; }
-            .grid { grid-template-columns: 1fr; gap: 40px; }
-            .datalab-grid { grid-template-columns: 1fr; }
-            nav { flex-direction: column; text-align: center; padding: 40px 0; gap: 20px; }
-            #cookie-banner { flex-direction: column; text-align: center; gap: 20px; bottom: 15px; width: calc(100% - 30px); }
-            .cookie-accept { margin-left: 0; width: 100%; }
-            .datalab-arrow { opacity: 1; transform: translateX(0); }
+        @media(max-width:768px){
+            .container{padding:0 25px}
+            .grid{grid-template-columns:1fr;gap:40px}
+            .datalab-grid{grid-template-columns:1fr}
+            nav{flex-direction:column;text-align:center;padding:40px 0;gap:20px}
+            #cookie-banner{flex-direction:column;text-align:center;gap:20px;bottom:15px;width:calc(100% - 30px)}
+            .cookie-accept{margin-left:0;width:100%}
+            .datalab-arrow{opacity:1;transform:translateX(0)}
         }
     </style>
 </head>
 <body>
+<div class="container">
 
-    <div class="container">
-        <nav>
-            <div class="master-logo">synde<span class="oo-join"><span class="o-written">o</span><span class="o-written">o</span></span></div>
-            <span class="label">Absolute Clarity Unit</span>
-        </nav>
+    <nav>
+        <div class="master-logo">synde<span class="oo-join"><span class="o-written">o</span><span class="o-written">o</span></span></div>
+        <span class="label">Absolute Clarity Unit</span>
+    </nav>
 
-        <header>
-            <h1>Decision-making should never be a gamble.</h1>
-            <div class="hero-sub">
-                We transform fragmented football data into certified strategic certainty for League Executives and Decision Makers.
+    <header>
+        <h1>Decision-making should never be a gamble.</h1>
+        <div class="hero-sub">We transform fragmented football data into certified strategic certainty for League Executives and Decision Makers.</div>
+    </header>
+
+    <section id="approach">
+        <span class="label">The Approach</span>
+        <div class="grid">
+            <div class="feature">
+                <h3>Data Governance</h3>
+                <p>Truth precedes science. We provide a bridge between diverse tracking systems, ensuring every bit of data collected across the league is clean, standardised, and ready for high-level analysis.</p>
             </div>
-        </header>
-
-        <section id="approach">
-            <span class="label">The Approach</span>
-            <div class="grid">
-                <div class="feature">
-                    <h3>Data Governance</h3>
-                    <p>Truth precedes science. We provide a bridge between diverse tracking systems, ensuring every bit of data collected across the league is clean, standardised, and ready for high-level analysis.</p>
-                </div>
-                <div class="feature">
-                    <h3>Transversal Insights</h3>
-                    <p>Performance doesn't live in silos. Our visual intelligence connects physical output with technical tactics, offering a unified "brain" for league-wide performance monitoring.</p>
-                </div>
+            <div class="feature">
+                <h3>Transversal Insights</h3>
+                <p>Performance doesn't live in silos. Our visual intelligence connects physical output with technical tactics, offering a unified "brain" for league-wide performance monitoring.</p>
             </div>
-        </section>
-
-        <!-- DATA LAB SECTION -->
-        <section id="datalab">
-            <span class="label">Data Lab</span>
-            <h2>Physical Intelligence,<br>by League.</h2>
-            <p style="color:var(--slate);font-weight:300;font-size:1.05rem;max-width:620px;margin-bottom:0;margin-top:-20px">
-                Open datasets exploring team physical output — distance, high-speed running, and sprint distance — across Europe's top competitions. Every figure normalised per outfield player per match.
-            </p>
-
-            <div class="datalab-grid">
-
-                <a class="datalab-card" href="https://syndeoo.com/premier_league/">
-                    <span class="datalab-season">Season 2023–24 &nbsp;·&nbsp; 20 Clubs &nbsp;·&nbsp; 38 Matchdays</span>
-                    <div class="datalab-league">Premier League</div>
-                    <div class="datalab-sub">England's top flight — from Man City's title-winning economy of effort to Burnley's record-breaking mileage in a relegated season.</div>
-                    <div class="datalab-meta">
-                        <span class="datalab-tag">Total Distance</span>
-                        <span class="datalab-tag">HSR 19.8–25.2</span>
-                        <span class="datalab-tag">Sprint &gt;25.2</span>
-                    </div>
-                    <span class="datalab-arrow">Explore ↗</span>
-                </a>
-
-                <a class="datalab-card" href="https://syndeoo.com/bundesliga/">
-                    <span class="datalab-season">Season 2023–24 &nbsp;·&nbsp; 18 Clubs &nbsp;·&nbsp; 34 Matchdays</span>
-                    <div class="datalab-league">Bundesliga</div>
-                    <div class="datalab-sub">Germany's top flight — the season Bayer Leverkusen went unbeaten, winning the title with below-average physical output across the board.</div>
-                    <div class="datalab-meta">
-                        <span class="datalab-tag">Total Distance</span>
-                        <span class="datalab-tag">HSR 19.8–25.2</span>
-                        <span class="datalab-tag">Sprint &gt;25.2</span>
-                    </div>
-                    <span class="datalab-arrow">Explore ↗</span>
-                </a>
-
-            </div>
-        </section>
-
-        <section class="authority-box">
-            <span class="label">Scientific Leadership</span>
-            <h2>Rooted in Elite Experience.</h2>
-            <p class="bio-text">
-                Led by <strong>Cristian Osgnach</strong>, our team combines a decade of on-field experience—from Serie A to the Italian National Team—with world-renowned scientific rigour. We don't just process data; we interpret it through the lens of elite performance.
-            </p>
-            <a href="https://www.researchgate.net/profile/Cristian-Osgnach" target="_blank" class="link-research">View Scientific Publications</a>
-        </section>
-
-        <section class="cta-section">
-            <span class="label">Next Steps</span>
-            <h2 style="font-weight: 300; margin-bottom: 10px;">Ready to unlock the value of your league's data?</h2>
-            <p style="color: var(--slate); font-weight: 300;">Our unit works bespoke with a limited number of top-tier organisations.</p>
-            <a href="mailto:unit@syndeoo.com?subject=Briefing%20Request" class="cta-button">REQUEST A BRIEFING</a>
-        </section>
-
-        <footer>
-            <div class="footer-icon">
-                <span class="o-icon">o</span><span class="o-icon">o</span>
-            </div>
-            <div class="contact-info">
-                © 2026 SYNDEOO // ABSOLUTE CLARITY UNIT<br>
-                <a href="mailto:unit@syndeoo.com" class="email-link">unit@syndeoo.com</a><br>
-                Piazza Duomo 3, 33100 Udine, Italy<br>
-                VAT: IT02855020307<br>
-                <a href="https://syndeoo.com/privacy/" class="legal-link">PRIVACY & COOKIE PROTOCOL</a>
-            </div>
-        </footer>
-    </div>
-
-    <div id="cookie-banner">
-        <div class="cookie-text">
-            <strong>Privacy by Design:</strong> This unit does not track you. We utilise only essential technical cookies to ensure operational excellence. Review our <a href="https://syndeoo.com/privacy/">Privacy Protocol</a>.
         </div>
-        <button class="cookie-accept" onclick="acceptCookies()">Acknowledge</button>
-    </div>
+    </section>
 
-    <script>
-        function acceptCookies() {
-            localStorage.setItem('syndeoo-privacy-acknowledged', 'true');
-            document.getElementById('cookie-banner').style.display = 'none';
-        }
-        window.onload = function() {
-            if (!localStorage.getItem('syndeoo-privacy-acknowledged')) {
-                document.getElementById('cookie-banner').style.display = 'flex';
-            }
-        }
-    </script>
+    <!-- DATA LAB -->
+    <section id="datalab">
+        <span class="label">Data Lab</span>
+        <h2>Physical Intelligence,<br>by League.</h2>
+        <p style="color:var(--slate);font-weight:300;font-size:1.05rem;max-width:620px;margin-top:-20px;margin-bottom:0">
+            Open datasets exploring team physical output — distance, high-speed running, and sprint distance — across Europe's top competitions. Every figure normalised per outfield player per match.
+        </p>
 
+        <div class="datalab-grid">
+
+            <!-- PREMIER LEAGUE -->
+            <a class="datalab-card" href="https://syndeoo.com/premier_league">
+                <span class="datalab-season">Season 2023–24 &nbsp;·&nbsp; 20 Clubs &nbsp;·&nbsp; 38 Matchdays</span>
+                <div class="datalab-league">Premier League</div>
+                <div class="datalab-country">England</div>
+                <div class="datalab-chart">
+                    <!-- Mini bar chart: normalised avg distance per player, top 6 teams -->
+                    <svg viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect width="280" height="44" fill="#E8EEF3" rx="2"/>
+                        <!-- bars: Burnley 11608, Everton 11553, Arsenal 11487, Man City 11342, Tottenham 11290, Sheff Utd 10658 — normalised 0–100 -->
+                        <rect x="6"  y="6"  width="97" height="10" rx="1" fill="#4397A2" opacity=".9"/>
+                        <rect x="6"  y="19" width="93" height="10" rx="1" fill="#7A5C8A" opacity=".85"/>
+                        <rect x="6"  y="32" width="88" height="10" rx="1" fill="#2C3E50" opacity=".8"/>
+                        <rect x="106" y="6"  width="84" height="10" rx="1" fill="#7AB8C4" opacity=".85"/>
+                        <rect x="106" y="19" width="80" height="10" rx="1" fill="#9A9A8A" opacity=".8"/>
+                        <rect x="106" y="32" width="60" height="10" rx="1" fill="#8A3A5C" opacity=".75"/>
+                        <!-- avg line -->
+                        <line x1="178" y1="4" x2="178" y2="42" stroke="#2C3E50" stroke-width="1.5" stroke-dasharray="3,2" opacity=".4"/>
+                        <text x="182" y="10" font-family="JetBrains Mono,monospace" font-size="7" fill="#4397A2" font-weight="600">league avg</text>
+                    </svg>
+                </div>
+                <div class="datalab-sub">From Man City's title-winning economy of effort to Burnley's record-breaking mileage in a relegated season.</div>
+                <div class="datalab-meta">
+                    <span class="datalab-tag">Total Distance</span>
+                    <span class="datalab-tag">HSR 19.8–25.2</span>
+                    <span class="datalab-tag">Sprint &gt;25.2</span>
+                </div>
+                <span class="datalab-arrow">Explore ↗</span>
+            </a>
+
+            <!-- BUNDESLIGA -->
+            <a class="datalab-card" href="https://syndeoo.com/bundesliga">
+                <span class="datalab-season">Season 2023–24 &nbsp;·&nbsp; 18 Clubs &nbsp;·&nbsp; 34 Matchdays</span>
+                <div class="datalab-league">Bundesliga</div>
+                <div class="datalab-country">Germany</div>
+                <div class="datalab-chart">
+                    <svg viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect width="280" height="44" fill="#E8EEF3" rx="2"/>
+                        <rect x="6"  y="6"  width="99" height="10" rx="1" fill="#C07A3A" opacity=".9"/>
+                        <rect x="6"  y="19" width="95" height="10" rx="1" fill="#5A8FA2" opacity=".85"/>
+                        <rect x="6"  y="32" width="91" height="10" rx="1" fill="#2D5A8E" opacity=".8"/>
+                        <rect x="106" y="6"  width="78" height="10" rx="1" fill="#4397A2" opacity=".85"/>
+                        <rect x="106" y="19" width="72" height="10" rx="1" fill="#B8A030" opacity=".8"/>
+                        <rect x="106" y="32" width="58" height="10" rx="1" fill="#8A7A2C" opacity=".75"/>
+                        <line x1="170" y1="4" x2="170" y2="42" stroke="#2C3E50" stroke-width="1.5" stroke-dasharray="3,2" opacity=".4"/>
+                        <text x="174" y="10" font-family="JetBrains Mono,monospace" font-size="7" fill="#4397A2" font-weight="600">league avg</text>
+                    </svg>
+                </div>
+                <div class="datalab-sub">The season Leverkusen went unbeaten — winning the title with below-average physical output across every metric.</div>
+                <div class="datalab-meta">
+                    <span class="datalab-tag">Total Distance</span>
+                    <span class="datalab-tag">HSR 19.8–25.2</span>
+                    <span class="datalab-tag">Sprint &gt;25.2</span>
+                </div>
+                <span class="datalab-arrow">Explore ↗</span>
+            </a>
+
+            <!-- LA LIGA -->
+            <a class="datalab-card" href="https://syndeoo.com/la_liga">
+                <span class="datalab-season">Season 2023–24 &nbsp;·&nbsp; 20 Clubs &nbsp;·&nbsp; 38 Matchdays</span>
+                <div class="datalab-league">La Liga</div>
+                <div class="datalab-country">Spain</div>
+                <div class="datalab-chart">
+                    <svg viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect width="280" height="44" fill="#E8EEF3" rx="2"/>
+                        <rect x="6"  y="6"  width="95" height="10" rx="1" fill="#A24343" opacity=".9"/>
+                        <rect x="6"  y="19" width="90" height="10" rx="1" fill="#5C3A8A" opacity=".85"/>
+                        <rect x="6"  y="32" width="85" height="10" rx="1" fill="#2D5A8E" opacity=".8"/>
+                        <rect x="106" y="6"  width="82" height="10" rx="1" fill="#8A6B3E" opacity=".85"/>
+                        <rect x="106" y="19" width="75" height="10" rx="1" fill="#4A4A4A" opacity=".8"/>
+                        <rect x="106" y="32" width="55" height="10" rx="1" fill="#6B7A8A" opacity=".75"/>
+                        <line x1="172" y1="4" x2="172" y2="42" stroke="#2C3E50" stroke-width="1.5" stroke-dasharray="3,2" opacity=".4"/>
+                        <text x="176" y="10" font-family="JetBrains Mono,monospace" font-size="7" fill="#4397A2" font-weight="600">league avg</text>
+                    </svg>
+                </div>
+                <div class="datalab-sub">Real Madrid's title run on one of the lowest total distance tallies in the league — tactical intensity over sheer volume.</div>
+                <div class="datalab-meta">
+                    <span class="datalab-tag">Total Distance</span>
+                    <span class="datalab-tag">HSR 19.8–25.2</span>
+                    <span class="datalab-tag">Sprint &gt;25.2</span>
+                </div>
+                <span class="datalab-arrow">Explore ↗</span>
+            </a>
+
+            <!-- SERIE A -->
+            <a class="datalab-card" href="https://syndeoo.com/serie_a">
+                <span class="datalab-season">Season 2023–24 &nbsp;·&nbsp; 20 Clubs &nbsp;·&nbsp; 38 Matchdays</span>
+                <div class="datalab-league">Serie A</div>
+                <div class="datalab-country">Italy</div>
+                <div class="datalab-chart">
+                    <svg viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect width="280" height="44" fill="#E8EEF3" rx="2"/>
+                        <rect x="6"  y="6"  width="93" height="10" rx="1" fill="#2D5A27" opacity=".9"/>
+                        <rect x="6"  y="19" width="88" height="10" rx="1" fill="#8A3E3E" opacity=".85"/>
+                        <rect x="6"  y="32" width="84" height="10" rx="1" fill="#C47E2B" opacity=".8"/>
+                        <rect x="106" y="6"  width="79" height="10" rx="1" fill="#3E6B8A" opacity=".85"/>
+                        <rect x="106" y="19" width="72" height="10" rx="1" fill="#4397A2" opacity=".8"/>
+                        <rect x="106" y="32" width="52" height="10" rx="1" fill="#8A3A5C" opacity=".75"/>
+                        <line x1="168" y1="4" x2="168" y2="42" stroke="#2C3E50" stroke-width="1.5" stroke-dasharray="3,2" opacity=".4"/>
+                        <text x="172" y="10" font-family="JetBrains Mono,monospace" font-size="7" fill="#4397A2" font-weight="600">league avg</text>
+                    </svg>
+                </div>
+                <div class="datalab-sub">Inter Milan's Scudetto on controlled, structured effort — while newly promoted sides ran themselves into the bottom three.</div>
+                <div class="datalab-meta">
+                    <span class="datalab-tag">Total Distance</span>
+                    <span class="datalab-tag">HSR 19.8–25.2</span>
+                    <span class="datalab-tag">Sprint &gt;25.2</span>
+                </div>
+                <span class="datalab-arrow">Explore ↗</span>
+            </a>
+
+        </div>
+    </section>
+
+    <section class="authority-box">
+        <span class="label">Scientific Leadership</span>
+        <h2>Rooted in Elite Experience.</h2>
+        <p class="bio-text">Led by <strong>Cristian Osgnach</strong>, our team combines a decade of on-field experience — from Serie A to the Italian National Team — with world-renowned scientific rigour. We don't just process data; we interpret it through the lens of elite performance.</p>
+        <a href="https://www.researchgate.net/profile/Cristian-Osgnach" target="_blank" class="link-research">View Scientific Publications</a>
+    </section>
+
+    <section class="cta-section">
+        <span class="label">Next Steps</span>
+        <h2 style="font-weight:300;margin-bottom:10px">Ready to unlock the value of your league's data?</h2>
+        <p style="color:var(--slate);font-weight:300">Our unit works bespoke with a limited number of top-tier organisations.</p>
+        <a href="mailto:unit@syndeoo.com?subject=Briefing%20Request" class="cta-button">REQUEST A BRIEFING</a>
+    </section>
+
+    <footer>
+        <div class="footer-icon"><span class="o-icon">o</span><span class="o-icon">o</span></div>
+        <div class="contact-info">
+            © 2026 SYNDEOO // ABSOLUTE CLARITY UNIT<br>
+            <a href="mailto:unit@syndeoo.com" class="email-link">unit@syndeoo.com</a><br>
+            Piazza Duomo 3, 33100 Udine, Italy<br>
+            VAT: IT02855020307<br>
+            <a href="https://syndeoo.com/privacy/" class="legal-link">PRIVACY & COOKIE PROTOCOL</a>
+        </div>
+    </footer>
+
+</div>
+
+<div id="cookie-banner">
+    <div class="cookie-text"><strong>Privacy by Design:</strong> This unit does not track you. We utilise only essential technical cookies. Review our <a href="https://syndeoo.com/privacy/">Privacy Protocol</a>.</div>
+    <button class="cookie-accept" onclick="acceptCookies()">Acknowledge</button>
+</div>
+<script>
+function acceptCookies(){localStorage.setItem('syndeoo-privacy-acknowledged','true');document.getElementById('cookie-banner').style.display='none';}
+window.onload=function(){if(!localStorage.getItem('syndeoo-privacy-acknowledged')){document.getElementById('cookie-banner').style.display='flex';}}
+</script>
 </body>
 </html>
