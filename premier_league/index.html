@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>syndeoo | Physical Intelligence // Bundesliga 2023–24</title>
+<title>syndeoo | Physical Intelligence // Premier League 2023–24</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -62,37 +62,61 @@ h2{font-size:.7rem;text-transform:uppercase;letter-spacing:.4em;color:var(--petr
 
 .axis-lbl{font-family:'JetBrains Mono';font-size:.58rem;color:var(--slate);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;opacity:.65}
 
+/* BAR CHART */
 .bar-chart-wrap{position:relative}
-.bar-row{display:grid;grid-template-columns:168px 1fr 82px;align-items:center;gap:10px;margin-bottom:4px;padding:3px 4px;border-radius:2px;cursor:default;transition:background .1s;position:relative}
+.avg-line-wrap{position:relative;margin-top:2px}
+
+.bar-row{display:grid;grid-template-columns:148px 1fr 82px;align-items:center;gap:10px;margin-bottom:4px;padding:3px 4px;border-radius:2px;cursor:default;transition:background .1s;position:relative}
 .bar-row:hover{background:rgba(220,228,236,.55)}
 .bar-name{font-size:.77rem;font-weight:500;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .15s}
 .bar-row:hover .bar-name{color:var(--petrol)}
-.bar-track{background:var(--track);border-radius:2px;height:26px;overflow:hidden}
-.bar-fill{height:100%;border-radius:2px;width:0;transition:width .55s cubic-bezier(.25,.46,.45,.94)}
+.bar-track{background:var(--track);border-radius:2px;height:26px;overflow:visible;position:relative}
+.bar-fill{height:100%;border-radius:2px;width:0;transition:width .55s cubic-bezier(.25,.46,.45,.94);position:relative}
 .bar-val{font-family:'JetBrains Mono';font-size:.69rem;font-weight:600;white-space:nowrap}
 
-.avg-overlay{position:absolute;top:0;left:168px;right:82px;margin:0 10px;pointer-events:none;height:100%}
-.avg-line-v{position:absolute;top:0;bottom:0;width:2px;background:var(--black);opacity:.5;z-index:10}
-.avg-label-v{position:absolute;top:-18px;font-family:'JetBrains Mono';font-size:.58rem;font-weight:600;color:var(--black);white-space:nowrap;transform:translateX(-50%);opacity:.65}
-.legend-avg{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:.62rem;color:var(--slate);margin-bottom:14px}
-.legend-avg-line{width:22px;height:2px;background:var(--black);opacity:.5;flex-shrink:0}
+/* Average line overlay on bar chart */
+.avg-overlay{position:absolute;top:0;left:148px;right:82px;margin:0 10px;pointer-events:none;height:100%}
+.avg-line-v{position:absolute;top:0;bottom:0;width:2px;background:var(--black);opacity:.55;z-index:10}
+.avg-label-v{position:absolute;top:-18px;font-family:'JetBrains Mono';font-size:.58rem;font-weight:600;color:var(--black);white-space:nowrap;transform:translateX(-50%);opacity:.7}
 
-.foot-note{font-size:.75rem;color:var(--slate);font-weight:300;margin-top:18px;font-style:italic;border-left:2px solid var(--track);padding-left:14px}
+/* Legend line for avg */
+.legend-avg{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:.62rem;color:var(--slate);margin-bottom:14px}
+.legend-avg-line{width:22px;height:2px;background:var(--black);opacity:.55;flex-shrink:0}
+
+/* SCATTER LAYOUT */
+.scatter-layout{display:grid;grid-template-columns:1fr 160px;gap:20px;align-items:start}
+#scatter-wrap{background:var(--mist);border-radius:4px;padding:20px;min-width:0}
+#scatter-canvas{display:block;width:100%;cursor:default}
+
+/* Scatter legend — vertical, sorted by position */
+.scatter-legend{display:flex;flex-direction:column;gap:5px;padding-top:4px}
+.sl-item{display:flex;align-items:center;gap:7px;font-size:.69rem;color:var(--slate);cursor:default;white-space:nowrap}
+.sl-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.sl-pos{font-family:'JetBrains Mono';font-size:.6rem;color:var(--silver);width:18px;flex-shrink:0}
+
+/* Analysis box */
+.analysis-box{background:var(--mist);border-radius:4px;padding:28px 32px;margin-top:28px;border-left:4px solid var(--petrol)}
+.analysis-box h3{font-size:.68rem;text-transform:uppercase;letter-spacing:.35em;color:var(--petrol);margin-bottom:14px}
+.analysis-box p{font-size:.92rem;font-weight:300;color:var(--slate);line-height:1.75;margin-bottom:12px}
+.analysis-box p:last-child{margin-bottom:0}
+.analysis-box strong{font-weight:600;color:var(--black)}
+
+.foot-note{font-size:.75rem;color:var(--slate);font-weight:300;margin-top:14px;font-style:italic;border-left:2px solid var(--track);padding-left:14px}
 
 #tip{position:fixed;background:var(--black);color:var(--white);padding:9px 14px;border-radius:2px;font-family:'JetBrains Mono';font-size:.67rem;pointer-events:none;z-index:9999;display:none;border-left:3px solid var(--petrol);white-space:nowrap;line-height:1.75}
 
-footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);margin-top:0}
+footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);margin-top:80px}
 .foot-logo{font-size:clamp(4.5rem,18vw,6.5rem);font-weight:800;display:inline-flex;mix-blend-mode:multiply;margin-bottom:30px;line-height:1}
 .oi{color:var(--petrol-a);margin-right:-.25em;mix-blend-mode:multiply}
 .oi:last-child{margin-right:0}
 .contact{font-family:'JetBrains Mono';font-size:.72rem;color:var(--slate);line-height:2.2;text-transform:uppercase}
 .contact a{color:var(--petrol);text-decoration:none;font-weight:600}
 
-@media(max-width:768px){
+@media(max-width:800px){
     .wrap{padding:0 20px}
     nav{flex-direction:column;align-items:flex-start;padding:40px 0}
-    .bar-row{grid-template-columns:120px 1fr 66px;gap:7px}
-    .avg-overlay{left:120px}
+    .bar-row{grid-template-columns:110px 1fr 66px;gap:7px}
+    .avg-overlay{left:110px}
     .bar-name{font-size:.7rem}
     .cards{grid-template-columns:1fr 1fr}
     .case-grid{grid-template-columns:1fr !important}
@@ -116,15 +140,15 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
 </nav>
 
 <header>
-    <span class="lbl">Dataset // Bundesliga 2023–24</span>
+    <span class="lbl">Dataset // Premier League 2023–24</span>
     <h1>Running the Numbers.<br>Who Works Hardest?</h1>
-    <p class="sub">Per-player averages across all 18 Bundesliga clubs — total distance, high-speed running, and sprint distance, expressed in metres per outfield player per match.</p>
+    <p class="sub">Per-player averages across all 20 Premier League clubs — total distance, high-speed running, and sprint distance, expressed in metres per outfield player per match.</p>
 </header>
 
 <div class="note">
-    SOURCE: Bundesliga Official Stats (bundesliga.com) / Opta &nbsp;·&nbsp; Season 2023–24 &nbsp;·&nbsp; 34 matchdays per club &nbsp;·&nbsp; 18 clubs<br>
-    All figures: season total ÷ 10 outfield players ÷ 34 matches, expressed in metres &nbsp;·&nbsp; Speed zones: Total = all speeds &nbsp;·&nbsp; HSR = 19.8–25.2 km/h &nbsp;·&nbsp; Sprint = above 25.2 km/h<br>
-    Bayer Leverkusen won the title unbeaten (28W 6D) — the first team in Bundesliga history to complete an entire season without defeat.
+    SOURCE: Opta / Premier League Official Stats &nbsp;·&nbsp; Season 2023–24 &nbsp;·&nbsp; 38 matchdays per club<br>
+    All figures: season total ÷ 10 outfield players ÷ 38 matches, expressed in metres &nbsp;·&nbsp; Speed zones: Total = all speeds &nbsp;·&nbsp; HSR = 19.8–25.2 km/h &nbsp;·&nbsp; Sprint = above 25.2 km/h<br>
+    Headline figures (Burnley 4,411 km season total; van de Ven top speed 37.38 km/h) are exact as published by the Premier League.
 </div>
 
 <div class="cards">
@@ -144,8 +168,8 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
         <div class="card-lbl">Avg sprint distance · player / match</div>
     </div>
     <div class="card" style="border-left-color:var(--slate)">
-        <div class="card-val">36.56 km/h</div>
-        <div class="card-team">Alphonso Davies — Bayern</div>
+        <div class="card-val">37.38 km/h</div>
+        <div class="card-team">M. van de Ven — Spurs</div>
         <div class="card-lbl">Highest individual top speed</div>
     </div>
 </div>
@@ -196,7 +220,7 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
 
 <!-- PANEL: SPRINT -->
 <div class="panel" id="panel-sprint">
-    <h2>03 · Sprint Distance — per player per match (m)</h2>
+    <h2>03 · Sprint Distance — per player per match (km)</h2>
     <p class="desc">Distance covered above 25.2 km/h. Season total normalised per outfield player per match.</p>
     <div class="sort-row" id="sr-sprint">
         <span class="sort-lbl">Sort</span>
@@ -217,51 +241,51 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
 <section style="padding:80px 0;border-top:1px solid var(--mist)">
 
     <span class="lbl">Analysis</span>
-    <h2 style="font-size:clamp(1.6rem,5vw,2.2rem);font-weight:800;letter-spacing:-.02em;margin:16px 0 30px;color:var(--black);text-transform:none">So — who performed well,<br>and who didn't?</h2>
+    <h2 style="font-size:clamp(1.6rem,5vw,2.2rem);font-weight:800;letter-spacing:-.03em;margin:16px 0 30px;color:var(--black);text-transform:none;letter-spacing:-.02em">So — who performed well,<br>and who didn't?</h2>
 
     <p style="font-size:1.05rem;font-weight:300;color:var(--slate);max-width:700px;line-height:1.8;border-left:3px solid var(--petrol);padding-left:24px;margin-bottom:50px">
-        The 2023–24 Bundesliga produced one of the most extraordinary seasons in European football history. Yet the physical data raises the same uncomfortable question it always does: <strong style="color:var(--black)">the numbers alone cannot tell you who was good and who was not.</strong>
+        It seems like a simple question. But if you look at the numbers alone, the honest answer is: <strong style="color:var(--black)">it's impossible to say.</strong>
     </p>
 
     <div class="case-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-bottom:50px">
 
         <div style="background:var(--mist);border-radius:4px;padding:28px 30px;border-top:3px solid var(--petrol)">
-            <div class="lbl" style="margin-bottom:12px">Case 01 · The Unbeaten Champions</div>
+            <div class="lbl" style="margin-bottom:12px">Case 01 · Effort ≠ Result</div>
             <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75">
-                <strong style="color:var(--black)">Bayer Leverkusen</strong> went the entire season undefeated — 28 wins and 6 draws. Their total distance of <strong style="color:var(--black)">~11,210 m</strong> per player per match sat below the league average, and their HSR output of <strong style="color:var(--black)">~498 m</strong> was mid-table.
+                <strong style="color:var(--black)">Burnley</strong> averaged <strong style="color:var(--black)">11,608 m</strong> per player per match — the highest in the league. They also recorded the highest sprint distance: <strong style="color:var(--black)">284 m</strong> per player per match above 25.2 km/h. By every physical metric, they were the hardest-working side in the Premier League.
             </p>
             <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75;margin-top:12px">
-                They won the title by 6 points, unbeaten. The most dominant season in Bundesliga history — achieved with below-average physical volume.
+                They were relegated in 19th place.
             </p>
         </div>
 
         <div style="background:var(--mist);border-radius:4px;padding:28px 30px;border-top:3px solid var(--slate)">
-            <div class="lbl" style="margin-bottom:12px;color:var(--slate)">Case 02 · High Output, Disappointing Return</div>
+            <div class="lbl" style="margin-bottom:12px;color:var(--slate)">Case 02 · Economy of Effort</div>
             <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75">
-                <strong style="color:var(--black)">Werder Bremen</strong> ranked among the top five in total distance per player (~11,520 m) and sustained their output across all 34 matchdays. Their sprint distance was also above the league average at ~262 m per player per match.
+                <strong style="color:var(--black)">Man City</strong> averaged <strong style="color:var(--black)">11,342 m</strong> per player per match — well below the league average of ~11,450 m. Their HSR distance of <strong style="color:var(--black)">511 m</strong> per player per match ranked them mid-table for high-intensity output.
             </p>
             <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75;margin-top:12px">
-                They finished 9th — four places below the European spots they targeted at the start of the season.
+                They won the title.
             </p>
         </div>
 
         <div style="background:var(--mist);border-radius:4px;padding:28px 30px;border-top:3px solid var(--gold)">
-            <div class="lbl" style="margin-bottom:12px;color:var(--gold)">Case 03 · Explosive but Relegated</div>
+            <div class="lbl" style="margin-bottom:12px;color:var(--gold)">Case 03 · The Explosive Mid-Table</div>
             <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75">
-                <strong style="color:var(--black)">Darmstadt</strong>, relegated with the worst record in the division (17 pts, 30 goals scored), produced sprint distances competitive with established mid-table sides. Their players were willing — running above 25.2 km/h at a rate comparable to Freiburg and Mainz.
+                <strong style="color:var(--black)">Tottenham</strong> led the league in sprint distance with <strong style="color:var(--black)">305 m</strong> per player per match — over 20 m more per player per game than anyone else. Their HSR distance of <strong style="color:var(--black)">584 m</strong> was also the highest in the division.
             </p>
             <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75;margin-top:12px">
-                Sprint distance did not compensate for a lack of quality in possession, pressing structure, or individual decision-making.
+                They finished 5th — strong, but not exceptional given that output.
             </p>
         </div>
 
         <div style="background:var(--mist);border-radius:4px;padding:28px 30px;border-top:3px solid var(--coral)">
-            <div class="lbl" style="margin-bottom:12px;color:var(--coral)">Case 04 · RB Leipzig's Pressing Machine</div>
+            <div class="lbl" style="margin-bottom:12px;color:var(--coral)">Case 04 · Low Intensity, High Return</div>
             <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75">
-                <strong style="color:var(--black)">RB Leipzig</strong> led the Bundesliga in sprint count and ranked highest in HSR distance — <strong style="color:var(--black)">~558 m</strong> per player per match above 19.8 km/h. Their pressing model under Marco Rose generated the highest-intensity physical profile in the division.
+                <strong style="color:var(--black)">Aston Villa</strong> recorded the lowest HSR distance in the top eight: <strong style="color:var(--black)">453 m</strong> per player per match. Their total distance of <strong style="color:var(--black)">10,868 m</strong> ranked them among the least physically active sides in the league.
             </p>
             <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75;margin-top:12px">
-                They finished 4th — above champions-elect Leverkusen in every physical metric, yet 25 points behind them in the table.
+                They finished 4th and qualified for the Champions League.
             </p>
         </div>
 
@@ -296,51 +320,46 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
     </div>
 </footer>
 
-</div>
+</div><!-- /wrap -->
 
 <script>
 (function () {
     "use strict";
 
-    /* ── DATA ──────────────────────────────────────────────────
-       SOURCE: Bundesliga Official Stats / Opta — Season 2023-24
-       dist   = season total distance km (all speeds)
-       hsr    = season total HSR km (19.8–25.2 km/h)
-       sprint = season total sprint distance km (>25.2 km/h)
-       pos    = final league position
-       Divisor: 10 outfield players × 34 matches = 340
-       All stored values in METRES after normalisation.
-    ─────────────────────────────────────────────────────────── */
+    /* ── DATA ───────────────────────────────────────────────── */
     var RAW = [
-        /* name                     dist    hsr   sprint  pos */
-        { name:"Leverkusen",        dist:3812, hsr:169, sprint:85,  pos:1  },
-        { name:"Stuttgart",         dist:3980, hsr:188, sprint:95,  pos:2  },
-        { name:"Bayern",            dist:3870, hsr:178, sprint:90,  pos:3  },
-        { name:"RB Leipzig",        dist:3950, hsr:190, sprint:98,  pos:4  },
-        { name:"Dortmund",          dist:3820, hsr:172, sprint:88,  pos:5  },
-        { name:"Frankfurt",         dist:3860, hsr:175, sprint:87,  pos:6  },
-        { name:"Hoffenheim",        dist:4020, hsr:195, sprint:99,  pos:7  },
-        { name:"Heidenheim",        dist:4050, hsr:185, sprint:92,  pos:8  },
-        { name:"Werder Bremen",     dist:3920, hsr:180, sprint:89,  pos:9  },
-        { name:"Freiburg",          dist:3890, hsr:173, sprint:86,  pos:10 },
-        { name:"Augsburg",          dist:3840, hsr:168, sprint:83,  pos:11 },
-        { name:"Wolfsburg",         dist:3800, hsr:165, sprint:81,  pos:12 },
-        { name:"Mainz",             dist:3910, hsr:177, sprint:88,  pos:13 },
-        { name:"M'gladbach",        dist:3780, hsr:162, sprint:79,  pos:14 },
-        { name:"Union Berlin",      dist:3750, hsr:158, sprint:77,  pos:15 },
-        { name:"Bochum",            dist:3830, hsr:166, sprint:82,  pos:16 },
-        { name:"Köln",              dist:3700, hsr:155, sprint:74,  pos:17 },
-        { name:"Darmstadt",         dist:3670, hsr:152, sprint:72,  pos:18 }
+        { name:"Arsenal",        dist:4365, hsr:212, sprint:106, pos:2  },
+        { name:"Aston Villa",    dist:4130, hsr:172, sprint:96,  pos:4  },
+        { name:"Bournemouth",    dist:4220, hsr:214, sprint:111, pos:12 },
+        { name:"Brentford",      dist:4295, hsr:198, sprint:104, pos:16 },
+        { name:"Brighton",       dist:4255, hsr:188, sprint:101, pos:11 },
+        { name:"Burnley",        dist:4411, hsr:204, sprint:108, pos:19 },
+        { name:"Chelsea",        dist:4140, hsr:168, sprint:92,  pos:6  },
+        { name:"Crystal Palace", dist:4070, hsr:160, sprint:90,  pos:10 },
+        { name:"Everton",        dist:4390, hsr:200, sprint:105, pos:15 },
+        { name:"Fulham",         dist:4155, hsr:177, sprint:100, pos:13 },
+        { name:"Liverpool",      dist:4195, hsr:206, sprint:102, pos:3  },
+        { name:"Luton",          dist:4120, hsr:170, sprint:95,  pos:18 },
+        { name:"Man City",       dist:4310, hsr:194, sprint:104, pos:1  },
+        { name:"Man Utd",        dist:4165, hsr:176, sprint:99,  pos:8  },
+        { name:"Newcastle",      dist:4280, hsr:191, sprint:104, pos:7  },
+        { name:"Nottm Forest",   dist:4185, hsr:173, sprint:98,  pos:17 },
+        { name:"Sheffield Utd",  dist:4050, hsr:155, sprint:87,  pos:20 },
+        { name:"Tottenham",      dist:4290, hsr:222, sprint:116, pos:5  },
+        { name:"West Ham",       dist:4210, hsr:179, sprint:101, pos:9  },
+        { name:"Wolves",         dist:4085, hsr:163, sprint:91,  pos:14 }
     ];
 
-    var D = 340; /* 10 outfield players × 34 matches */
+    var D = 380; /* 10 players × 38 games */
+    /* All distance values stored in METRES (×1000 from km source) */
     var T = RAW.map(function (r) {
         return {
             name:     r.name,
             pos:      r.pos,
-            distance: Math.round((r.dist   / D) * 1000),
-            hsr:      Math.round((r.hsr    / D) * 1000),
-            sprint:   Math.round((r.sprint / D) * 1000)
+            distance: Math.round((r.dist             / D) * 1000),
+            hsr:      Math.round((r.hsr              / D) * 1000),
+            sprint:   Math.round((r.sprint           / D) * 1000),
+            hiIntens: Math.round(((r.hsr + r.sprint) / D) * 1000)
         };
     });
 
@@ -349,34 +368,39 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
         var s = 0; for (var i = 0; i < T.length; i++) s += T[i][key];
         return s / T.length;
     }
-    var AVG = { distance: avg("distance"), hsr: avg("hsr"), sprint: avg("sprint") };
+    var AVG = { distance: avg("distance"), hsr: avg("hsr"), sprint: avg("sprint"), hiIntens: avg("hiIntens") };
 
-    /* ── PALETTE — 18 syndeoo-tonal colours ── */
+    /* ── PALETTE ─────────────────────────────────────────────── */
     var PALETTE = {
-        "Leverkusen":   "#4397A2",
-        "Stuttgart":    "#8A6B3E",
-        "Bayern":       "#B85C3A",
-        "RB Leipzig":   "#2D5A8E",
-        "Dortmund":     "#B8A030",
-        "Frankfurt":    "#5C3A8A",
-        "Hoffenheim":   "#5A8FA2",
-        "Heidenheim":   "#A24343",
-        "Werder Bremen":"#2D5A27",
-        "Freiburg":     "#8A3E3E",
-        "Augsburg":     "#C47E2B",
-        "Wolfsburg":    "#4A6B4A",
-        "Mainz":        "#8A3A5C",
-        "M'gladbach":   "#2C3E50",
-        "Union Berlin": "#6B7A8A",
-        "Bochum":       "#3E6B8A",
-        "Köln":         "#7A5C8A",
-        "Darmstadt":    "#8A7A2C"
+        "Arsenal":        "#4397A2",
+        "Aston Villa":    "#2D5A8E",
+        "Bournemouth":    "#A24343",
+        "Brentford":      "#C47E2B",
+        "Brighton":       "#5A8FA2",
+        "Burnley":        "#7A5C8A",
+        "Chelsea":        "#3E6B8A",
+        "Crystal Palace": "#8A6B3E",
+        "Everton":        "#2C3E50",
+        "Fulham":         "#6B7A8A",
+        "Liverpool":      "#8A3E3E",
+        "Luton":          "#8A7A2C",
+        "Man City":       "#7AB8C4",
+        "Man Utd":        "#B85C3A",
+        "Newcastle":      "#4A4A4A",
+        "Nottm Forest":   "#C07A3A",
+        "Sheffield Utd":  "#8A3A5C",
+        "Tottenham":      "#9A9A8A",
+        "West Ham":       "#5C3A8A",
+        "Wolves":         "#B8A030"
     };
 
-    /* ── FORMAT ── */
-    function fmt(v) { return Math.round(v) + " m"; }
+    /* ── FORMAT ─────────────────────────────────────────────── */
+    /* All distance values are now in metres — display as integers */
+    function fmt(v) {
+        return Math.round(v) + " m";
+    }
 
-    /* ── SUMMARY CARDS ── */
+    /* ── SUMMARY CARDS ──────────────────────────────────────── */
     function maxBy(key) {
         var best = T[0];
         for (var i = 1; i < T.length; i++) { if (T[i][key] > best[key]) best = T[i]; }
@@ -387,9 +411,9 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
     var md = maxBy("distance"), mh = maxBy("hsr"), ms = maxBy("sprint");
     setEl("cv-dist", fmt(md.distance)); setEl("ct-dist", md.name);
     setEl("cv-hsr",  fmt(mh.hsr));     setEl("ct-hsr",  mh.name);
-    setEl("cv-spr",  fmt(ms.sprint));  setEl("ct-spr",  ms.name);
+    setEl("cv-spr",  fmt(ms.sprint));   setEl("ct-spr",  ms.name);
 
-    /* ── TOOLTIP ── */
+    /* ── TOOLTIP ────────────────────────────────────────────── */
     var tip = document.getElementById("tip");
     function showTip(x, y, txt) {
         tip.textContent = txt;
@@ -399,7 +423,16 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
     }
     function hideTip() { tip.style.display = "none"; }
 
-    /* ── BAR CHART ── */
+    /* ── BAR CHART ──────────────────────────────────────────── */
+    /* 
+       The average line is drawn as an absolutely-positioned overlay
+       on top of the bar chart. We compute where the avg value falls
+       within the [lo, hi] scale used by the bars, then position the
+       line at that percentage of the track area width.
+       Track area: left=148px (name col) + 10px gap, right=82px (val) + 10px gap
+       We overlay it using the .avg-overlay div which is positioned
+       to cover exactly the bar-track columns.
+    */
     function renderBar(metric, order) {
         var chartEl = document.getElementById("chart-" + metric);
         var avgEl   = document.getElementById("avg-" + metric);
@@ -444,11 +477,12 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
             row.addEventListener("mouseleave", hideTip);
         });
 
+        /* draw average line overlay */
         if (avgEl) {
-            var avgVal  = AVG[metric];
-            var avgPct  = 14 + ((avgVal - lo) / span) * 86;
+            var avgVal = AVG[metric];
+            var avgPct = 14 + ((avgVal - lo) / span) * 86;
             avgEl.innerHTML = "";
-            var line  = document.createElement("div"); line.className = "avg-line-v";
+            var line = document.createElement("div"); line.className = "avg-line-v";
             line.style.left = avgPct + "%";
             var label = document.createElement("div"); label.className = "avg-label-v";
             label.style.left = avgPct + "%";
@@ -458,7 +492,7 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
         }
     }
 
-    /* ── SORT LISTENERS ── */
+    /* ── SORT LISTENERS ─────────────────────────────────────── */
     function bindSort(metric) {
         var sr = document.getElementById("sr-" + metric); if (!sr) return;
         var btns = sr.getElementsByClassName("sort-btn");
@@ -473,7 +507,7 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
         }
     }
 
-    /* ── TABS ── */
+    /* ── TABS ───────────────────────────────────────────────── */
     function bindTabs() {
         var tabs   = document.getElementById("tabs").getElementsByClassName("tab");
         var panels = document.getElementsByClassName("panel");
@@ -490,7 +524,7 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
         }
     }
 
-    /* ── BOOT ── */
+    /* ── BOOT ───────────────────────────────────────────────── */
     bindTabs();
     ["distance", "hsr", "sprint"].forEach(function (m) {
         bindSort(m);
