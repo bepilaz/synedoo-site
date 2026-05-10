@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>syndeoo | Physical Intelligence // Premier League 2023–24</title>
+<title>syndeoo | Physical Intelligence // Bundesliga 2023–24</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -62,7 +62,8 @@ h2{font-size:.7rem;text-transform:uppercase;letter-spacing:.4em;color:var(--petr
 
 .axis-lbl{font-family:'JetBrains Mono';font-size:.58rem;color:var(--slate);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;opacity:.65}
 
-.bar-row{display:grid;grid-template-columns:148px 1fr 82px;align-items:center;gap:10px;margin-bottom:4px;padding:3px 4px;border-radius:2px;cursor:default;transition:background .1s}
+.bar-chart-wrap{position:relative}
+.bar-row{display:grid;grid-template-columns:168px 1fr 82px;align-items:center;gap:10px;margin-bottom:4px;padding:3px 4px;border-radius:2px;cursor:default;transition:background .1s;position:relative}
 .bar-row:hover{background:rgba(220,228,236,.55)}
 .bar-name{font-size:.77rem;font-weight:500;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .15s}
 .bar-row:hover .bar-name{color:var(--petrol)}
@@ -70,19 +71,17 @@ h2{font-size:.7rem;text-transform:uppercase;letter-spacing:.4em;color:var(--petr
 .bar-fill{height:100%;border-radius:2px;width:0;transition:width .55s cubic-bezier(.25,.46,.45,.94)}
 .bar-val{font-family:'JetBrains Mono';font-size:.69rem;font-weight:600;white-space:nowrap}
 
-/* Scatter team legend grid */
-.scatter-legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px 16px;margin-top:20px}
-.sl-item{display:flex;align-items:center;gap:7px;font-size:.72rem;color:var(--slate);cursor:default}
-.sl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.avg-overlay{position:absolute;top:0;left:168px;right:82px;margin:0 10px;pointer-events:none;height:100%}
+.avg-line-v{position:absolute;top:0;bottom:0;width:2px;background:var(--black);opacity:.5;z-index:10}
+.avg-label-v{position:absolute;top:-18px;font-family:'JetBrains Mono';font-size:.58rem;font-weight:600;color:var(--black);white-space:nowrap;transform:translateX(-50%);opacity:.65}
+.legend-avg{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:.62rem;color:var(--slate);margin-bottom:14px}
+.legend-avg-line{width:22px;height:2px;background:var(--black);opacity:.5;flex-shrink:0}
 
-.foot-note{font-size:.75rem;color:var(--slate);font-weight:300;margin-top:18px;font-style:italic;border-left:2px solid var(--mist);padding-left:14px}
-
-#scatter-wrap{background:var(--mist);border-radius:4px;padding:20px}
-#scatter-canvas{display:block;width:100%;cursor:default}
+.foot-note{font-size:.75rem;color:var(--slate);font-weight:300;margin-top:18px;font-style:italic;border-left:2px solid var(--track);padding-left:14px}
 
 #tip{position:fixed;background:var(--black);color:var(--white);padding:9px 14px;border-radius:2px;font-family:'JetBrains Mono';font-size:.67rem;pointer-events:none;z-index:9999;display:none;border-left:3px solid var(--petrol);white-space:nowrap;line-height:1.75}
 
-footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);margin-top:80px}
+footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);margin-top:0}
 .foot-logo{font-size:clamp(4.5rem,18vw,6.5rem);font-weight:800;display:inline-flex;mix-blend-mode:multiply;margin-bottom:30px;line-height:1}
 .oi{color:var(--petrol-a);margin-right:-.25em;mix-blend-mode:multiply}
 .oi:last-child{margin-right:0}
@@ -92,10 +91,11 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
 @media(max-width:768px){
     .wrap{padding:0 20px}
     nav{flex-direction:column;align-items:flex-start;padding:40px 0}
-    .bar-row{grid-template-columns:110px 1fr 66px;gap:7px}
+    .bar-row{grid-template-columns:120px 1fr 66px;gap:7px}
+    .avg-overlay{left:120px}
     .bar-name{font-size:.7rem}
     .cards{grid-template-columns:1fr 1fr}
-    .scatter-legend{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+    .case-grid{grid-template-columns:1fr !important}
 }
 </style>
 </head>
@@ -107,23 +107,24 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
 
 <nav>
     <div>
-        <div class="logo">synde<span class="oo"><span class="o">o</span><span class="o">o</span></span></div>
+        <a href="https://syndeoo.com" style="text-decoration:none;color:inherit">
+            <div class="logo">synde<span class="oo"><span class="o">o</span><span class="o">o</span></span></div>
+        </a>
         <span class="lbl" style="display:block;margin-top:6px">Physical Intelligence // Data Lab</span>
     </div>
-    <span class="lbl">Absolute Clarity Unit</span>
+    <a href="https://syndeoo.com" class="lbl" style="color:var(--petrol);text-decoration:none;transition:opacity .15s" onmouseover="this.style.opacity='.6'" onmouseout="this.style.opacity='1'">syndeoo.com ↗</a>
 </nav>
 
 <header>
-    <span class="lbl">Dataset // Premier League 2023–24</span>
+    <span class="lbl">Dataset // Bundesliga 2023–24</span>
     <h1>Running the Numbers.<br>Who Works Hardest?</h1>
-    <p class="sub">Per-player averages across all 20 Premier League clubs — distance, high-speed running, and sprint distance, normalised per outfield player per match.</p>
+    <p class="sub">Per-player averages across all 18 Bundesliga clubs — total distance, high-speed running, and sprint distance, expressed in metres per outfield player per match.</p>
 </header>
 
 <div class="note">
-    SOURCE: Opta / Premier League Official Stats &nbsp;·&nbsp; Season 2023–24 &nbsp;·&nbsp; 38 matchdays per club<br>
-    All bar chart figures: season total ÷ 10 outfield players ÷ 38 matches.<br>
-    Speed zones — Total distance: all speeds · HSR: 19.8–25.2 km/h · Sprint distance: above 25.2 km/h<br>
-    Headline figures (Burnley season total 4,411 km; Tottenham season total 6,534 sprints; van de Ven top speed 37.38 km/h) are exact as published by the Premier League.
+    SOURCE: Bundesliga Official Stats (bundesliga.com) / Opta &nbsp;·&nbsp; Season 2023–24 &nbsp;·&nbsp; 34 matchdays per club &nbsp;·&nbsp; 18 clubs<br>
+    All figures: season total ÷ 10 outfield players ÷ 34 matches, expressed in metres &nbsp;·&nbsp; Speed zones: Total = all speeds &nbsp;·&nbsp; HSR = 19.8–25.2 km/h &nbsp;·&nbsp; Sprint = above 25.2 km/h<br>
+    Bayer Leverkusen won the title unbeaten (28W 6D) — the first team in Bundesliga history to complete an entire season without defeat.
 </div>
 
 <div class="cards">
@@ -135,7 +136,7 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
     <div class="card" style="border-left-color:var(--gold)">
         <div class="card-val" id="cv-hsr">—</div>
         <div class="card-team" id="ct-hsr">—</div>
-        <div class="card-lbl">Avg HSR distance · player / match</div>
+        <div class="card-lbl">Avg HSR · player / match</div>
     </div>
     <div class="card" style="border-left-color:var(--coral)">
         <div class="card-val" id="cv-spr">—</div>
@@ -143,8 +144,8 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
         <div class="card-lbl">Avg sprint distance · player / match</div>
     </div>
     <div class="card" style="border-left-color:var(--slate)">
-        <div class="card-val">37.38 km/h</div>
-        <div class="card-team">M. van de Ven — Spurs</div>
+        <div class="card-val">36.56 km/h</div>
+        <div class="card-team">Alphonso Davies — Bayern</div>
         <div class="card-lbl">Highest individual top speed</div>
     </div>
 </div>
@@ -153,61 +154,134 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
     <div class="tab on" data-p="distance">Total Distance</div>
     <div class="tab"    data-p="hsr">HSR Distance</div>
     <div class="tab"    data-p="sprint">Sprint Distance</div>
-    <div class="tab"    data-p="scatter">Intensity vs Position</div>
 </div>
 
 <!-- PANEL: DISTANCE -->
 <div class="panel on" id="panel-distance">
-    <h2>01 · Total Distance — per player per match (km)</h2>
+    <h2>01 · Total Distance — per player per match (m)</h2>
     <p class="desc">All speeds included. Season total normalised per outfield player per match.</p>
     <div class="sort-row" id="sr-distance">
         <span class="sort-lbl">Sort</span>
         <button class="sort-btn on" data-o="desc">Highest first</button>
         <button class="sort-btn"    data-o="asc">Lowest first</button>
+        <button class="sort-btn"    data-o="pos">By league position</button>
         <button class="sort-btn"    data-o="alpha">A–Z</button>
     </div>
-    <div class="axis-lbl">km / outfield player / match · all speeds</div>
-    <div id="chart-distance"></div>
+    <div class="axis-lbl">metres / outfield player / match · all speeds · league avg shown</div>
+    <div class="legend-avg"><div class="legend-avg-line"></div>League average</div>
+    <div class="bar-chart-wrap" id="wrap-distance">
+        <div id="chart-distance"></div>
+        <div class="avg-overlay" id="avg-distance"></div>
+    </div>
 </div>
 
 <!-- PANEL: HSR -->
 <div class="panel" id="panel-hsr">
-    <h2>02 · HSR Distance — per player per match (km)</h2>
+    <h2>02 · HSR Distance — per player per match (m)</h2>
     <p class="desc">Distance covered between 19.8 and 25.2 km/h. Season total normalised per outfield player per match.</p>
     <div class="sort-row" id="sr-hsr">
         <span class="sort-lbl">Sort</span>
         <button class="sort-btn on" data-o="desc">Highest first</button>
         <button class="sort-btn"    data-o="asc">Lowest first</button>
+        <button class="sort-btn"    data-o="pos">By league position</button>
         <button class="sort-btn"    data-o="alpha">A–Z</button>
     </div>
-    <div class="axis-lbl">km / outfield player / match · 19.8–25.2 km/h</div>
-    <div id="chart-hsr"></div>
+    <div class="axis-lbl">metres / outfield player / match · 19.8–25.2 km/h · league avg shown</div>
+    <div class="legend-avg"><div class="legend-avg-line"></div>League average</div>
+    <div class="bar-chart-wrap" id="wrap-hsr">
+        <div id="chart-hsr"></div>
+        <div class="avg-overlay" id="avg-hsr"></div>
+    </div>
 </div>
 
 <!-- PANEL: SPRINT -->
 <div class="panel" id="panel-sprint">
-    <h2>03 · Sprint Distance — per player per match (km)</h2>
+    <h2>03 · Sprint Distance — per player per match (m)</h2>
     <p class="desc">Distance covered above 25.2 km/h. Season total normalised per outfield player per match.</p>
     <div class="sort-row" id="sr-sprint">
         <span class="sort-lbl">Sort</span>
         <button class="sort-btn on" data-o="desc">Highest first</button>
         <button class="sort-btn"    data-o="asc">Lowest first</button>
+        <button class="sort-btn"    data-o="pos">By league position</button>
         <button class="sort-btn"    data-o="alpha">A–Z</button>
     </div>
-    <div class="axis-lbl">km / outfield player / match · above 25.2 km/h</div>
-    <div id="chart-sprint"></div>
+    <div class="axis-lbl">metres / outfield player / match · above 25.2 km/h · league avg shown</div>
+    <div class="legend-avg"><div class="legend-avg-line"></div>League average</div>
+    <div class="bar-chart-wrap" id="wrap-sprint">
+        <div id="chart-sprint"></div>
+        <div class="avg-overlay" id="avg-sprint"></div>
+    </div>
 </div>
 
-<!-- PANEL: SCATTER -->
-<div class="panel" id="panel-scatter">
-    <h2>04 · High-Intensity Distance vs Final League Position</h2>
-    <p class="desc">X axis: combined HSR + sprint distance per player per match (above 19.8 km/h). Y axis: final league position (higher = better). Bubble size: total distance per player per match.</p>
-    <div id="scatter-wrap">
-        <canvas id="scatter-canvas"></canvas>
+<!-- EDITORIAL SECTION -->
+<section style="padding:80px 0;border-top:1px solid var(--mist)">
+
+    <span class="lbl">Analysis</span>
+    <h2 style="font-size:clamp(1.6rem,5vw,2.2rem);font-weight:800;letter-spacing:-.02em;margin:16px 0 30px;color:var(--black);text-transform:none">So — who performed well,<br>and who didn't?</h2>
+
+    <p style="font-size:1.05rem;font-weight:300;color:var(--slate);max-width:700px;line-height:1.8;border-left:3px solid var(--petrol);padding-left:24px;margin-bottom:50px">
+        The 2023–24 Bundesliga produced one of the most extraordinary seasons in European football history. Yet the physical data raises the same uncomfortable question it always does: <strong style="color:var(--black)">the numbers alone cannot tell you who was good and who was not.</strong>
+    </p>
+
+    <div class="case-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-bottom:50px">
+
+        <div style="background:var(--mist);border-radius:4px;padding:28px 30px;border-top:3px solid var(--petrol)">
+            <div class="lbl" style="margin-bottom:12px">Case 01 · The Unbeaten Champions</div>
+            <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75">
+                <strong style="color:var(--black)">Bayer Leverkusen</strong> went the entire season undefeated — 28 wins and 6 draws. Their total distance of <strong style="color:var(--black)">~11,210 m</strong> per player per match sat below the league average, and their HSR output of <strong style="color:var(--black)">~498 m</strong> was mid-table.
+            </p>
+            <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75;margin-top:12px">
+                They won the title by 6 points, unbeaten. The most dominant season in Bundesliga history — achieved with below-average physical volume.
+            </p>
+        </div>
+
+        <div style="background:var(--mist);border-radius:4px;padding:28px 30px;border-top:3px solid var(--slate)">
+            <div class="lbl" style="margin-bottom:12px;color:var(--slate)">Case 02 · High Output, Disappointing Return</div>
+            <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75">
+                <strong style="color:var(--black)">Werder Bremen</strong> ranked among the top five in total distance per player (~11,520 m) and sustained their output across all 34 matchdays. Their sprint distance was also above the league average at ~262 m per player per match.
+            </p>
+            <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75;margin-top:12px">
+                They finished 9th — four places below the European spots they targeted at the start of the season.
+            </p>
+        </div>
+
+        <div style="background:var(--mist);border-radius:4px;padding:28px 30px;border-top:3px solid var(--gold)">
+            <div class="lbl" style="margin-bottom:12px;color:var(--gold)">Case 03 · Explosive but Relegated</div>
+            <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75">
+                <strong style="color:var(--black)">Darmstadt</strong>, relegated with the worst record in the division (17 pts, 30 goals scored), produced sprint distances competitive with established mid-table sides. Their players were willing — running above 25.2 km/h at a rate comparable to Freiburg and Mainz.
+            </p>
+            <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75;margin-top:12px">
+                Sprint distance did not compensate for a lack of quality in possession, pressing structure, or individual decision-making.
+            </p>
+        </div>
+
+        <div style="background:var(--mist);border-radius:4px;padding:28px 30px;border-top:3px solid var(--coral)">
+            <div class="lbl" style="margin-bottom:12px;color:var(--coral)">Case 04 · RB Leipzig's Pressing Machine</div>
+            <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75">
+                <strong style="color:var(--black)">RB Leipzig</strong> led the Bundesliga in sprint count and ranked highest in HSR distance — <strong style="color:var(--black)">~558 m</strong> per player per match above 19.8 km/h. Their pressing model under Marco Rose generated the highest-intensity physical profile in the division.
+            </p>
+            <p style="font-size:.95rem;font-weight:300;color:var(--slate);line-height:1.75;margin-top:12px">
+                They finished 4th — above champions-elect Leverkusen in every physical metric, yet 25 points behind them in the table.
+            </p>
+        </div>
+
     </div>
-    <div class="scatter-legend" id="scatter-legend"></div>
-    <p class="foot-note">Bubble size reflects total distance per player per match. Hover any bubble for full details.</p>
-</div>
+
+    <div style="background:var(--black);color:var(--white);border-radius:4px;padding:40px 44px;max-width:800px">
+        <div class="lbl" style="color:var(--petrol);margin-bottom:16px">What the data cannot tell you</div>
+        <p style="font-size:1.05rem;font-weight:300;line-height:1.8;margin-bottom:20px">
+            Physical metrics are necessary. But on their own, they answer the wrong question. A player running 12,000 m in a match where their team concedes four goals has produced very different value from a player running 10,500 m in a 1–0 win. The number looks better. The outcome is worse.
+        </p>
+        <p style="font-size:1.05rem;font-weight:300;line-height:1.8;margin-bottom:20px">
+            Data must be <strong>accurate</strong> first — collected cleanly, standardised across systems, free of noise. It must <strong>make sense</strong> second — situated within the tactical context of each match, each opponent, each phase of the season. And it must be <strong>contextualised with the people involved</strong>: the head of performance who knows why a player's sprint numbers dropped in March, the analyst who spotted that the HSR spike in December came from chasing games in the final ten minutes.
+        </p>
+        <p style="font-size:1.05rem;font-weight:300;line-height:1.8">
+            This is where syndeoo operates. We bridge the gap between raw physical output and meaningful decision-making — integrating data from tracking systems, from staff, and from the field, and presenting it in a form that makes the next call faster and more certain.
+        </p>
+        <a href="mailto:unit@syndeoo.com?subject=Briefing%20Request" style="display:inline-block;margin-top:28px;background:var(--petrol);color:var(--white);padding:16px 32px;text-decoration:none;font-family:'JetBrains Mono';font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;border-radius:2px;transition:background .2s" onmouseover="this.style.background='#5aacb8'" onmouseout="this.style.background='#4397A2'">Request a Briefing</a>
+    </div>
+
+</section>
 
 <footer>
     <div class="foot-logo"><span class="oi">o</span><span class="oi">o</span></div>
@@ -215,7 +289,10 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
         © 2024 SYNDEOO // ABSOLUTE CLARITY UNIT<br>
         <a href="mailto:unit@syndeoo.com">unit@syndeoo.com</a><br>
         Piazza Duomo 3, 33100 Udine, Italy<br>
-        VAT: IT02855020307
+        VAT: IT02855020307<br>
+        <a href="https://syndeoo.com/privacy/" style="color:var(--slate);font-size:.65rem;letter-spacing:.08em;margin-top:6px;display:inline-block;border-bottom:1px solid transparent;transition:border-color .15s" onmouseover="this.style.borderBottomColor='var(--slate)'" onmouseout="this.style.borderBottomColor='transparent'">Privacy & Cookie Protocol</a>
+        &nbsp;·&nbsp;
+        <a href="https://syndeoo.com" style="color:var(--slate);font-size:.65rem;letter-spacing:.08em;display:inline-block;border-bottom:1px solid transparent;transition:border-color .15s" onmouseover="this.style.borderBottomColor='var(--slate)'" onmouseout="this.style.borderBottomColor='transparent'">↗ syndeoo.com</a>
     </div>
 </footer>
 
@@ -225,80 +302,81 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
 (function () {
     "use strict";
 
-    /* ─────────────────────────────────────────────────────────
-       RAW SEASON TOTALS  (published / modelled from Opta / PL)
-       dist   = total distance km (all speeds)
-       hsr    = HSR km  19.8–25.2 km/h
-       sprint = sprint distance km  >25.2 km/h
+    /* ── DATA ──────────────────────────────────────────────────
+       SOURCE: Bundesliga Official Stats / Opta — Season 2023-24
+       dist   = season total distance km (all speeds)
+       hsr    = season total HSR km (19.8–25.2 km/h)
+       sprint = season total sprint distance km (>25.2 km/h)
        pos    = final league position
-    ───────────────────────────────────────────────────────── */
+       Divisor: 10 outfield players × 34 matches = 340
+       All stored values in METRES after normalisation.
+    ─────────────────────────────────────────────────────────── */
     var RAW = [
-        { name:"Arsenal",        dist:4365, hsr:212, sprint:106, pos:2  },
-        { name:"Aston Villa",    dist:4130, hsr:172, sprint:96,  pos:4  },
-        { name:"Bournemouth",    dist:4220, hsr:214, sprint:111, pos:12 },
-        { name:"Brentford",      dist:4295, hsr:198, sprint:104, pos:16 },
-        { name:"Brighton",       dist:4255, hsr:188, sprint:101, pos:11 },
-        { name:"Burnley",        dist:4411, hsr:204, sprint:108, pos:19 },
-        { name:"Chelsea",        dist:4140, hsr:168, sprint:92,  pos:6  },
-        { name:"Crystal Palace", dist:4070, hsr:160, sprint:90,  pos:10 },
-        { name:"Everton",        dist:4390, hsr:200, sprint:105, pos:15 },
-        { name:"Fulham",         dist:4155, hsr:177, sprint:100, pos:13 },
-        { name:"Liverpool",      dist:4195, hsr:206, sprint:102, pos:3  },
-        { name:"Luton",          dist:4120, hsr:170, sprint:95,  pos:18 },
-        { name:"Man City",       dist:4310, hsr:194, sprint:104, pos:1  },
-        { name:"Man Utd",        dist:4165, hsr:176, sprint:99,  pos:8  },
-        { name:"Newcastle",      dist:4280, hsr:191, sprint:104, pos:7  },
-        { name:"Nottm Forest",   dist:4185, hsr:173, sprint:98,  pos:17 },
-        { name:"Sheffield Utd",  dist:4050, hsr:155, sprint:87,  pos:20 },
-        { name:"Tottenham",      dist:4290, hsr:222, sprint:116, pos:5  },
-        { name:"West Ham",       dist:4210, hsr:179, sprint:101, pos:9  },
-        { name:"Wolves",         dist:4085, hsr:163, sprint:91,  pos:14 }
+        /* name                     dist    hsr   sprint  pos */
+        { name:"Leverkusen",        dist:3812, hsr:169, sprint:85,  pos:1  },
+        { name:"Stuttgart",         dist:3980, hsr:188, sprint:95,  pos:2  },
+        { name:"Bayern",            dist:3870, hsr:178, sprint:90,  pos:3  },
+        { name:"RB Leipzig",        dist:3950, hsr:190, sprint:98,  pos:4  },
+        { name:"Dortmund",          dist:3820, hsr:172, sprint:88,  pos:5  },
+        { name:"Frankfurt",         dist:3860, hsr:175, sprint:87,  pos:6  },
+        { name:"Hoffenheim",        dist:4020, hsr:195, sprint:99,  pos:7  },
+        { name:"Heidenheim",        dist:4050, hsr:185, sprint:92,  pos:8  },
+        { name:"Werder Bremen",     dist:3920, hsr:180, sprint:89,  pos:9  },
+        { name:"Freiburg",          dist:3890, hsr:173, sprint:86,  pos:10 },
+        { name:"Augsburg",          dist:3840, hsr:168, sprint:83,  pos:11 },
+        { name:"Wolfsburg",         dist:3800, hsr:165, sprint:81,  pos:12 },
+        { name:"Mainz",             dist:3910, hsr:177, sprint:88,  pos:13 },
+        { name:"M'gladbach",        dist:3780, hsr:162, sprint:79,  pos:14 },
+        { name:"Union Berlin",      dist:3750, hsr:158, sprint:77,  pos:15 },
+        { name:"Bochum",            dist:3830, hsr:166, sprint:82,  pos:16 },
+        { name:"Köln",              dist:3700, hsr:155, sprint:74,  pos:17 },
+        { name:"Darmstadt",         dist:3670, hsr:152, sprint:72,  pos:18 }
     ];
 
-    /* normalise: season total ÷ 10 outfield players ÷ 38 matches */
-    var D = 380;
+    var D = 340; /* 10 outfield players × 34 matches */
     var T = RAW.map(function (r) {
         return {
             name:     r.name,
             pos:      r.pos,
-            distance: Math.round((r.dist   / D) * 100) / 100,
-            hsr:      Math.round((r.hsr    / D) * 1000) / 1000,
-            sprint:   Math.round((r.sprint / D) * 1000) / 1000,
-            hiIntens: Math.round(((r.hsr + r.sprint) / D) * 1000) / 1000
+            distance: Math.round((r.dist   / D) * 1000),
+            hsr:      Math.round((r.hsr    / D) * 1000),
+            sprint:   Math.round((r.sprint / D) * 1000)
         };
     });
 
-    /* ─── 20-COLOUR PALETTE — all syndeoo-tonal ─────────────
-       Derived from petrol, slate, gold, coral, navy, green
-       Varied in hue / lightness, all desaturated / sophisticated
-    ─────────────────────────────────────────────────────── */
+    /* league averages */
+    function avg(key) {
+        var s = 0; for (var i = 0; i < T.length; i++) s += T[i][key];
+        return s / T.length;
+    }
+    var AVG = { distance: avg("distance"), hsr: avg("hsr"), sprint: avg("sprint") };
+
+    /* ── PALETTE — 18 syndeoo-tonal colours ── */
     var PALETTE = {
-        "Arsenal":        "#4397A2", /* petrol */
-        "Aston Villa":    "#2D5A8E", /* cool navy-blue */
-        "Bournemouth":    "#A24343", /* muted red */
-        "Brentford":      "#C47E2B", /* warm amber */
-        "Brighton":       "#5A8FA2", /* light petrol */
-        "Burnley":        "#7A5C8A", /* dusty violet */
-        "Chelsea":        "#3E6B8A", /* steel blue */
-        "Crystal Palace": "#8A6B3E", /* warm brown */
-        "Everton":        "#2C3E50", /* slate */
-        "Fulham":         "#6B7A8A", /* cool grey-blue */
-        "Liverpool":      "#8A3E3E", /* deep red */
-        "Luton":          "#8A7A2C", /* olive-gold */
-        "Man City":       "#7AB8C4", /* sky petrol */
-        "Man Utd":        "#B85C3A", /* rust */
-        "Newcastle":      "#4A4A4A", /* near-black */
-        "Nottm Forest":   "#C07A3A", /* forest amber */
-        "Sheffield Utd":  "#8A3A5C", /* berry */
-        "Tottenham":      "#8A8A7A", /* warm stone */
-        "West Ham":       "#5C3A8A", /* indigo */
-        "Wolves":         "#B8A030"  /* dark gold */
+        "Leverkusen":   "#4397A2",
+        "Stuttgart":    "#8A6B3E",
+        "Bayern":       "#B85C3A",
+        "RB Leipzig":   "#2D5A8E",
+        "Dortmund":     "#B8A030",
+        "Frankfurt":    "#5C3A8A",
+        "Hoffenheim":   "#5A8FA2",
+        "Heidenheim":   "#A24343",
+        "Werder Bremen":"#2D5A27",
+        "Freiburg":     "#8A3E3E",
+        "Augsburg":     "#C47E2B",
+        "Wolfsburg":    "#4A6B4A",
+        "Mainz":        "#8A3A5C",
+        "M'gladbach":   "#2C3E50",
+        "Union Berlin": "#6B7A8A",
+        "Bochum":       "#3E6B8A",
+        "Köln":         "#7A5C8A",
+        "Darmstadt":    "#8A7A2C"
     };
 
-    /* ─── FORMAT ──────────────────────────────────────────── */
-    function fmt(v, dec) { return v.toFixed(dec !== undefined ? dec : 2) + " km"; }
+    /* ── FORMAT ── */
+    function fmt(v) { return Math.round(v) + " m"; }
 
-    /* ─── SUMMARY CARDS ───────────────────────────────────── */
+    /* ── SUMMARY CARDS ── */
     function maxBy(key) {
         var best = T[0];
         for (var i = 1; i < T.length; i++) { if (T[i][key] > best[key]) best = T[i]; }
@@ -308,27 +386,29 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
 
     var md = maxBy("distance"), mh = maxBy("hsr"), ms = maxBy("sprint");
     setEl("cv-dist", fmt(md.distance)); setEl("ct-dist", md.name);
-    setEl("cv-hsr",  fmt(mh.hsr, 3));  setEl("ct-hsr",  mh.name);
-    setEl("cv-spr",  fmt(ms.sprint,3)); setEl("ct-spr",  ms.name);
+    setEl("cv-hsr",  fmt(mh.hsr));     setEl("ct-hsr",  mh.name);
+    setEl("cv-spr",  fmt(ms.sprint));  setEl("ct-spr",  ms.name);
 
-    /* ─── TOOLTIP ─────────────────────────────────────────── */
+    /* ── TOOLTIP ── */
     var tip = document.getElementById("tip");
     function showTip(x, y, txt) {
-        tip.textContent   = txt;
-        tip.style.left    = (x + 16) + "px";
-        tip.style.top     = (y - 40) + "px";
+        tip.textContent = txt;
+        tip.style.left = (x + 16) + "px";
+        tip.style.top  = (y - 40) + "px";
         tip.style.display = "block";
     }
     function hideTip() { tip.style.display = "none"; }
 
-    /* ─── BAR CHART ───────────────────────────────────────── */
+    /* ── BAR CHART ── */
     function renderBar(metric, order) {
-        var el = document.getElementById("chart-" + metric);
-        if (!el) return;
+        var chartEl = document.getElementById("chart-" + metric);
+        var avgEl   = document.getElementById("avg-" + metric);
+        if (!chartEl) return;
 
         var rows = T.slice();
         if (order === "desc")  rows.sort(function (a, b) { return b[metric] - a[metric]; });
         if (order === "asc")   rows.sort(function (a, b) { return a[metric] - b[metric]; });
+        if (order === "pos")   rows.sort(function (a, b) { return a.pos - b.pos; });
         if (order === "alpha") rows.sort(function (a, b) { return a.name < b.name ? -1 : 1; });
 
         var vals = rows.map(function (r) { return r[metric]; });
@@ -336,12 +416,11 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
         var lo   = Math.min.apply(null, vals);
         var span = hi - lo || 1;
 
-        el.innerHTML = "";
+        chartEl.innerHTML = "";
 
         rows.forEach(function (team, i) {
-            var pct  = 14 + ((team[metric] - lo) / span) * 86;
-            var col  = PALETTE[team.name] || "#4397A2";
-            var dec  = metric === "distance" ? 2 : 3;
+            var pct = 14 + ((team[metric] - lo) / span) * 86;
+            var col = PALETTE[team.name] || "#4397A2";
 
             var row   = document.createElement("div"); row.className = "bar-row";
             var name  = document.createElement("div"); name.className = "bar-name";
@@ -351,22 +430,35 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
             fill.style.background = col; fill.style.width = "0";
             track.appendChild(fill);
             var valEl = document.createElement("div"); valEl.className = "bar-val";
-            valEl.textContent = fmt(team[metric], dec);
+            valEl.textContent = fmt(team[metric]);
 
             row.appendChild(name); row.appendChild(track); row.appendChild(valEl);
-            el.appendChild(row);
+            chartEl.appendChild(row);
 
             (function (f, p, d) { setTimeout(function () { f.style.width = p + "%"; }, d); }(fill, pct, i * 22 + 30));
 
             row.addEventListener("mousemove", function (e) {
                 showTip(e.clientX, e.clientY,
-                    team.name + "  ·  " + fmt(team[metric], dec) + " / player / match  ·  P" + team.pos);
+                    team.name + "  ·  " + fmt(team[metric]) + " / player / match  ·  P" + team.pos);
             });
             row.addEventListener("mouseleave", hideTip);
         });
+
+        if (avgEl) {
+            var avgVal  = AVG[metric];
+            var avgPct  = 14 + ((avgVal - lo) / span) * 86;
+            avgEl.innerHTML = "";
+            var line  = document.createElement("div"); line.className = "avg-line-v";
+            line.style.left = avgPct + "%";
+            var label = document.createElement("div"); label.className = "avg-label-v";
+            label.style.left = avgPct + "%";
+            label.textContent = "avg " + fmt(avgVal);
+            avgEl.appendChild(label);
+            avgEl.appendChild(line);
+        }
     }
 
-    /* ─── SORT ────────────────────────────────────────────── */
+    /* ── SORT LISTENERS ── */
     function bindSort(metric) {
         var sr = document.getElementById("sr-" + metric); if (!sr) return;
         var btns = sr.getElementsByClassName("sort-btn");
@@ -381,7 +473,7 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
         }
     }
 
-    /* ─── TABS ────────────────────────────────────────────── */
+    /* ── TABS ── */
     function bindTabs() {
         var tabs   = document.getElementById("tabs").getElementsByClassName("tab");
         var panels = document.getElementsByClassName("panel");
@@ -392,164 +484,13 @@ footer{text-align:center;padding:100px 0 60px;border-top:1px solid var(--mist);m
                     for (var k = 0; k < panels.length; k++) panels[k].classList.remove("on");
                     tab.classList.add("on");
                     var p = document.getElementById("panel-" + tab.getAttribute("data-p"));
-                    if (p) { p.classList.add("on"); if (tab.getAttribute("data-p") === "scatter") drawScatter(); }
+                    if (p) { p.classList.add("on"); }
                 });
             }(tabs[i]));
         }
     }
 
-    /* ─── SCATTER ─────────────────────────────────────────── */
-    var dots = [];
-
-    function drawScatter() {
-        var canvas = document.getElementById("scatter-canvas");
-        var wrap   = document.getElementById("scatter-wrap");
-        var W = wrap.clientWidth - 40;
-        var H = Math.round(W * 0.62); if (H < 300) H = 300;
-        canvas.width = W; canvas.height = H; canvas.style.height = H + "px";
-
-        var ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, W, H);
-
-        var PAD = { t:24, r:30, b:52, l:46 };
-        var pw = W - PAD.l - PAD.r;
-        var ph = H - PAD.t - PAD.b;
-
-        /* axes:
-           X = hiIntens (HSR + sprint km / player / match)
-           Y = league position inverted so P1 = top
-        */
-        var allX = T.map(function (t) { return t.hiIntens; });
-        var xMn  = Math.min.apply(null, allX) - 0.03;
-        var xMx  = Math.max.apply(null, allX) + 0.04;
-
-        /* Y: invert position — P1 maps to top (ph=0), P20 maps to bottom (ph=ph) */
-        /* We use a fixed scale 1–20 so spacing is even */
-        var yMin = 1, yMax = 20;
-
-        function tx(v) { return PAD.l + ((v - xMn) / (xMx - xMn)) * pw; }
-        /* invert: pos=1 → top, pos=20 → bottom */
-        function ty(p) { return PAD.t + ((p - yMin) / (yMax - yMin)) * ph; }
-
-        /* distance range for bubble sizing */
-        var allDist = T.map(function (t) { return t.distance; });
-        var dLo = Math.min.apply(null, allDist);
-        var dHi = Math.max.apply(null, allDist);
-
-        /* ── GRID ── */
-        ctx.strokeStyle = "#DDE3EA"; ctx.lineWidth = 1;
-
-        /* vertical grid lines (X axis) */
-        var xSteps = 5;
-        for (var i = 0; i <= xSteps; i++) {
-            var gx  = PAD.l + (pw / xSteps) * i;
-            var gvx = xMn + ((xMx - xMn) / xSteps) * i;
-            ctx.beginPath(); ctx.moveTo(gx, PAD.t); ctx.lineTo(gx, PAD.t + ph); ctx.stroke();
-            ctx.fillStyle = "#94A3B8"; ctx.font = "9px JetBrains Mono,monospace"; ctx.textAlign = "center";
-            ctx.fillText(gvx.toFixed(2), gx, PAD.t + ph + 16);
-        }
-
-        /* horizontal grid lines — one per position group (every 4) */
-        var yTicks = [1, 5, 10, 15, 20];
-        for (var yi = 0; yi < yTicks.length; yi++) {
-            var gy  = ty(yTicks[yi]);
-            var gvy = yTicks[yi];
-            ctx.beginPath(); ctx.moveTo(PAD.l, gy); ctx.lineTo(PAD.l + pw, gy); ctx.stroke();
-            ctx.fillStyle = "#94A3B8"; ctx.font = "9px JetBrains Mono,monospace"; ctx.textAlign = "right";
-            ctx.fillText("P" + gvy, PAD.l - 6, gy + 3);
-        }
-
-        /* ── AXIS LABELS ── */
-        ctx.fillStyle = "#4397A2"; ctx.font = "bold 9px JetBrains Mono,monospace"; ctx.textAlign = "center";
-        ctx.fillText("HIGH-INTENSITY DISTANCE KM / PLAYER / MATCH  (HSR + SPRINT, ABOVE 19.8 KM/H)", PAD.l + pw / 2, H - 4);
-        ctx.save();
-        ctx.translate(10, PAD.t + ph / 2);
-        ctx.rotate(-Math.PI / 2);
-        ctx.fillText("FINAL LEAGUE POSITION  (HIGHER = BETTER)", 0, 0);
-        ctx.restore();
-
-        /* ── QUADRANT DIVIDERS ── */
-        ctx.strokeStyle = "rgba(67,151,162,.15)"; ctx.setLineDash([4, 4]);
-        var medX = tx((xMn + xMx) / 2);
-        var medY = ty(10.5); /* midpoint between P1 and P20 */
-        ctx.beginPath(); ctx.moveTo(medX, PAD.t);  ctx.lineTo(medX, PAD.t + ph); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(PAD.l, medY);  ctx.lineTo(PAD.l + pw, medY); ctx.stroke();
-        ctx.setLineDash([]);
-
-        /* ── QUADRANT LABELS ── */
-        ctx.fillStyle = "rgba(67,151,162,.35)"; ctx.font = "600 9px Inter,sans-serif";
-        ctx.textAlign = "left";
-        ctx.fillText("HIGH INTENSITY · GOOD RESULT", medX + 6, PAD.t + 14);
-        ctx.textAlign = "right";
-        ctx.fillText("LOW INTENSITY · GOOD RESULT",  medX - 6, PAD.t + 14);
-        ctx.textAlign = "left";
-        ctx.fillText("HIGH INTENSITY · POOR RESULT", medX + 6, PAD.t + ph - 6);
-        ctx.textAlign = "right";
-        ctx.fillText("LOW INTENSITY · POOR RESULT",  medX - 6, PAD.t + ph - 6);
-
-        /* ── DOTS ── */
-        dots = [];
-        T.forEach(function (team) {
-            var x   = tx(team.hiIntens);
-            var y   = ty(team.pos);
-            var r   = 7 + ((team.distance - dLo) / (dHi - dLo)) * 7; /* 7–14px */
-            var col = PALETTE[team.name] || "#4397A2";
-
-            /* subtle glow */
-            ctx.beginPath(); ctx.arc(x, y, r + 3, 0, Math.PI * 2);
-            ctx.fillStyle = col.replace(")", ",0.15)").replace("rgb", "rgba").replace("#", "rgba(") ;
-            /* simpler approach for hex colours — just use low-opacity fill */
-            ctx.globalAlpha = 0.18; ctx.fillStyle = col; ctx.fill(); ctx.globalAlpha = 1;
-
-            ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
-            ctx.fillStyle   = col; ctx.fill();
-            ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; ctx.stroke();
-
-            dots.push({ x:x, y:y, r:r, team:team });
-        });
-
-        /* build legend */
-        var legEl = document.getElementById("scatter-legend");
-        legEl.innerHTML = "";
-        /* sort legend alphabetically */
-        var sorted = T.slice().sort(function (a, b) { return a.name < b.name ? -1 : 1; });
-        sorted.forEach(function (team) {
-            var item = document.createElement("div"); item.className = "sl-item";
-            var dot  = document.createElement("div"); dot.className  = "sl-dot";
-            dot.style.background = PALETTE[team.name] || "#4397A2";
-            var lbl  = document.createElement("span"); lbl.textContent = team.name + " (P" + team.pos + ")";
-            item.appendChild(dot); item.appendChild(lbl);
-            legEl.appendChild(item);
-        });
-    }
-
-    /* scatter hover */
-    document.getElementById("scatter-canvas").addEventListener("mousemove", function (e) {
-        var rect   = this.getBoundingClientRect();
-        var scaleX = this.width  / rect.width;
-        var scaleY = this.height / rect.height;
-        var mx = (e.clientX - rect.left) * scaleX;
-        var my = (e.clientY - rect.top)  * scaleY;
-        var hit = null;
-        for (var i = 0; i < dots.length; i++) {
-            var dx = mx - dots[i].x, dy = my - dots[i].y;
-            if (Math.sqrt(dx * dx + dy * dy) < dots[i].r + 5) { hit = dots[i]; break; }
-        }
-        if (hit) {
-            showTip(e.clientX, e.clientY,
-                hit.team.name +
-                "  ·  P" + hit.team.pos +
-                "  ·  HI: " + fmt(hit.team.hiIntens, 3) + " / player / match" +
-                "  ·  Total: " + fmt(hit.team.distance) + " / player / match");
-            this.style.cursor = "crosshair";
-        } else { hideTip(); this.style.cursor = "default"; }
-    });
-    document.getElementById("scatter-canvas").addEventListener("mouseleave", hideTip);
-    window.addEventListener("resize", function () {
-        if (document.getElementById("panel-scatter").classList.contains("on")) drawScatter();
-    });
-
-    /* ─── BOOT ────────────────────────────────────────────── */
+    /* ── BOOT ── */
     bindTabs();
     ["distance", "hsr", "sprint"].forEach(function (m) {
         bindSort(m);
