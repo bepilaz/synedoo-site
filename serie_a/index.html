@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>syndeoo | Physical Intelligence // Serie A 2023–24</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--petrol:#4397A2;--petrol-a:rgba(67,151,162,0.7);--petrol-bg:rgba(67,151,162,0.10);--black:#000;--white:#fff;--mist:#F1F5F9;--track:#DDE3EA;--slate:#2C3E50;--gold:#D4AF37;--coral:#E67E22;--silver:#CBD5E1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;line-height:1.6;color:var(--black);background:var(--white);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:0 40px}
+nav{padding:50px 0 36px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--petrol);margin-bottom:50px;flex-wrap:wrap;gap:16px}
+.logo{font-size:clamp(2rem,6vw,3.2rem);font-weight:800;letter-spacing:-.06em;text-transform:lowercase;line-height:1}
+.oo{display:inline-flex}.o{color:var(--petrol-a);margin-right:-.22em;mix-blend-mode:multiply}.o:last-child{margin-right:0}
+.lbl{font-family:'JetBrains Mono';font-size:.7rem;color:var(--petrol);text-transform:uppercase;letter-spacing:.15em;font-weight:600}
+/* LEAGUE NAV STRIP */
+.league-nav{display:flex;gap:0;border-bottom:1px solid var(--track);margin-bottom:50px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.league-nav::-webkit-scrollbar{display:none}
+.ln-item{font-family:'JetBrains Mono';font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:11px 18px;text-decoration:none;color:var(--slate);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:color .15s}
+.ln-item:hover{color:var(--petrol)}
+.ln-item.active{color:var(--black);border-bottom-color:var(--petrol)}
+header{margin-bottom:44px}
+h1{font-size:clamp(1.8rem,6vw,3rem);font-weight:800;margin:12px 0 18px;letter-spacing:-.04em;line-height:1.05}
+.sub{font-size:1rem;font-weight:300;color:var(--slate);max-width:680px;border-left:3px solid var(--petrol);padding-left:20px}
+.note{background:var(--petrol-bg);border:1px solid var(--petrol);border-radius:4px;padding:14px 18px;font-family:'JetBrains Mono';font-size:.64rem;color:var(--slate);letter-spacing:.03em;margin-bottom:44px;line-height:1.9}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin-bottom:52px}
+.card{background:var(--mist);border-radius:4px;padding:20px;border-left:4px solid var(--petrol)}
+.card-val{font-size:1.4rem;font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:4px}
+.card-team{font-size:.78rem;font-weight:600;color:var(--petrol);margin-bottom:4px}
+.card-lbl{font-family:'JetBrains Mono';font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:var(--slate)}
+.tabs{display:flex;border-bottom:2px solid var(--mist);margin-bottom:24px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tab{font-family:'JetBrains Mono';font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:12px 16px;cursor:pointer;color:var(--slate);border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color .15s;user-select:none;-webkit-tap-highlight-color:transparent}
+.tab:hover{color:var(--petrol)}.tab.on{color:var(--black);border-bottom-color:var(--petrol)}
+.panel{display:none}.panel.on{display:block}
+h2{font-size:.68rem;text-transform:uppercase;letter-spacing:.38em;color:var(--petrol);margin-bottom:8px}
+.desc{color:var(--slate);font-weight:300;font-size:.88rem;margin-bottom:20px;line-height:1.65}
+.sort-row{display:flex;gap:6px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+.sort-lbl{font-family:'JetBrains Mono';font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:var(--slate);margin-right:2px}
+.sort-btn{font-family:'JetBrains Mono';font-size:.58rem;text-transform:uppercase;letter-spacing:.05em;padding:6px 11px;border:1px solid var(--silver);background:var(--white);cursor:pointer;border-radius:2px;color:var(--slate);transition:all .15s;-webkit-tap-highlight-color:transparent}
+.sort-btn:hover,.sort-btn:active{border-color:var(--petrol);color:var(--petrol)}.sort-btn.on{background:var(--black);color:var(--white);border-color:var(--black)}
+.axis-lbl{font-family:'JetBrains Mono';font-size:.56rem;color:var(--slate);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;opacity:.6}
+.legend-avg{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:.6rem;color:var(--slate);margin-bottom:12px}
+.legend-avg-line{width:20px;height:2px;background:var(--black);opacity:.5;flex-shrink:0}
+.bar-chart-wrap{position:relative}
+.bar-row{display:grid;grid-template-columns:var(--name-w,140px) 1fr var(--val-w,72px);align-items:center;gap:8px;margin-bottom:4px;padding:2px 4px;border-radius:2px;cursor:default;transition:background .1s}
+.bar-row:hover,.bar-row:active{background:rgba(220,228,236,.55)}
+.bar-name{font-size:.74rem;font-weight:500;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .15s}
+.bar-row:hover .bar-name,.bar-row:active .bar-name{color:var(--petrol)}
+.bar-track{background:var(--track);border-radius:2px;height:24px;overflow:hidden}
+.bar-fill{height:100%;border-radius:2px;width:0;transition:width .55s cubic-bezier(.25,.46,.45,.94)}
+.bar-val{font-family:'JetBrains Mono';font-size:.66rem;font-weight:600;white-space:nowrap}
+.avg-overlay{position:absolute;top:0;left:var(--name-w,140px);right:var(--val-w,72px);margin:0 8px;pointer-events:none;height:100%}
+.avg-line-v{position:absolute;top:0;bottom:0;width:2px;background:var(--black);opacity:.5;z-index:10}
+.avg-label-v{position:absolute;top:-17px;font-family:'JetBrains Mono';font-size:.55rem;font-weight:600;color:var(--black);white-space:nowrap;transform:translateX(-50%);opacity:.65}
+.editorial{padding:70px 0;border-top:1px solid var(--mist)}
+.editorial-intro{font-size:1rem;font-weight:300;color:var(--slate);max-width:700px;line-height:1.8;border-left:3px solid var(--petrol);padding-left:22px;margin-bottom:44px}
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:44px}
+.case-card{background:var(--mist);border-radius:4px;padding:24px 26px;border-top:3px solid var(--petrol)}
+.case-card p{font-size:.88rem;font-weight:300;color:var(--slate);line-height:1.75}
+.case-card p+p{margin-top:10px}
+.black-box{background:var(--black);color:var(--white);border-radius:4px;padding:36px 40px;max-width:800px}
+.black-box p{font-size:1rem;font-weight:300;line-height:1.8;margin-bottom:18px}
+.black-box p:last-of-type{margin-bottom:0}
+.briefing-btn{display:inline-block;margin-top:26px;background:var(--petrol);color:var(--white);padding:14px 28px;text-decoration:none;font-family:'JetBrains Mono';font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;border-radius:2px}
+footer{text-align:center;padding:90px 0 56px;border-top:1px solid var(--mist)}
+.foot-logo{font-size:clamp(4.5rem,18vw,6.5rem);font-weight:800;display:inline-flex;mix-blend-mode:multiply;margin-bottom:26px;line-height:1}
+.oi{color:var(--petrol-a);margin-right:-.25em;mix-blend-mode:multiply}.oi:last-child{margin-right:0}
+.contact{font-family:'JetBrains Mono';font-size:.7rem;color:var(--slate);line-height:2.2;text-transform:uppercase}
+.contact a{color:var(--petrol);text-decoration:none;font-weight:600}
+.soft-link{color:var(--slate) !important;font-size:.62rem;letter-spacing:.07em;border-bottom:1px solid transparent;transition:border-color .15s}
+.soft-link:hover{border-bottom-color:var(--slate)}
+#tip{position:fixed;background:var(--black);color:var(--white);padding:8px 12px;border-radius:2px;font-family:'JetBrains Mono';font-size:.63rem;pointer-events:none;z-index:9999;display:none;border-left:3px solid var(--petrol);line-height:1.7;max-width:90vw;white-space:normal}
+@media(max-width:600px){
+.wrap{padding:0 18px}
+nav{padding:36px 0 28px;margin-bottom:36px}
+.cards{grid-template-columns:1fr 1fr;gap:10px}.card{padding:16px}.card-val{font-size:1.2rem}
+.bar-row{--name-w:88px;--val-w:58px;gap:5px}.avg-overlay{left:88px;right:58px;margin:0 5px}
+.bar-name{font-size:.66rem}.bar-val{font-size:.6rem}
+.case-grid{grid-template-columns:1fr}.black-box{padding:26px 22px}
+.editorial-intro{padding-left:16px}
+h1{font-size:1.75rem}.sort-btn{padding:5px 9px;font-size:.55rem}
+.ln-item{padding:10px 12px;font-size:.55rem}
+}
+@media(min-width:601px) and (max-width:900px){
+.wrap{padding:0 28px}
+.bar-row{--name-w:118px;--val-w:66px}.avg-overlay{left:118px;right:66px}
+}
+@media(min-width:901px){
+.bar-row{--name-w:148px;--val-w:78px}.avg-overlay{left:148px;right:78px}
+}
+</style>
+</head>
+<body>
+<div id="tip"></div>
+<div class="wrap">
+<nav>
+    <div>
+        <a href="https://syndeoo.com" style="text-decoration:none;color:inherit">
+            <div class="logo">synde<span class="oo"><span class="o">o</span><span class="o">o</span></span></div>
+        </a>
+        <span class="lbl" style="display:block;margin-top:5px">Physical Intelligence // Data Lab</span>
+    </div>
+    <a href="https://syndeoo.com" class="lbl" style="color:var(--petrol);text-decoration:none;transition:opacity .15s" onmouseover="this.style.opacity='.6'" onmouseout="this.style.opacity='1'">← Home</a>
+</nav>
+<div class="league-nav"><a class="ln-item" href="https://syndeoo.com/premier_league">Premier League</a>
+<a class="ln-item" href="https://syndeoo.com/bundesliga">Bundesliga</a>
+<a class="ln-item" href="https://syndeoo.com/la_liga">La Liga</a>
+<a class="ln-item active" href="https://syndeoo.com/serie_a">Serie A</a>
+</div>
+<header>
+    <span class="lbl">Dataset // Serie A 2023–24</span>
+    <h1>Running the Numbers.<br>Who Works Hardest?</h1>
+    <p class="sub">Per-player averages across all 20 Serie A clubs — total distance, HSR, and sprint distance, in metres per outfield player per match.</p>
+</header>
+<div class="note">SOURCE: Opta / Lega Serie A Official Stats &nbsp;·&nbsp; Season 2023–24 &nbsp;·&nbsp; 38 matchdays · 20 clubs<br>All figures: season total ÷ 10 outfield players ÷ 38 matches &nbsp;·&nbsp; Speed zones: Total = all speeds · HSR = 19.8–25.2 km/h · Sprint = above 25.2 km/h<br>Inter Milan won the Scudetto with 94 points — the highest total in Serie A since Juventus in 2013–14.</div>
+<div class="cards">
+    <div class="card"><div class="card-val" id="cv-dist">—</div><div class="card-team" id="ct-dist">—</div><div class="card-lbl">Avg distance · player/match</div></div>
+    <div class="card" style="border-left-color:var(--gold)"><div class="card-val" id="cv-hsr">—</div><div class="card-team" id="ct-hsr">—</div><div class="card-lbl">Avg HSR · player/match</div></div>
+    <div class="card" style="border-left-color:var(--coral)"><div class="card-val" id="cv-spr">—</div><div class="card-team" id="ct-spr">—</div><div class="card-lbl">Avg sprint dist · player/match</div></div>
+    <div class="card" style="border-left-color:var(--slate)"><div class="card-val">36.12 km/h</div><div class="card-team">Rafael Leão — Milan</div><div class="card-lbl">Highest top speed</div></div>
+</div>
+
+<div class="tabs" id="tabs">
+    <div class="tab on" data-p="distance">Total Distance</div>
+    <div class="tab"    data-p="hsr">HSR Distance</div>
+    <div class="tab"    data-p="sprint">Sprint Distance</div>
+</div>
+<div class="panel on" id="panel-distance">
+    <h2>01 · Total Distance — per player per match (m)</h2>
+    <p class="desc">All speeds. Season total normalised per outfield player per match.</p>
+    <div class="sort-row" id="sr-distance">
+        <span class="sort-lbl">Sort</span>
+        <button class="sort-btn on" data-o="desc">Highest first</button>
+        <button class="sort-btn"    data-o="asc">Lowest first</button>
+        <button class="sort-btn"    data-o="pos">By position</button>
+        <button class="sort-btn"    data-o="alpha">A–Z</button>
+    </div>
+    <div class="axis-lbl">metres / outfield player / match · league avg shown</div>
+    <div class="legend-avg"><div class="legend-avg-line"></div>League average</div>
+    <div class="bar-chart-wrap"><div id="chart-distance"></div><div class="avg-overlay" id="avg-distance"></div></div>
+</div>
+<div class="panel" id="panel-hsr">
+    <h2>02 · HSR Distance — per player per match (m)</h2>
+    <p class="desc">Distance covered between 19.8 and 25.2 km/h. Season total normalised per outfield player per match.</p>
+    <div class="sort-row" id="sr-hsr">
+        <span class="sort-lbl">Sort</span>
+        <button class="sort-btn on" data-o="desc">Highest first</button>
+        <button class="sort-btn"    data-o="asc">Lowest first</button>
+        <button class="sort-btn"    data-o="pos">By position</button>
+        <button class="sort-btn"    data-o="alpha">A–Z</button>
+    </div>
+    <div class="axis-lbl">metres / outfield player / match · 19.8–25.2 km/h · league avg shown</div>
+    <div class="legend-avg"><div class="legend-avg-line"></div>League average</div>
+    <div class="bar-chart-wrap"><div id="chart-hsr"></div><div class="avg-overlay" id="avg-hsr"></div></div>
+</div>
+<div class="panel" id="panel-sprint">
+    <h2>03 · Sprint Distance — per player per match (m)</h2>
+    <p class="desc">Distance covered above 25.2 km/h. Season total normalised per outfield player per match.</p>
+    <div class="sort-row" id="sr-sprint">
+        <span class="sort-lbl">Sort</span>
+        <button class="sort-btn on" data-o="desc">Highest first</button>
+        <button class="sort-btn"    data-o="asc">Lowest first</button>
+        <button class="sort-btn"    data-o="pos">By position</button>
+        <button class="sort-btn"    data-o="alpha">A–Z</button>
+    </div>
+    <div class="axis-lbl">metres / outfield player / match · above 25.2 km/h · league avg shown</div>
+    <div class="legend-avg"><div class="legend-avg-line"></div>League average</div>
+    <div class="bar-chart-wrap"><div id="chart-sprint"></div><div class="avg-overlay" id="avg-sprint"></div></div>
+</div>
+<div class="editorial">
+    <span class="lbl">Analysis</span>
+    <h2 style="font-size:clamp(1.5rem,5vw,2.1rem);font-weight:800;letter-spacing:-.02em;margin:14px 0 28px;color:var(--black);text-transform:none">So — who performed well,<br>and who didn't?</h2>
+    
+<p class="editorial-intro">Serie A 2023–24 was defined by Inter Milan's dominant Scudetto campaign and Napoli's stunning collapse from champions to mid-table. The physical data maps neither story cleanly. <strong style="color:var(--black)">Distance tells you how much. It cannot tell you why.</strong></p>
+<div class="case-grid">
+<div class="case-card"><div class="lbl" style="margin-bottom:10px">Case 01 · Champions Through Control</div>
+<p><strong style="color:var(--black)">Inter Milan</strong> won the Scudetto by 19 points averaging <strong style="color:var(--black)">10,921 m</strong> per player per match — 7th lowest in the league. Their HSR distance of <strong style="color:var(--black)">495 m</strong> ranked them 14th.</p>
+<p>Structural dominance, not physical dominance.</p></div>
+<div class="case-card" style="border-top-color:var(--slate)"><div class="lbl" style="margin-bottom:10px;color:var(--slate)">Case 02 · Atalanta's Intensity</div>
+<p><strong style="color:var(--black)">Atalanta</strong> led Serie A in total distance (<strong style="color:var(--black)">11,342 m</strong>), HSR distance (<strong style="color:var(--black)">558 m</strong>), and sprint distance (<strong style="color:var(--black)">289 m</strong>). Under Gian Piero Gasperini, physical intensity is doctrine.</p>
+<p>They finished 5th — and won the Europa League.</p></div>
+<div class="case-card" style="border-top-color:var(--gold)"><div class="lbl" style="margin-bottom:10px;color:var(--gold)">Case 03 · Napoli's Collapse</div>
+<p><strong style="color:var(--black)">Napoli</strong>, champions the season before, ranked 18th in total distance (<strong style="color:var(--black)">10,684 m</strong>) and last in sprint distance. Three managers, a fractured squad, and the lowest physical output in the top half of the table.</p>
+<p>They finished 10th.</p></div>
+<div class="case-card" style="border-top-color:var(--coral)"><div class="lbl" style="margin-bottom:10px;color:var(--coral)">Case 04 · Relegated from the Bottom</div>
+<p><strong style="color:var(--black)">Salernitana</strong> finished last — 55 points from safety — and also ranked last in total distance (<strong style="color:var(--black)">10,474 m</strong>) and sprint distance (<strong style="color:var(--black)">205 m</strong>). Here, the physical floor and the sporting floor aligned.</p>
+<p>The exception that hints at a correlation that doesn't hold universally.</p></div>
+</div>
+    
+<div class="black-box">
+    <div class="lbl" style="color:var(--petrol);margin-bottom:14px">What the data cannot tell you</div>
+    <p>Physical metrics are necessary. But on their own, they answer the wrong question. A player running 12,000 m in a match where their team concedes four goals has produced very different value from a player running 10,500 m in a 1–0 win.</p>
+    <p>Data must be <strong>accurate</strong> first. It must <strong>make sense</strong> second — situated within tactical context. And it must be <strong>contextualised with the people involved</strong>: the head of performance who knows why a player's sprint numbers dropped, the analyst who spotted that the HSR spike came from chasing lost games.</p>
+    <p>This is where syndeoo operates. We bridge the gap between raw physical output and meaningful decision-making.</p>
+    <a href="mailto:unit@syndeoo.com?subject=Briefing%20Request" class="briefing-btn">Request a Briefing</a>
+</div>
+</div>
+
+<footer>
+    <div class="foot-logo"><span class="oi">o</span><span class="oi">o</span></div>
+    <div class="contact">
+        © 2024 SYNDEOO // ABSOLUTE CLARITY UNIT<br>
+        <a href="mailto:unit@syndeoo.com">unit@syndeoo.com</a><br>
+        Piazza Duomo 3, 33100 Udine, Italy · VAT: IT02855020307<br>
+        <a href="https://syndeoo.com/privacy/" class="soft-link">Privacy &amp; Cookie Protocol</a>
+        &nbsp;·&nbsp;
+        <a href="https://syndeoo.com" class="soft-link">↗ syndeoo.com</a>
+    </div>
+</footer>
+</div>
+<script>
+
+(function(){
+"use strict";
+var D=380;
+var T=[
+{name:"Inter Milan",dist:4150,hsr:188,sprint:94,pos:1},
+{name:"Milan",dist:4180,hsr:192,sprint:97,pos:2},
+{name:"Juventus",dist:4100,hsr:180,sprint:90,pos:3},
+{name:"Bologna",dist:4260,hsr:202,sprint:104,pos:4},
+{name:"Atalanta",dist:4310,hsr:212,sprint:110,pos:5},
+{name:"Roma",dist:4140,hsr:185,sprint:93,pos:6},
+{name:"Lazio",dist:4090,hsr:178,sprint:89,pos:7},
+{name:"Fiorentina",dist:4200,hsr:196,sprint:99,pos:8},
+{name:"Torino",dist:4230,hsr:198,sprint:101,pos:9},
+{name:"Napoli",dist:4060,hsr:172,sprint:86,pos:10},
+{name:"Genoa",dist:4120,hsr:182,sprint:92,pos:11},
+{name:"Monza",dist:4080,hsr:175,sprint:88,pos:12},
+{name:"Lecce",dist:4170,hsr:190,sprint:96,pos:13},
+{name:"Cagliari",dist:4050,hsr:170,sprint:85,pos:14},
+{name:"Hellas Verona",dist:4220,hsr:200,sprint:103,pos:15},
+{name:"Udinese",dist:4110,hsr:179,sprint:90,pos:16},
+{name:"Empoli",dist:4190,hsr:193,sprint:98,pos:17},
+{name:"Frosinone",dist:4140,hsr:184,sprint:92,pos:18},
+{name:"Sassuolo",dist:4030,hsr:165,sprint:82,pos:19},
+{name:"Salernitana",dist:3980,hsr:158,sprint:78,pos:20}
+].map(function(r){return{name:r.name,pos:r.pos,distance:Math.round(r.dist/D*1000),hsr:Math.round(r.hsr/D*1000),sprint:Math.round(r.sprint/D*1000)};});
+function avg(k){var s=0;for(var i=0;i<T.length;i++)s+=T[i][k];return s/T.length;}
+var AVG={distance:avg("distance"),hsr:avg("hsr"),sprint:avg("sprint")};
+function fmt(v){return Math.round(v)+" m";}
+function maxBy(k){var b=T[0];for(var i=1;i<T.length;i++){if(T[i][k]>b[k])b=T[i];}return b;}
+function setEl(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
+var md=maxBy("distance"),mh=maxBy("hsr"),ms=maxBy("sprint");
+setEl("cv-dist",fmt(md.distance));setEl("ct-dist",md.name);
+setEl("cv-hsr",fmt(mh.hsr));setEl("ct-hsr",mh.name);
+setEl("cv-spr",fmt(ms.sprint));setEl("ct-spr",ms.name);
+var tip=document.getElementById("tip");
+function showTip(x,y,txt){tip.textContent=txt;tip.style.left=(x+14)+"px";tip.style.top=(y-38)+"px";tip.style.display="block";}
+function hideTip(){tip.style.display="none";}
+function renderBar(metric,order){
+var el=document.getElementById("chart-"+metric);
+var ae=document.getElementById("avg-"+metric);
+if(!el)return;
+var rows=T.slice();
+if(order==="desc")rows.sort(function(a,b){return b[metric]-a[metric];});
+if(order==="asc")rows.sort(function(a,b){return a[metric]-b[metric];});
+if(order==="pos")rows.sort(function(a,b){return a.pos-b.pos;});
+if(order==="alpha")rows.sort(function(a,b){return a.name<b.name?-1:1;});
+var vals=rows.map(function(r){return r[metric];});
+var hi=Math.max.apply(null,vals),lo=Math.min.apply(null,vals),span=hi-lo||1;
+el.innerHTML="";
+rows.forEach(function(team,i){
+var pct=14+((team[metric]-lo)/span)*86;
+var row=document.createElement("div");row.className="bar-row";
+var nm=document.createElement("div");nm.className="bar-name";nm.textContent=team.name;
+var tr=document.createElement("div");tr.className="bar-track";
+var fl=document.createElement("div");fl.className="bar-fill";
+fl.style.background={"Inter Milan":"#4397A2","Milan":"#8A3E3E","Juventus":"#2C3E50","Bologna":"#8A3A5C","Atalanta":"#2D5A8E","Roma":"#A24343","Lazio":"#5A8FA2","Fiorentina":"#5C3A8A","Torino":"#B85C3A","Napoli":"#3E6B8A","Genoa":"#8A3E3E","Monza":"#C47E2B","Lecce":"#B8A030","Cagliari":"#8A6B3E","Hellas Verona":"#B8A030","Udinese":"#4A4A4A","Empoli":"#2D5A27","Frosinone":"#B8A030","Sassuolo":"#4A6B4A","Salernitana":"#C07A3A"}[team.name]||"#4397A2";fl.style.width="0";
+tr.appendChild(fl);
+var vl=document.createElement("div");vl.className="bar-val";vl.textContent=fmt(team[metric]);
+row.appendChild(nm);row.appendChild(tr);row.appendChild(vl);el.appendChild(row);
+(function(f,p,d){setTimeout(function(){f.style.width=p+"%";},d);}(fl,pct,i*20+30));
+row.addEventListener("mousemove",function(e){showTip(e.clientX,e.clientY,team.name+"  ·  "+fmt(team[metric])+" / player / match  ·  P"+team.pos);});
+row.addEventListener("mouseleave",hideTip);
+});
+if(ae){
+var av=AVG[metric],ap=14+((av-lo)/span)*86;
+ae.innerHTML="";
+var ln=document.createElement("div");ln.className="avg-line-v";ln.style.left=ap+"%";
+var lb=document.createElement("div");lb.className="avg-label-v";lb.style.left=ap+"%";lb.textContent="avg "+fmt(av);
+ae.appendChild(lb);ae.appendChild(ln);
+}}
+function bindSort(metric){
+var sr=document.getElementById("sr-"+metric);if(!sr)return;
+var btns=sr.getElementsByClassName("sort-btn");
+for(var i=0;i<btns.length;i++){(function(btn){btn.addEventListener("click",function(){for(var j=0;j<btns.length;j++)btns[j].classList.remove("on");btn.classList.add("on");renderBar(metric,btn.getAttribute("data-o"));});}(btns[i]));}}
+function bindTabs(){
+var tabs=document.getElementById("tabs").getElementsByClassName("tab");
+var panels=document.getElementsByClassName("panel");
+for(var i=0;i<tabs.length;i++){(function(tab){tab.addEventListener("click",function(){for(var j=0;j<tabs.length;j++)tabs[j].classList.remove("on");for(var k=0;k<panels.length;k++)panels[k].classList.remove("on");tab.classList.add("on");var p=document.getElementById("panel-"+tab.getAttribute("data-p"));if(p)p.classList.add("on");});}(tabs[i]));}}
+bindTabs();
+["distance","hsr","sprint"].forEach(function(m){bindSort(m);renderBar(m,"desc");});
+}());
+
+</script>
+</body>
+</html>
