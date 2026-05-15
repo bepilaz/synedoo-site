@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>syndeoo | Physical Intelligence // La Liga 2023–24</title>
+  <meta name="description" content="Full-season physical breakdown of all 20 La Liga clubs. Real Madrid win the title with the fourth-lowest distance tally in the league.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../syndeoo.css">
+</head>
+<body>
+
+<div class="s-cookie" id="s-cookie">
+  <p class="s-cookie__text"><strong>Privacy by Design.</strong> Essential cookies only. <a href="/privacy/">Privacy Protocol</a>.</p>
+  <button class="s-cookie__btn">Acknowledge</button>
+</div>
+<div class="s-tip" id="s-tip" aria-hidden="true"></div>
+
+<div class="s-wrap">
+  <nav class="s-nav">
+    <div>
+      <a href="/" class="s-logo">synde<span class="s-logo__oo"><span class="s-logo__o">o</span><span class="s-logo__o">o</span></span></a>
+      <span class="s-label" style="margin-top:5px">Physical Intelligence // Data Lab</span>
+    </div>
+    <a href="/" class="s-nav__right">← Home</a>
+  </nav>
+  <nav class="s-league-nav" aria-label="Leagues">
+    <a class="s-league-nav__item" href="/premier-league/">Premier League</a>
+    <a class="s-league-nav__item" href="/bundesliga/">Bundesliga</a>
+    <a class="s-league-nav__item  is-active" href="/la-liga/">La Liga</a>
+    <a class="s-league-nav__item" href="/serie-a/">Serie A</a>
+  </nav>
+
+  <header style="margin-bottom:44px">
+    <span class="s-label">Dataset // La Liga 2023–24</span>
+    <h1 style="font-size:clamp(1.8rem,6vw,3rem);font-weight:800;margin:12px 0 18px;letter-spacing:-.04em;line-height:1.05">Running the Numbers.<br>Who Works Hardest?</h1>
+    <p class="s-hero__sub" style="font-size:1rem">Per-player averages across all 20 La Liga clubs — total distance, HSR, and sprint distance, in metres per outfield player per match.</p>
+  </header>
+  <div class="s-note">SOURCE: Opta / LaLiga Official Stats &nbsp;·&nbsp; Season 2023–24 &nbsp;·&nbsp; 38 matchdays · 20 clubs<br>All figures: season total ÷ 10 outfield players ÷ 38 matches &nbsp;·&nbsp; HSR = 19.8–25.2 km/h · Sprint = above 25.2 km/h<br>Real Madrid won La Liga by 10 points. Girona qualified for the Champions League for the first time in the club's history.</div>
+
+  <div class="s-cards">
+    <div class="s-card"><div class="s-card__val" id="cv-dist">—</div><div class="s-card__team" id="ct-dist">—</div><div class="s-card__lbl">Avg distance · player/match</div></div>
+    <div class="s-card" style="border-left-color:var(--gold)"><div class="s-card__val" id="cv-hsr">—</div><div class="s-card__team" id="ct-hsr">—</div><div class="s-card__lbl">Avg HSR · player/match</div></div>
+    <div class="s-card" style="border-left-color:var(--coral)"><div class="s-card__val" id="cv-spr">—</div><div class="s-card__team" id="ct-spr">—</div><div class="s-card__lbl">Avg sprint dist · player/match</div></div>
+    <div class="s-card" style="border-left-color:var(--slate)"><div class="s-card__val">36.97 km/h</div><div class="s-card__team">Vinícius Jr — Real Madrid</div><div class="s-card__lbl">Highest top speed</div></div>
+  </div>
+
+  <div class="s-tabs" id="s-tabs">
+    <div class="s-tab is-on" data-p="distance">Total Distance</div>
+    <div class="s-tab"       data-p="hsr">HSR Distance</div>
+    <div class="s-tab"       data-p="sprint">Sprint Distance</div>
+  </div>
+
+  <div class="s-panel  is-on" id="panel-distance">
+    <p class="s-panel__h">01 · Total Distance — per player per match (m)</p>
+    <p class="s-panel__desc">All speeds. Season total normalised per outfield player per match.</p>
+    <div class="s-sort" id="sort-distance">
+      <span class="s-sort__lbl">Sort</span>
+      <button class="s-sort__btn is-on" data-o="desc">Highest first</button>
+      <button class="s-sort__btn"       data-o="asc">Lowest first</button>
+      <button class="s-sort__btn"       data-o="pos">By position</button>
+      <button class="s-sort__btn"       data-o="alpha">A–Z</button>
+    </div>
+    <p class="s-axis-lbl">metres / outfield player / match · all speeds · league avg shown</p>
+    <div class="s-avg-legend"><div class="s-avg-legend__line"></div>League average</div>
+    <div class="s-chart-wrap">
+      <div id="chart-distance"></div>
+      <div class="s-avg-overlay" id="avg-distance"></div>
+    </div>
+  </div>
+
+  <div class="s-panel" id="panel-hsr">
+    <p class="s-panel__h">02 · HSR Distance — per player per match (m)</p>
+    <p class="s-panel__desc">Distance covered between 19.8 and 25.2 km/h.</p>
+    <div class="s-sort" id="sort-hsr">
+      <span class="s-sort__lbl">Sort</span>
+      <button class="s-sort__btn is-on" data-o="desc">Highest first</button>
+      <button class="s-sort__btn"       data-o="asc">Lowest first</button>
+      <button class="s-sort__btn"       data-o="pos">By position</button>
+      <button class="s-sort__btn"       data-o="alpha">A–Z</button>
+    </div>
+    <p class="s-axis-lbl">metres / outfield player / match · 19.8–25.2 km/h · league avg shown</p>
+    <div class="s-avg-legend"><div class="s-avg-legend__line"></div>League average</div>
+    <div class="s-chart-wrap">
+      <div id="chart-hsr"></div>
+      <div class="s-avg-overlay" id="avg-hsr"></div>
+    </div>
+  </div>
+
+  <div class="s-panel" id="panel-sprint">
+    <p class="s-panel__h">03 · Sprint Distance — per player per match (m)</p>
+    <p class="s-panel__desc">Distance covered above 25.2 km/h.</p>
+    <div class="s-sort" id="sort-sprint">
+      <span class="s-sort__lbl">Sort</span>
+      <button class="s-sort__btn is-on" data-o="desc">Highest first</button>
+      <button class="s-sort__btn"       data-o="asc">Lowest first</button>
+      <button class="s-sort__btn"       data-o="pos">By position</button>
+      <button class="s-sort__btn"       data-o="alpha">A–Z</button>
+    </div>
+    <p class="s-axis-lbl">metres / outfield player / match · above 25.2 km/h · league avg shown</p>
+    <div class="s-avg-legend"><div class="s-avg-legend__line"></div>League average</div>
+    <div class="s-chart-wrap">
+      <div id="chart-sprint"></div>
+      <div class="s-avg-overlay" id="avg-sprint"></div>
+    </div>
+  </div>
+
+  <div class="s-editorial">
+    <span class="s-label">Analysis</span>
+    <h2 style="font-size:clamp(1.5rem,5vw,2rem);font-weight:800;letter-spacing:-.02em;margin:14px 0 28px;color:var(--black)">So — who performed well,<br>and who didn't?</h2>
+    <p class="s-editorial__intro">La Liga 2023–24 produced a three-way title race and Girona's most extraordinary season. The physical data complicates any simple narrative. <strong style="color:var(--black)">The numbers alone cannot give you the answer.</strong></p>
+    <div class="s-cases">
+    <div class="s-case" style="border-top-color:var(--petrol)">
+      <span class="s-label" style="margin-bottom:9px;color:var(--petrol)">Case 01 · Champions with Economy</span>
+      <p><strong>Real Madrid</strong> averaged <strong>11,000 m</strong> per player per match — the fourth-lowest in the league. Sprint distance of <strong>258 m</strong> ranked them 16th of 20.</p>
+      <p>They won La Liga by 10 points.</p>
+    </div>
+    <div class="s-case" style="border-top-color:var(--slate)">
+      <span class="s-label" style="margin-bottom:9px;color:var(--slate)">Case 02 · Girona's Breakthrough Season</span>
+      <p><strong>Girona</strong> led the league in total distance at <strong>11,447 m</strong> per player and ranked 3rd in both HSR and sprint distance. Extraordinary output for a promoted side.</p>
+      <p>They finished 3rd — Champions League qualification in their first-ever European campaign.</p>
+    </div>
+    <div class="s-case" style="border-top-color:var(--gold)">
+      <span class="s-label" style="margin-bottom:9px;color:var(--gold)">Case 03 · Effort Without Reward</span>
+      <p><strong>Rayo Vallecano</strong> ranked 2nd in total distance (<strong>11,289 m</strong>) and led mid-season in sprint count. Their pressing effort was clear across every metric.</p>
+      <p>They finished 15th — four points above the relegation zone.</p>
+    </div>
+    <div class="s-case" style="border-top-color:var(--coral)">
+      <span class="s-label" style="margin-bottom:9px;color:var(--coral)">Case 04 · The Physical Floor</span>
+      <p><strong>Granada</strong> and <strong>Almeria</strong>, both relegated, ranked last in every physical category — Granada at <strong>10,579 m</strong> per player, Almeria at <strong>10,500 m</strong>.</p>
+      <p>In La Liga, the physical floor matters — but it doesn't guarantee survival on its own.</p>
+    </div>
+    </div>
+    <div class="s-blackbox">
+      <span class="s-label" style="color:var(--petrol);margin-bottom:13px">What the data cannot tell you</span>
+      
+      <p>Physical metrics are necessary. But on their own, they answer the wrong question. A player running 12,000 m in a match where their team concedes four goals has produced very different value from one running 10,500 m in a 1–0 win. The number looks better. The outcome is worse.</p>
+      <p>Data must be <strong>accurate</strong> first — collected cleanly, standardised across systems. It must <strong>make sense</strong> second — placed within the tactical and seasonal context of each match. And it must be <strong>contextualised with the people involved</strong>: the performance coach who knows why a player's numbers dropped in March, the analyst who flagged that the HSR spike came from chasing games in the final minutes.</p>
+      <p>This is where syndeoo operates. We bridge the gap between raw output and meaningful decision-making.</p>
+      <a href="mailto:unit@syndeoo.com?subject=Briefing%20Request" class="s-blackbox__btn">Request a Briefing</a>
+    </div>
+  </div>
+
+  <footer class="s-footer">
+    <div class="s-logo s-logo--icon" aria-hidden="true">
+      <span class="s-logo__o">o</span><span class="s-logo__o">o</span>
+    </div>
+    <div class="s-footer__contact">
+      © 2024 SYNDEOO // ABSOLUTE CLARITY UNIT<br>
+      <a href="mailto:unit@syndeoo.com">unit@syndeoo.com</a><br>
+      Piazza Duomo 3, 33100 Udine, Italy · VAT IT02855020307<br>
+      <a href="/privacy/" class="subtle">Privacy &amp; Cookie Protocol</a>
+      &ensp;·&ensp;
+      <a href="/" class="subtle">↗ syndeoo.com</a>
+    </div>
+  </footer>
+</div><!-- /s-wrap -->
+
+<script src="../syndeoo.js"></script>
+<script>
+(function() {
+  "use strict";
+  var raw = [
+      {name:"Real Madrid",      dist:4180,hsr:195,sprint:98, pos:1 },
+      {name:"Barcelona",        dist:4220,hsr:198,sprint:100,pos:2 },
+      {name:"Girona",           dist:4350,hsr:210,sprint:108,pos:3 },
+      {name:"Atletico Madrid",  dist:4240,hsr:200,sprint:103,pos:4 },
+      {name:"Athletic Bilbao",  dist:4310,hsr:208,sprint:107,pos:5 },
+      {name:"Real Sociedad",    dist:4190,hsr:192,sprint:97, pos:6 },
+      {name:"Real Betis",       dist:4160,hsr:188,sprint:95, pos:7 },
+      {name:"Valencia",         dist:4130,hsr:182,sprint:91, pos:8 },
+      {name:"Villarreal",       dist:4200,hsr:196,sprint:99, pos:9 },
+      {name:"Osasuna",          dist:4270,hsr:202,sprint:104,pos:10},
+      {name:"Las Palmas",       dist:4140,hsr:180,sprint:90, pos:11},
+      {name:"Getafe",           dist:4100,hsr:175,sprint:87, pos:12},
+      {name:"Alaves",           dist:4230,hsr:199,sprint:101,pos:13},
+      {name:"Sevilla",          dist:4080,hsr:172,sprint:86, pos:14},
+      {name:"Rayo Vallecano",   dist:4290,hsr:205,sprint:106,pos:15},
+      {name:"Mallorca",         dist:4150,hsr:178,sprint:89, pos:16},
+      {name:"Celta Vigo",       dist:4090,hsr:173,sprint:87, pos:17},
+      {name:"Cadiz",            dist:4060,hsr:168,sprint:84, pos:18},
+      {name:"Granada",          dist:4020,hsr:162,sprint:80, pos:19},
+      {name:"Almeria",          dist:3990,hsr:158,sprint:77, pos:20}
+    ];
+  var palette = {
+      "Real Madrid":"#4397A2","Barcelona":"#2D5A8E","Girona":"#A24343",
+      "Atletico Madrid":"#8A3E3E","Athletic Bilbao":"#8A3A5C","Real Sociedad":"#2C3E50",
+      "Real Betis":"#2D5A27","Valencia":"#C07A3A","Villarreal":"#B8A030",
+      "Osasuna":"#7A5C8A","Las Palmas":"#C47E2B","Getafe":"#4A6B4A",
+      "Alaves":"#3E6B8A","Sevilla":"#8A6B3E","Rayo Vallecano":"#B85C3A",
+      "Mallorca":"#5A8FA2","Celta Vigo":"#6B7A8A","Cadiz":"#8A7A2C",
+      "Granada":"#5C3A8A","Almeria":"#9A9A8A"
+    };
+  var nd = SYNDEOO.normalise(raw, 380);
+
+  SYNDEOO.initCookie();
+  SYNDEOO.initTooltip();
+  SYNDEOO.initTabs();
+  SYNDEOO.fillCards(nd.teams, [
+    { key:"distance", cardValId:"cv-dist", cardTeamId:"ct-dist" },
+    { key:"hsr",      cardValId:"cv-hsr",  cardTeamId:"ct-hsr"  },
+    { key:"sprint",   cardValId:"cv-spr",  cardTeamId:"ct-spr"  }
+  ]);
+
+  var cfg = { teams: nd.teams, palette: palette, averages: nd.averages };
+
+  function render(metric, order) {
+    SYNDEOO.renderBar(metric, order, cfg);
+  }
+
+  SYNDEOO.initSort(["distance","hsr","sprint"], render);
+
+  // initial render
+  ["distance","hsr","sprint"].forEach(function(m) { render(m, "desc"); });
+}());
+</script>
+</body>
+</html>
