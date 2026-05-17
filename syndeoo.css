@@ -63,7 +63,7 @@ button { font-family: inherit; }
   display: inline-block;
 }
 .s-logo__oo   { display: inline-flex; }
-.s-logo__o    { color: var(--petrol-70); margin-right: -0.22em; mix-blend-mode: multiply; }
+.s-logo__o    { color: var(--petrol-70); margin-right: -0.18em; mix-blend-mode: multiply; }
 .s-logo__o:last-child { margin-right: 0; }
 
 /* Footer variant — large iconic */
@@ -74,7 +74,7 @@ button { font-family: inherit; }
   mix-blend-mode: multiply;
   line-height: 1;
 }
-.s-logo--icon .s-logo__o { margin-right: -0.25em; }
+.s-logo--icon .s-logo__o { margin-right: -0.19em; }
 
 /* ── LABEL (mono eyebrow) ─────────────────────────────────── */
 .s-label {
