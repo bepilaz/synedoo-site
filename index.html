@@ -10,220 +10,352 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="syndeoo.css">
   <style>
-    /* Home-only overrides */
-    .s-nav { margin-bottom: 0; }
-    .s-hero { border-bottom: none; }
+    /* ── PAGE-SPECIFIC STYLES ─────────────────────────────── */
+
+    /* Hero */
+    .s-hero__h1 {
+      font-size: clamp(2.4rem, 8vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin: 0 0 32px 0;
+    }
+    .s-hero__sub {
+      font-size: clamp(1.05rem, 3vw, 1.3rem);
+      font-weight: 300;
+      color: var(--slate);
+      max-width: 640px;
+      border-left: 3px solid var(--petrol);
+      padding-left: clamp(18px, 4vw, 28px);
+      line-height: 1.65;
+    }
+
+    /* Sections */
+    .s-section {
+      padding: 80px 0;
+      border-top: 1px solid var(--mist);
+    }
+    .s-section h2 {
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 16px 0 36px 0;
+      line-height: 1.1;
+    }
+
+    /* Value grid */
+    .s-value-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 60px;
+    }
+    .s-value-item {}
+    .s-value-item__num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--petrol);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .s-value-item h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 10px 0;
+    }
+    .s-value-item p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--slate);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* Black editorial box */
+    .s-manifesto {
+      background: var(--black);
+      color: var(--white);
+      padding: clamp(40px, 8vw, 72px);
+      border-radius: 4px;
+      margin: 80px 0;
+    }
+    .s-manifesto .s-label { color: var(--petrol); margin-bottom: 20px; display: block; }
+    .s-manifesto h2 {
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin: 0 0 28px 0;
+      color: var(--white);
+    }
+    .s-manifesto p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.75);
+      max-width: 680px;
+      margin: 0 0 18px 0;
+    }
+    .s-manifesto p:last-of-type { margin-bottom: 0; }
+    .s-manifesto strong { color: var(--white); font-weight: 600; }
+
+    /* Authority / bio section */
+    .s-authority {
+      background: var(--mist);
+      padding: clamp(36px, 7vw, 64px);
+      border-radius: 4px;
+    }
+    .s-authority h2 {
+      font-size: clamp(1.5rem, 4vw, 1.9rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 16px 0 24px 0;
+    }
+    .s-authority__bio {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--slate);
+      line-height: 1.75;
+      max-width: 660px;
+      margin: 0 0 28px 0;
+    }
+    .s-authority__bio strong { font-weight: 600; color: var(--black); }
+    .s-authority__link {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--petrol);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 2px solid var(--petrol);
+      padding-bottom: 3px;
+    }
+
+    /* CTA */
+    .s-cta {
+      text-align: center;
+      padding: 100px 0 80px 0;
+    }
+    .s-cta h2 {
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin: 16px 0 12px 0;
+    }
+    .s-cta p {
+      color: var(--slate);
+      font-weight: 300;
+      font-size: 1rem;
+      margin: 0 0 36px 0;
+    }
+    .s-cta__btn {
+      display: inline-block;
+      background: var(--black);
+      color: var(--white);
+      padding: 20px 48px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.25s;
+    }
+    .s-cta__btn:hover { background: var(--petrol); }
+
+    /* Footer */
+    .s-footer-home {
+      text-align: center;
+      padding: 80px 0 60px 0;
+      border-top: 1px solid var(--mist);
+    }
+    .s-footer-home .s-logo--icon { margin-bottom: 28px; }
+    .s-footer__info {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--slate);
+      line-height: 2.1;
+      text-transform: uppercase;
+    }
+    .s-footer__info a { color: var(--petrol); text-decoration: none; font-weight: 600; }
+    .s-footer__info .subtle {
+      color: var(--slate);
+      font-size: 0.62rem;
+      border-bottom: 1px solid transparent;
+    }
+    .s-footer__info .subtle:hover { border-bottom-color: var(--slate); }
+
+    /* Cookie */
+    .s-cookie {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 60px);
+      max-width: 850px;
+      background: var(--black);
+      color: var(--white);
+      padding: 22px 32px;
+      z-index: 9999;
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 2px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+      border-left: 4px solid var(--petrol);
+      gap: 20px;
+    }
+    .s-cookie__text {
+      font-size: 0.83rem;
+      font-weight: 300;
+      line-height: 1.55;
+    }
+    .s-cookie__text strong { color: var(--petrol); font-weight: 600; }
+    .s-cookie__text a { color: var(--white); text-decoration: underline; }
+    .s-cookie__btn {
+      background: var(--petrol);
+      color: var(--white);
+      border: none;
+      padding: 11px 22px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .s-value-grid { grid-template-columns: 1fr; gap: 36px; }
+      .s-cookie { flex-direction: column; text-align: center; bottom: 15px; width: calc(100% - 30px); }
+      .s-cookie__btn { width: 100%; }
+    }
   </style>
 </head>
 <body>
 
-<!-- ── COOKIE ─────────────────────────────────────────────── -->
-<div class="s-cookie" id="s-cookie" role="alertdialog" aria-label="Cookie notice">
-  <p class="s-cookie__text">
-    <strong>Privacy by Design.</strong> This unit uses only essential technical cookies.
-    Review our <a href="/privacy/">Privacy Protocol</a>.
-  </p>
-  <button class="s-cookie__btn">Acknowledge</button>
+<!-- COOKIE -->
+<div class="s-cookie" id="s-cookie">
+  <p class="s-cookie__text"><strong>Privacy by Design.</strong> This unit uses only essential technical cookies. <a href="/privacy/">Privacy Protocol</a>.</p>
+  <button class="s-cookie__btn" onclick="acknowledgeCookies()">Acknowledge</button>
 </div>
 
-<!-- ── TOOLTIP ────────────────────────────────────────────── -->
-<div class="s-tip" id="s-tip" aria-hidden="true"></div>
-
-<div class="s-wrap--home">
+<div class="s-wrap">
 
   <!-- NAV -->
   <nav class="s-nav">
     <div>
-      <span class="s-logo">synde<span class="s-logo__oo"><span class="s-logo__o">o</span><span class="s-logo__o">o</span></span></span>
-      <span class="s-label" style="margin-top:6px">Absolute Clarity Unit</span>
+      <a href="/" class="s-logo">
+        synde<span class="s-logo__oo"><span class="s-logo__o">o</span><span class="s-logo__o">o</span></span>
+      </a>
+      <span class="s-label" style="display:block;margin-top:6px;">Absolute Clarity Unit</span>
     </div>
-    <nav style="display:flex;gap:28px;align-items:center">
-      <a href="/the-golden-circle/" class="s-nav__right" style="opacity:.7;font-size:.62rem">The Golden Circle</a>
-      <a href="/privacy/"           class="s-nav__right" style="opacity:.7;font-size:.62rem">Privacy</a>
-    </nav>
   </nav>
 
   <!-- HERO -->
-  <header class="s-hero">
-    <h1 class="s-hero__h1">Decision-making should<br>never be a gamble.</h1>
-    <p class="s-hero__sub">We transform fragmented football data into certified strategic certainty for League Executives and Decision Makers.</p>
+  <header style="padding: clamp(48px,7vh,80px) 0 72px 0;">
+    <h1 class="s-hero__h1">The data is there.<br>The question is<br>what it means.</h1>
+    <p class="s-hero__sub">
+      We work with the people responsible for the performance of an entire league or organisation — turning fragmented tracking data into decisions that are defensible, clear, and built on scientific rigour.
+    </p>
   </header>
 
-  <!-- APPROACH -->
+  <!-- VALUE PROPS -->
   <section class="s-section">
-    <span class="s-label" style="margin-bottom:36px">The Approach</span>
-    <div class="s-grid-2" style="margin-top:36px">
-      <div class="s-feature">
-        <h3 class="s-feature__h3">Data Governance</h3>
-        <p class="s-feature__p">Truth precedes science. We provide a bridge between diverse tracking systems, ensuring every bit of data collected across the league is clean, standardised, and ready for high-level analysis.</p>
+    <span class="s-label">What We Deliver</span>
+    <h2>Four things that change<br>how you operate.</h2>
+    <div class="s-value-grid">
+
+      <div class="s-value-item">
+        <span class="s-value-item__num">01</span>
+        <h3>A single version of the truth.</h3>
+        <p>Different clubs, different tracking vendors, different data formats. We standardise everything into one clean, coherent framework — so that when you sit down with your data, you are not managing discrepancies. You are reading reality.</p>
       </div>
-      <div class="s-feature">
-        <h3 class="s-feature__h3">Transversal Insights</h3>
-        <p class="s-feature__p">Performance doesn't live in silos. Our visual intelligence connects physical output with technical tactics, offering a unified "brain" for league-wide performance monitoring.</p>
+
+      <div class="s-value-item">
+        <span class="s-value-item__num">02</span>
+        <h3>Independence you can trust.</h3>
+        <p>We are not embedded in any club. We carry no internal loyalties, no political exposure, no conflict of interest. Our role is to give you the honest picture — including the parts that are inconvenient — because that is the only kind of analysis that is actually useful.</p>
       </div>
+
+      <div class="s-value-item">
+        <span class="s-value-item__num">03</span>
+        <h3>Complexity made legible.</h3>
+        <p>Performance science is inherently complex. The way you communicate it should not be. We adapt the depth and language of our outputs to the person receiving them — whether that is a performance director, a sporting director, or a board member making a significant investment decision.</p>
+      </div>
+
+      <div class="s-value-item">
+        <span class="s-value-item__num">04</span>
+        <h3>From data to action.</h3>
+        <p>A well-produced report that sits unread is worth nothing. We work backwards from the decision you need to make, and structure the analysis so that the path forward is visible. Not probable. Not suggested. Clear.</p>
+      </div>
+
     </div>
   </section>
 
-  <!-- DATA LAB -->
-  <section class="s-section">
-    <span class="s-label">Data Lab</span>
-    <h2 class="s-section__h2" style="margin-top:14px">Physical Intelligence,<br>by League.</h2>
-    <p style="color:var(--slate);font-weight:300;font-size:1rem;max-width:600px;line-height:1.7;margin-top:-18px">
-      Open datasets exploring team physical output across Europe's top competitions. Every figure normalised per outfield player per match.
-    </p>
-
-    <div class="s-datalab-grid">
-
-      <!-- PREMIER LEAGUE -->
-      <a class="s-datalab-card" href="/premier-league/">
-        <span class="s-datalab-card__season">Season 2023–24 · 20 Clubs · 38 Matchdays</span>
-        <div class="s-datalab-card__league">Premier League</div>
-        <div class="s-datalab-card__country">England</div>
-        <div class="s-datalab-card__chart">
-          <svg viewBox="0 0 280 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect width="280" height="42" fill="#E5ECF3" rx="2"/>
-            <rect x="6"   y="6"  width="97" height="9" rx="1" fill="#7A5C8A" opacity=".88"/>
-            <rect x="6"   y="18" width="93" height="9" rx="1" fill="#2C3E50" opacity=".82"/>
-            <rect x="6"   y="30" width="88" height="9" rx="1" fill="#4397A2" opacity=".85"/>
-            <rect x="107" y="6"  width="84" height="9" rx="1" fill="#7AB8C4" opacity=".82"/>
-            <rect x="107" y="18" width="78" height="9" rx="1" fill="#9A9A8A" opacity=".78"/>
-            <rect x="107" y="30" width="60" height="9" rx="1" fill="#8A3A5C" opacity=".72"/>
-            <line x1="180" y1="3" x2="180" y2="40" stroke="#2C3E50" stroke-width="1.5" stroke-dasharray="3,2" opacity=".35"/>
-            <text x="184" y="9" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#4397A2" font-weight="600">avg</text>
-          </svg>
-        </div>
-        <p class="s-datalab-card__sub">Man City win the title running below the league average. Burnley, the hardest-working side, are relegated.</p>
-        <div class="s-datalab-card__tags">
-          <span class="s-datalab-card__tag">Total Distance</span>
-          <span class="s-datalab-card__tag">HSR 19.8–25.2</span>
-          <span class="s-datalab-card__tag">Sprint &gt;25.2</span>
-        </div>
-        <span class="s-datalab-card__arrow">Explore ↗</span>
-      </a>
-
-      <!-- BUNDESLIGA -->
-      <a class="s-datalab-card" href="/bundesliga/">
-        <span class="s-datalab-card__season">Season 2023–24 · 18 Clubs · 34 Matchdays</span>
-        <div class="s-datalab-card__league">Bundesliga</div>
-        <div class="s-datalab-card__country">Germany</div>
-        <div class="s-datalab-card__chart">
-          <svg viewBox="0 0 280 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect width="280" height="42" fill="#E5ECF3" rx="2"/>
-            <rect x="6"   y="6"  width="99" height="9" rx="1" fill="#C07A3A" opacity=".88"/>
-            <rect x="6"   y="18" width="95" height="9" rx="1" fill="#5A8FA2" opacity=".85"/>
-            <rect x="6"   y="30" width="91" height="9" rx="1" fill="#2D5A8E" opacity=".82"/>
-            <rect x="107" y="6"  width="76" height="9" rx="1" fill="#4397A2" opacity=".82"/>
-            <rect x="107" y="18" width="70" height="9" rx="1" fill="#B8A030" opacity=".78"/>
-            <rect x="107" y="30" width="55" height="9" rx="1" fill="#8A7A2C" opacity=".72"/>
-            <line x1="171" y1="3" x2="171" y2="40" stroke="#2C3E50" stroke-width="1.5" stroke-dasharray="3,2" opacity=".35"/>
-            <text x="175" y="9" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#4397A2" font-weight="600">avg</text>
-          </svg>
-        </div>
-        <p class="s-datalab-card__sub">Leverkusen go unbeaten — the first in Bundesliga history — with below-average physical output across every metric.</p>
-        <div class="s-datalab-card__tags">
-          <span class="s-datalab-card__tag">Total Distance</span>
-          <span class="s-datalab-card__tag">HSR 19.8–25.2</span>
-          <span class="s-datalab-card__tag">Sprint &gt;25.2</span>
-        </div>
-        <span class="s-datalab-card__arrow">Explore ↗</span>
-      </a>
-
-      <!-- LA LIGA -->
-      <a class="s-datalab-card" href="/la-liga/">
-        <span class="s-datalab-card__season">Season 2023–24 · 20 Clubs · 38 Matchdays</span>
-        <div class="s-datalab-card__league">La Liga</div>
-        <div class="s-datalab-card__country">Spain</div>
-        <div class="s-datalab-card__chart">
-          <svg viewBox="0 0 280 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect width="280" height="42" fill="#E5ECF3" rx="2"/>
-            <rect x="6"   y="6"  width="95" height="9" rx="1" fill="#A24343" opacity=".88"/>
-            <rect x="6"   y="18" width="90" height="9" rx="1" fill="#7A5C8A" opacity=".85"/>
-            <rect x="6"   y="30" width="85" height="9" rx="1" fill="#2D5A8E" opacity=".82"/>
-            <rect x="107" y="6"  width="80" height="9" rx="1" fill="#4397A2" opacity=".82"/>
-            <rect x="107" y="18" width="73" height="9" rx="1" fill="#4A4A4A" opacity=".78"/>
-            <rect x="107" y="30" width="52" height="9" rx="1" fill="#6B7A8A" opacity=".72"/>
-            <line x1="173" y1="3" x2="173" y2="40" stroke="#2C3E50" stroke-width="1.5" stroke-dasharray="3,2" opacity=".35"/>
-            <text x="177" y="9" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#4397A2" font-weight="600">avg</text>
-          </svg>
-        </div>
-        <p class="s-datalab-card__sub">Real Madrid win La Liga with the fourth-lowest distance tally. Girona run the most — and reach the Champions League.</p>
-        <div class="s-datalab-card__tags">
-          <span class="s-datalab-card__tag">Total Distance</span>
-          <span class="s-datalab-card__tag">HSR 19.8–25.2</span>
-          <span class="s-datalab-card__tag">Sprint &gt;25.2</span>
-        </div>
-        <span class="s-datalab-card__arrow">Explore ↗</span>
-      </a>
-
-      <!-- SERIE A -->
-      <a class="s-datalab-card" href="/serie-a/">
-        <span class="s-datalab-card__season">Season 2023–24 · 20 Clubs · 38 Matchdays</span>
-        <div class="s-datalab-card__league">Serie A</div>
-        <div class="s-datalab-card__country">Italy</div>
-        <div class="s-datalab-card__chart">
-          <svg viewBox="0 0 280 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect width="280" height="42" fill="#E5ECF3" rx="2"/>
-            <rect x="6"   y="6"  width="93" height="9" rx="1" fill="#4A6B4A" opacity=".88"/>
-            <rect x="6"   y="18" width="88" height="9" rx="1" fill="#8A3E3E" opacity=".85"/>
-            <rect x="6"   y="30" width="84" height="9" rx="1" fill="#C47E2B" opacity=".82"/>
-            <rect x="107" y="6"  width="77" height="9" rx="1" fill="#4397A2" opacity=".82"/>
-            <rect x="107" y="18" width="70" height="9" rx="1" fill="#3E6B8A" opacity=".78"/>
-            <rect x="107" y="30" width="50" height="9" rx="1" fill="#8A3A5C" opacity=".72"/>
-            <line x1="168" y1="3" x2="168" y2="40" stroke="#2C3E50" stroke-width="1.5" stroke-dasharray="3,2" opacity=".35"/>
-            <text x="172" y="9" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#4397A2" font-weight="600">avg</text>
-          </svg>
-        </div>
-        <p class="s-datalab-card__sub">Inter win the Scudetto by 19 points running the 7th-lowest distance. Napoli, defending champions, collapse to 10th.</p>
-        <div class="s-datalab-card__tags">
-          <span class="s-datalab-card__tag">Total Distance</span>
-          <span class="s-datalab-card__tag">HSR 19.8–25.2</span>
-          <span class="s-datalab-card__tag">Sprint &gt;25.2</span>
-        </div>
-        <span class="s-datalab-card__arrow">Explore ↗</span>
-      </a>
-
-    </div>
-  </section>
+  <!-- MANIFESTO -->
+  <div class="s-manifesto">
+    <span class="s-label">On Honesty</span>
+    <h2>We do not sell certainty.<br>We build the conditions for it.</h2>
+    <p>There is a version of data consultancy that sells confidence — dashboards that look authoritative, numbers that appear precise, conclusions that arrive gift-wrapped. We are not that.</p>
+    <p>Good analysis starts with <strong>clean data</strong> — collected rigorously, verified at source, and honest about its own limitations. It continues with <strong>interpretation that respects context</strong>: the tactical system, the fixture calendar, the player history. And it ends with <strong>a clear line to the decision at hand</strong> — not a document that requires a separate expert to decode.</p>
+    <p>That process is unglamorous. It is also the only thing that works.</p>
+  </div>
 
   <!-- AUTHORITY -->
-  <section class="s-section">
+  <section class="s-section" style="border-top:none; padding-top:0;">
     <div class="s-authority">
-      <span class="s-label" style="margin-bottom:18px">Scientific Leadership</span>
-      <h2 class="s-section__h2" style="margin-top:14px">Rooted in Elite Experience.</h2>
-      <p class="s-authority__bio">Led by <strong>Cristian Osgnach</strong>, our team combines a decade of on-field experience — from Serie A to the Italian National Team — with world-renowned scientific rigour. We don't just process data; we interpret it through the lens of elite performance.</p>
-      <a href="https://www.researchgate.net/profile/Cristian-Osgnach" target="_blank" rel="noopener" class="s-authority__link">View Scientific Publications ↗</a>
+      <span class="s-label">Scientific Leadership</span>
+      <h2>Rooted in elite experience.</h2>
+      <p class="s-authority__bio">
+        Our unit is led by <strong>Cristian Osgnach</strong> — a researcher whose work on metabolic power and physical load in football is referenced across the international sports science community, and who has spent over a decade applying that knowledge at the highest levels of the game, including Serie A and the Italian National Team.
+      </p>
+      <p class="s-authority__bio">
+        This is not a technology company that has learned football. It is a team of people who understand elite performance from the inside, and who have built the methodological framework to make that knowledge transferable, scalable, and institutionally useful.
+      </p>
+      <a href="https://www.researchgate.net/profile/Cristian-Osgnach" target="_blank" class="s-authority__link">View Scientific Publications ↗</a>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="s-section s-section--noborder s-cta">
+  <section class="s-cta">
     <span class="s-label">Next Steps</span>
-    <h2 class="s-cta__h2" style="margin-top:14px">Ready to unlock the value<br>of your league's data?</h2>
-    <p class="s-cta__sub">Our unit works bespoke with a limited number of top-tier organisations.</p>
+    <h2>If the question is serious,<br>the conversation should be too.</h2>
+    <p>We work with a limited number of organisations. Engagements begin with a briefing.</p>
     <a href="mailto:unit@syndeoo.com?subject=Briefing%20Request" class="s-cta__btn">Request a Briefing</a>
   </section>
 
   <!-- FOOTER -->
-  <footer class="s-footer">
+  <footer class="s-footer-home">
     <div class="s-logo s-logo--icon" aria-hidden="true">
       <span class="s-logo__o">o</span><span class="s-logo__o">o</span>
     </div>
-    <div class="s-footer__contact">
+    <div class="s-footer__info">
       © 2026 SYNDEOO // ABSOLUTE CLARITY UNIT<br>
       <a href="mailto:unit@syndeoo.com">unit@syndeoo.com</a><br>
       Piazza Duomo 3, 33100 Udine, Italy · VAT IT02855020307<br>
-      <a href="/the-golden-circle/" class="subtle">The Golden Circle</a>
-      &ensp;·&ensp;
       <a href="/privacy/" class="subtle">Privacy &amp; Cookie Protocol</a>
     </div>
   </footer>
 
-</div><!-- /s-wrap--home -->
+</div><!-- /s-wrap -->
 
-<script src="syndeoo.js"></script>
 <script>
-  SYNDEOO.initCookie();
-  SYNDEOO.initTooltip();
+  function acknowledgeCookies() {
+    localStorage.setItem('syndeoo-privacy-acknowledged', 'true');
+    document.getElementById('s-cookie').style.display = 'none';
+  }
+  window.addEventListener('load', function () {
+    if (!localStorage.getItem('syndeoo-privacy-acknowledged')) {
+      document.getElementById('s-cookie').style.display = 'flex';
+    }
+  });
 </script>
+
 </body>
 </html>
