@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identity Composer // Unit 01</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    
+    <style>
+        :root {
+            --petrol: #4397A2;
+            --petrol-alpha: rgba(67, 151, 162, 0.7);
+            --black: #000000;
+            --white: #ffffff;
+            --mist: #F1F5F9;
+            --slate: #2C3E50;
+            --gold: #D4AF37;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--white); 
+            color: var(--black); 
+            margin: 0; padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 40px; }
+
+        header { 
+            border-bottom: 2px solid var(--petrol); 
+            padding-bottom: 40px; margin-bottom: 60px;
+            display: flex; justify-content: space-between; align-items: flex-end;
+        }
+
+        .master-title { 
+            font-size: 2.4rem; font-weight: 800; margin: 0; 
+            letter-spacing: -0.05em; text-transform: lowercase; line-height: 1;
+        }
+        
+        .oo-accent { color: var(--petrol-alpha); margin-right: -0.20em; mix-blend-mode: multiply; }
+        .unit-label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--petrol); text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; }
+
+        .generator-grid { 
+            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; align-items: start;
+        }
+
+        .form-group { margin-bottom: 25px; }
+        label { display: block; font-family: 'JetBrains Mono'; font-size: 0.65rem; text-transform: uppercase; color: var(--petrol); margin-bottom: 8px; letter-spacing: 0.15em; }
+        input { 
+            width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid var(--mist); 
+            font-family: 'Inter'; font-size: 1.1rem; outline: none; background: transparent; transition: all 0.3s;
+        }
+        input:focus { border-bottom-color: var(--black); }
+
+        .preview-section { 
+            position: sticky; top: 40px; background: var(--mist); padding: 50px; border-radius: 4px; 
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        #qr-canvas { background: white; padding: 20px; border-radius: 4px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+
+        .actions { width: 100%; display: grid; gap: 12px; }
+        .btn { 
+            font-family: 'JetBrains Mono'; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; 
+            padding: 16px; border-radius: 2px; cursor: pointer; text-decoration: none; text-align: center;
+            transition: all 0.2s; letter-spacing: 0.1em;
+        }
+        .btn-black { background: var(--black); color: var(--white); border: none; }
+        .btn-black:hover { background: var(--petrol); transform: translateY(-2px); }
+        .btn-outline { border: 1px solid var(--black); color: var(--black); background: transparent; }
+        .btn-outline:hover { background: var(--black); color: var(--white); }
+
+        footer { margin-top: 80px; padding-top: 30px; border-top: 1px solid var(--mist); display: flex; justify-content: space-between; }
+        .note-box { background: #FFF9E6; padding: 15px 25px; border-left: 4px solid var(--gold); font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--slate); }
+
+        @media (max-width: 850px) { .generator-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div>
+                <span class="unit-label">Asset Composer // Unit 01</span>
+                <h1 class="master-title">identity<span class="oo-accent">o</span><span class="oo-accent">o</span>.gen</h1>
+            </div>
+            <span class="unit-label">Absolute Clarity</span>
+        </header>
+
+        <main class="generator-grid">
+            <section>
+                <div class="form-group"><label>First Name</label><input type="text" id="firstName" placeholder="James" oninput="updateQR()"></div>
+                <div class="form-group"><label>Last Name</label><input type="text" id="lastName" placeholder="Sunderland" oninput="updateQR()"></div>
+                <div class="form-group"><label>Role</label><input type="text" id="role" placeholder="Creative Director" oninput="updateQR()"></div>
+                <div class="form-group"><label>Email</label><input type="email" id="email" placeholder="j.s@unit.com" oninput="updateQR()"></div>
+                <div class="form-group"><label>Phone</label><input type="tel" id="phone" placeholder="+44 20 7946 0000" oninput="updateQR()"></div>
+                <div class="form-group"><label>Meeting Link</label><input type="url" id="meeting" placeholder="https://..." oninput="updateQR()"></div>
+            </section>
+
+            <section class="preview-section">
+                <div id="qr-canvas"></div>
+                <div class="actions">
+                    <button class="btn btn-black" onclick="downloadVCard()">Download .VCF File</button>
+                    <button class="btn btn-outline" onclick="generateDigitalCard()">Generate Business Card</button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="note-box">STATUS: READY<br>OUTPUT: HTML_FIXED_QR_SUPPORTED</div>
+        </footer>
+    </div>
+
+    <script>
+        const qrCode = new QRCodeStyling({
+            width: 260, height: 260, type: "svg", data: "...",
+            dotsOptions: { color: "#000000", type: "rounded" },
+            cornersSquareOptions: { type: "extra-rounded", color: "#4397A2" },
+            backgroundOptions: { color: "#ffffff" }
+        });
+        qrCode.append(document.getElementById("qr-canvas"));
+
+        function getFields() {
+            return {
+                fn: document.getElementById('firstName').value || "Name",
+                ln: document.getElementById('lastName').value || "Surname",
+                role: document.getElementById('role').value || "Professional Role",
+                email: document.getElementById('email').value || "",
+                phone: document.getElementById('phone').value || "",
+                meeting: document.getElementById('meeting').value || ""
+            };
+        }
+
+        function updateQR() {
+            const f = getFields();
+            const vcf = `BEGIN:VCARD\nVERSION:3.0\nFN:${f.fn} ${f.ln}\nN:${f.ln};${f.fn};;;\nTITLE:${f.role}\nTEL;TYPE=CELL:${f.phone}\nEMAIL;TYPE=INTERNET:${f.email}\nitem1.URL:${f.meeting}\nitem1.X-ABLABEL:Book a Meeting\nEND:VCARD`;
+            qrCode.update({ data: vcf });
+        }
+
+        function downloadVCard() {
+            const f = getFields();
+            const blob = new Blob([qrCode._options.data], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = `${f.fn}.vcf`; a.click();
+        }
+
+        async function generateDigitalCard() {
+            const f = getFields();
+            // Iniezione diretta dell'SVG per evitare il bug del caricamento immagine
+            const qrSvgCode = document.querySelector('#qr-canvas').innerHTML;
+
+            const cardHtml = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${f.fn} ${f.ln} // Identity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; background: #ffffff; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; color: #000; }
+        .card { width: 100%; max-width: 400px; padding: 40px; text-align: center; }
+        .name { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.05em; margin: 0; line-height: 0.9; }
+        .role { font-family: 'JetBrains Mono'; color: #4397A2; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.2em; margin: 20px 0 40px 0; }
+        .qr-wrapper { background: #F1F5F9; padding: 30px; border-radius: 4px; margin-bottom: 40px; display: flex; justify-content: center; }
+        .qr-wrapper svg { width: 100%; height: auto; max-width: 260px; }
+        .info { font-family: 'JetBrains Mono'; font-size: 0.8rem; line-height: 2.2; border-top: 1px solid #F1F5F9; padding-top: 25px; text-align: left; }
+        .label { color: #4397A2; margin-right: 12px; }
+        a { color: inherit; text-decoration: none; font-weight: 800; border-bottom: 1px solid #4397A2; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1 class="name">${f.fn}<br>${f.ln}</h1>
+        <div class="role">${f.role}</div>
+        <div class="qr-wrapper">${qrSvgCode}</div>
+        <div class="info">
+            <div><span class="label">PH:</span> <a href="tel:${f.phone.replace(/\s/g, '')}">${f.phone}</a></div>
+            <div><span class="label">EM:</span> <a href="mailto:${f.email}">${f.email}</a></div>
+            ${f.meeting ? `<div><span class="label">MT:</span> <a href="${f.meeting}">Book a Meeting</a></div>` : ''}
+        </div>
+    </div>
+</body>
+</html>`;
+
+            const blob = new Blob([cardHtml], { type: 'text/html' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = `card-${f.fn.toLowerCase()}.html`; a.click();
+        }
+
+        updateQR();
+    </script>
+</body>
+</html>
