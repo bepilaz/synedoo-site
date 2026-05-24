@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <link rel="icon" type="image/png" href="/favicon.ico">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>syndeoo | Identity Composer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+  <style>
+    :root {
+      --petrol:    #4397A2;
+      --petrol-70: rgba(67,151,162,0.70);
+      --petrol-12: rgba(67,151,162,0.12);
+      --black:     #000000;
+      --white:     #ffffff;
+      --mist:      #F1F5F9;
+      --slate:     #2C3E50;
+      --gold:      #D4AF37;
+      --coral:     #E67E22;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── LOCK SCREEN ──────────────────────────────────────── */
+    #s-lock {
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .s-lock__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+      width: 100%;
+      max-width: 360px;
+      padding: 0 32px;
+    }
+
+    /* Lock logo */
+    .s-lock__logo {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      text-transform: lowercase;
+      line-height: 1;
+      color: var(--white);
+    }
+    .s-lock__logo .oo { display: inline-flex; }
+    .s-lock__logo .o  { color: var(--petrol-70); margin-right: -0.18em; mix-blend-mode: screen; }
+    .s-lock__logo .o:last-child { margin-right: 0; }
+
+    .s-lock__label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--petrol);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 600;
+      margin-top: -28px;
+    }
+
+    .s-lock__field {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .s-lock__field label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--petrol);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .s-lock__input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      color: var(--white);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      letter-spacing: 0.25em;
+      padding: 10px 0;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .s-lock__input:focus { border-bottom-color: var(--petrol); }
+    .s-lock__input::placeholder { opacity: 0.2; letter-spacing: 0.1em; }
+
+    .s-lock__btn {
+      width: 100%;
+      background: var(--petrol);
+      color: var(--white);
+      border: none;
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      border-radius: 1px;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .s-lock__btn:hover  { background: #5ab0bc; }
+    .s-lock__btn:active { transform: scale(0.98); }
+
+    .s-lock__error {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--coral);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+      min-height: 1em;
+    }
+    .s-lock__error.visible { opacity: 1; }
+
+    /* ── MAIN APP (hidden until unlocked) ─────────────────── */
+    #s-app { display: none; }
+
+    /* ── LAYOUT ───────────────────────────────────────────── */
+    .s-wrap { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+    /* ── LOGO ─────────────────────────────────────────────── */
+    .s-logo {
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      text-transform: lowercase;
+      line-height: 1;
+      text-decoration: none;
+      color: var(--black);
+      display: inline-block;
+    }
+    .s-logo__oo { display: inline-flex; }
+    .s-logo__o  { color: var(--petrol-70); margin-right: -0.18em; mix-blend-mode: multiply; }
+    .s-logo__o:last-child { margin-right: 0; }
+    .s-logo--icon {
+      font-size: clamp(4.5rem, 18vw, 6.5rem);
+      font-weight: 800;
+      display: inline-flex;
+      mix-blend-mode: multiply;
+      line-height: 1;
+    }
+
+    .s-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--petrol);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+    }
+
+    /* ── NAV ──────────────────────────────────────────────── */
+    nav {
+      padding: 60px 0 40px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--petrol);
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    /* ── HEADER ───────────────────────────────────────────── */
+    .s-page-header { margin-bottom: 56px; }
+    .s-page-header h1 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin: 10px 0 14px 0;
+    }
+    .s-page-header p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--slate);
+      max-width: 560px;
+      border-left: 3px solid var(--petrol);
+      padding-left: 18px;
+      line-height: 1.65;
+    }
+
+    /* ── GRID ─────────────────────────────────────────────── */
+    .s-composer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* ── FORM ─────────────────────────────────────────────── */
+    .s-form-group { margin-bottom: 28px; }
+    .s-form-group label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      color: var(--petrol);
+      margin-bottom: 8px;
+      letter-spacing: 0.18em;
+    }
+    .s-form-group input {
+      width: 100%;
+      padding: 12px 0;
+      border: none;
+      border-bottom: 1px solid var(--mist);
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      outline: none;
+      background: transparent;
+      color: var(--black);
+      transition: border-bottom-color 0.25s;
+    }
+    .s-form-group input:focus  { border-bottom-color: var(--black); }
+    .s-form-group input::placeholder { color: #bbb; }
+
+    /* ── PREVIEW PANEL ────────────────────────────────────── */
+    .s-preview {
+      position: sticky;
+      top: 40px;
+      background: var(--mist);
+      padding: 44px 40px;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* QR container with initials overlay */
+    .s-qr-wrap {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin-bottom: 32px;
+    }
+
+    #qr-canvas {
+      background: white;
+      border-radius: 4px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+      width: 220px;
+      height: 220px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #qr-canvas svg, #qr-canvas canvas {
+      width: 220px !important;
+      height: 220px !important;
+    }
+
+    /* Initials badge — centered over QR quiet zone */
+    .s-qr-initials {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px;
+      height: 48px;
+      background: var(--white);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: -0.04em;
+      color: var(--petrol);
+      text-transform: uppercase;
+      pointer-events: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      line-height: 1;
+    }
+
+    /* Parsed preview under QR */
+    .s-preview__name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-align: center;
+      margin: 0 0 4px 0;
+      line-height: 1.1;
+    }
+    .s-preview__role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--petrol);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    /* Actions */
+    .s-actions {
+      width: 100%;
+      display: grid;
+      gap: 10px;
+    }
+    .s-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 15px;
+      border-radius: 2px;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.2s, color 0.2s, transform 0.1s;
+      border: none;
+    }
+    .s-btn:active { transform: scale(0.98); }
+    .s-btn--black   { background: var(--black); color: var(--white); }
+    .s-btn--black:hover { background: var(--petrol); }
+    .s-btn--outline { border: 1.5px solid var(--black); color: var(--black); background: transparent; }
+    .s-btn--outline:hover { background: var(--black); color: var(--white); }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 80px 0 60px 0;
+      border-top: 1px solid var(--mist);
+      margin-top: 100px;
+    }
+    .s-footer__contact {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--slate);
+      line-height: 2.1;
+      text-transform: uppercase;
+      margin-top: 24px;
+    }
+    .s-footer__contact a      { color: var(--petrol); text-decoration: none; font-weight: 600; }
+    .s-footer__contact .subtle {
+      color: var(--slate);
+      font-size: 0.62rem;
+      border-bottom: 1px solid transparent;
+    }
+    .s-footer__contact .subtle:hover { border-bottom-color: var(--slate); }
+
+    /* ── COOKIE ───────────────────────────────────────────── */
+    .s-cookie {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 60px);
+      max-width: 820px;
+      background: var(--black);
+      color: var(--white);
+      padding: 22px 30px;
+      z-index: 8000;
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 2px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+      border-left: 4px solid var(--petrol);
+      gap: 24px;
+    }
+    .s-cookie__text {
+      font-size: 0.82rem;
+      font-weight: 300;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .s-cookie__text strong { color: var(--petrol); font-weight: 600; }
+    .s-cookie__text a { color: var(--white); text-decoration: underline; opacity: 0.8; }
+    .s-cookie__btn {
+      background: var(--petrol);
+      color: var(--white);
+      border: none;
+      padding: 11px 22px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      border-radius: 1px;
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 850px) {
+      .s-wrap { padding: 0 24px; }
+      .s-composer-grid { grid-template-columns: 1fr; gap: 48px; }
+      .s-preview { position: static; }
+      nav { flex-direction: column; align-items: flex-start; padding: 40px 0; gap: 16px; }
+      .s-cookie { flex-direction: column; text-align: center; bottom: 14px; width: calc(100% - 28px); }
+      .s-cookie__btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── LOCK SCREEN ──────────────────────────────────────────── -->
+<div id="s-lock">
+  <div class="s-lock__inner">
+    <div>
+      <div class="s-lock__logo">
+        synde<span class="oo"><span class="o">o</span><span class="o">o</span></span>
+      </div>
+      <div class="s-lock__label">Identity Composer // Unit 01</div>
+    </div>
+    <div class="s-lock__field">
+      <label for="s-lock-input">Access Code</label>
+      <input
+        type="password"
+        id="s-lock-input"
+        class="s-lock__input"
+        placeholder="········"
+        autocomplete="current-password"
+        onkeydown="if(event.key==='Enter') unlockApp()"
+      >
+    </div>
+    <div style="width:100%; display:flex; flex-direction:column; gap:10px;">
+      <button class="s-lock__btn" onclick="unlockApp()">Enter</button>
+      <div class="s-lock__error" id="s-lock-error">Incorrect access code</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN APP ─────────────────────────────────────────────── -->
+<div id="s-app">
+
+  <!-- COOKIE -->
+  <div class="s-cookie" id="s-cookie">
+    <p class="s-cookie__text">
+      <strong>Privacy by Design.</strong> This unit does not track you. Only essential technical cookies are used — nothing else, by default. <a href="/privacy/">Privacy Protocol</a>.
+    </p>
+    <button class="s-cookie__btn" onclick="acknowledgeCookies()">Acknowledge</button>
+  </div>
+
+  <div class="s-wrap">
+
+    <!-- NAV -->
+    <nav>
+      <div>
+        <a href="/" class="s-logo">
+          synde<span class="s-logo__oo"><span class="s-logo__o">o</span><span class="s-logo__o">o</span></span>
+        </a>
+        <span class="s-label" style="display:block; margin-top:6px;">Asset Composer // Unit 01</span>
+      </div>
+      <a href="/" style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--petrol); text-decoration:none; letter-spacing:0.12em; text-transform:uppercase;">← Home</a>
+    </nav>
+
+    <!-- HEADER -->
+    <div class="s-page-header">
+      <span class="s-label">Internal Tool</span>
+      <h1>Identity Composer.</h1>
+      <p>Generate a contact QR code and digital business card. Fill in the fields — the output updates live.</p>
+    </div>
+
+    <!-- COMPOSER -->
+    <main class="s-composer-grid">
+
+      <!-- FORM -->
+      <section>
+        <div class="s-form-group">
+          <label>First Name</label>
+          <input type="text" id="firstName" placeholder="James" oninput="updateAll()">
+        </div>
+        <div class="s-form-group">
+          <label>Last Name</label>
+          <input type="text" id="lastName" placeholder="Sunderland" oninput="updateAll()">
+        </div>
+        <div class="s-form-group">
+          <label>Role</label>
+          <input type="text" id="role" placeholder="Performance Director" oninput="updateAll()">
+        </div>
+        <div class="s-form-group">
+          <label>Organisation</label>
+          <input type="text" id="org" placeholder="syndeoo" oninput="updateAll()">
+        </div>
+        <div class="s-form-group">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="j.s@syndeoo.com" oninput="updateAll()">
+        </div>
+        <div class="s-form-group">
+          <label>Phone</label>
+          <input type="tel" id="phone" placeholder="+39 0432 000000" oninput="updateAll()">
+        </div>
+        <div class="s-form-group">
+          <label>Meeting / Calendar Link</label>
+          <input type="url" id="meeting" placeholder="https://cal.com/…" oninput="updateAll()">
+        </div>
+      </section>
+
+      <!-- PREVIEW -->
+      <section class="s-preview">
+
+        <!-- QR + initials -->
+        <div class="s-qr-wrap">
+          <div id="qr-canvas"></div>
+          <div class="s-qr-initials" id="qr-initials">—</div>
+        </div>
+
+        <p class="s-preview__name"  id="preview-name">Name Surname</p>
+        <p class="s-preview__role"  id="preview-role">Role</p>
+
+        <div class="s-actions">
+          <button class="s-btn s-btn--black"   onclick="downloadVCard()">Download .VCF</button>
+          <button class="s-btn s-btn--outline"  onclick="generateDigitalCard()">Generate Card → HTML</button>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="s-logo s-logo--icon" aria-hidden="true">
+        <span class="s-logo__o">o</span><span class="s-logo__o">o</span>
+      </div>
+      <div class="s-footer__contact">
+        © 2026 SYNDEOO // ABSOLUTE CLARITY UNIT<br>
+        <a href="mailto:unit@syndeoo.com">unit@syndeoo.com</a>
+        &ensp;·&ensp;
+        <a href="/privacy/" class="subtle">Privacy &amp; Cookie Protocol</a>
+        &ensp;·&ensp;
+        <a href="/the-golden-circle/" class="subtle">The Golden Circle</a>
+      </div>
+    </footer>
+
+  </div><!-- /s-wrap -->
+</div><!-- /s-app -->
+
+<script>
+  /* ── LOCK ───────────────────────────────────────────────── */
+  var PASS = "Bepi2026";
+
+  function unlockApp() {
+    var val = document.getElementById('s-lock-input').value;
+    var err = document.getElementById('s-lock-error');
+    if (val === PASS) {
+      document.getElementById('s-lock').style.display = 'none';
+      document.getElementById('s-app').style.display  = 'block';
+      sessionStorage.setItem('syndeoo-composer-auth', '1');
+      initApp();
+    } else {
+      err.classList.add('visible');
+      document.getElementById('s-lock-input').value = '';
+      setTimeout(function() { err.classList.remove('visible'); }, 2400);
+    }
+  }
+
+  // Keep unlocked within same session
+  if (sessionStorage.getItem('syndeoo-composer-auth') === '1') {
+    document.getElementById('s-lock').style.display = 'none';
+    document.getElementById('s-app').style.display  = 'block';
+  }
+
+  /* ── COOKIE ─────────────────────────────────────────────── */
+  function acknowledgeCookies() {
+    localStorage.setItem('syndeoo-privacy-acknowledged', 'true');
+    document.getElementById('s-cookie').style.display = 'none';
+  }
+
+  /* ── QR ─────────────────────────────────────────────────── */
+  var qrCode;
+
+  function initApp() {
+    qrCode = new QRCodeStyling({
+      width: 220, height: 220,
+      type: "svg",
+      data: "https://syndeoo.com",
+      qrOptions: { errorCorrectionLevel: "H" }, // High — allows logo overlay up to 30%
+      dotsOptions: {
+        color: "#000000",
+        type: "rounded"
+      },
+      cornersSquareOptions: {
+        type: "extra-rounded",
+        color: "#4397A2"
+      },
+      cornersDotOptions: {
+        type: "dot",
+        color: "#4397A2"
+      },
+      backgroundOptions: { color: "#ffffff" },
+      // No imageOptions here — we overlay initials via HTML
+    });
+    qrCode.append(document.getElementById("qr-canvas"));
+
+    // Show cookie banner once
+    if (!localStorage.getItem('syndeoo-privacy-acknowledged')) {
+      document.getElementById('s-cookie').style.display = 'flex';
+    }
+
+    updateAll();
+  }
+
+  // Auto-init if already unlocked on page load
+  window.addEventListener('load', function() {
+    if (sessionStorage.getItem('syndeoo-composer-auth') === '1') {
+      initApp();
+    }
+  });
+
+  /* ── FIELDS ─────────────────────────────────────────────── */
+  function getFields() {
+    return {
+      fn:      document.getElementById('firstName').value.trim(),
+      ln:      document.getElementById('lastName').value.trim(),
+      role:    document.getElementById('role').value.trim(),
+      org:     document.getElementById('org').value.trim(),
+      email:   document.getElementById('email').value.trim(),
+      phone:   document.getElementById('phone').value.trim(),
+      meeting: document.getElementById('meeting').value.trim(),
+    };
+  }
+
+  function getInitials(fn, ln) {
+    var a = fn ? fn.charAt(0).toUpperCase() : '';
+    var b = ln ? ln.charAt(0).toUpperCase() : '';
+    return (a + b) || '—';
+  }
+
+  function buildVCF(f) {
+    var lines = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'FN:' + (f.fn + ' ' + f.ln).trim(),
+      'N:' + f.ln + ';' + f.fn + ';;;',
+      f.role    ? 'TITLE:'  + f.role    : '',
+      f.org     ? 'ORG:'    + f.org     : '',
+      f.phone   ? 'TEL;TYPE=CELL:' + f.phone : '',
+      f.email   ? 'EMAIL;TYPE=INTERNET:' + f.email : '',
+      f.meeting ? 'item1.URL:' + f.meeting : '',
+      f.meeting ? 'item1.X-ABLABEL:Book a Meeting' : '',
+      'END:VCARD'
+    ].filter(Boolean).join('\n');
+    return lines;
+  }
+
+  function updateAll() {
+    if (!qrCode) return;
+    var f = getFields();
+
+    // Update initials badge
+    document.getElementById('qr-initials').textContent = getInitials(f.fn, f.ln);
+
+    // Update name/role preview
+    var fullName = (f.fn + ' ' + f.ln).trim();
+    document.getElementById('preview-name').textContent = fullName || 'Name Surname';
+    document.getElementById('preview-role').textContent = f.role  || 'Role';
+
+    // Update QR data
+    var vcf = buildVCF(f);
+    qrCode.update({ data: vcf || 'https://syndeoo.com' });
+  }
+
+  /* ── DOWNLOAD VCF ───────────────────────────────────────── */
+  function downloadVCard() {
+    var f   = getFields();
+    var vcf = buildVCF(f);
+    var blob = new Blob([vcf], { type: 'text/vcard' });
+    var url  = URL.createObjectURL(blob);
+    var a    = document.createElement('a');
+    a.href     = url;
+    a.download = ((f.fn || 'contact') + '-' + (f.ln || '')).toLowerCase().replace(/\s+/g, '-') + '.vcf';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  /* ── GENERATE DIGITAL CARD ──────────────────────────────── */
+  async function generateDigitalCard() {
+    var f       = getFields();
+    var initials = getInitials(f.fn, f.ln);
+    var qrSvg   = document.querySelector('#qr-canvas svg') ? document.querySelector('#qr-canvas svg').outerHTML : '';
+
+    var cardHtml = `<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${(f.fn + ' ' + f.ln).trim()} // syndeoo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --petrol:#4397A2; --black:#000; --white:#fff; --mist:#F1F5F9; --slate:#2C3E50; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);display:flex;justify-content:center;align-items:center;min-height:100vh;-webkit-font-smoothing:antialiased;}
+    .card{width:100%;max-width:420px;padding:48px 40px;text-align:center;}
+    .name{font-size:clamp(2rem,8vw,2.8rem);font-weight:800;letter-spacing:-0.05em;line-height:0.95;margin-bottom:14px;}
+    .role{font-family:'JetBrains Mono',monospace;color:var(--petrol);text-transform:uppercase;font-size:0.65rem;letter-spacing:0.2em;margin-bottom:8px;}
+    .org{font-size:0.85rem;font-weight:300;color:var(--slate);margin-bottom:40px;}
+    .qr-wrap{position:relative;background:var(--mist);padding:28px;border-radius:4px;margin-bottom:36px;display:inline-flex;justify-content:center;align-items:center;}
+    .qr-wrap svg{width:200px;height:200px;display:block;}
+    .qr-initials{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;background:var(--white);border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:800;font-size:0.9rem;letter-spacing:-0.04em;color:var(--petrol);text-transform:uppercase;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+    .info{font-family:'JetBrains Mono',monospace;font-size:0.78rem;line-height:2.3;border-top:1px solid var(--mist);padding-top:24px;text-align:left;}
+    .lbl{color:var(--petrol);margin-right:10px;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;}
+    a{color:var(--black);text-decoration:none;font-weight:600;border-bottom:1px solid var(--petrol);}
+    .divider{width:2px;height:2px;background:var(--petrol);display:inline-block;border-radius:50%;margin:0 8px;vertical-align:middle;}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 class="name">${f.fn}<br>${f.ln}</h1>
+    <div class="role">${f.role}</div>
+    ${f.org ? `<div class="org">${f.org}</div>` : ''}
+    <div style="display:flex;justify-content:center;">
+      <div class="qr-wrap">
+        ${qrSvg}
+        <div class="qr-initials">${initials}</div>
+      </div>
+    </div>
+    <div class="info">
+      ${f.phone   ? `<div><span class="lbl">PH</span><a href="tel:${f.phone.replace(/\s/g,'')}">${f.phone}</a></div>` : ''}
+      ${f.email   ? `<div><span class="lbl">EM</span><a href="mailto:${f.email}">${f.email}</a></div>` : ''}
+      ${f.meeting ? `<div><span class="lbl">MT</span><a href="${f.meeting}">Book a Meeting</a></div>` : ''}
+    </div>
+  </div>
+</body>
+</html>`;
+
+    var blob = new Blob([cardHtml], { type: 'text/html' });
+    var url  = URL.createObjectURL(blob);
+    var a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'card-' + ((f.fn || 'contact') + '-' + (f.ln || '')).toLowerCase().replace(/\s+/g,'-') + '.html';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+</script>
+
+</body>
+</html>
