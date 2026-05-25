@@ -534,19 +534,19 @@
         </div>
         <div class="s-form-group">
           <label>Organisation</label>
-          <input type="text" id="org" placeholder="syndeoo" oninput="updateAll()">
+          <input type="text" id="org" placeholder="Premier League" oninput="updateAll()">
         </div>
         <div class="s-form-group">
-          <label>Email</label>
-          <input type="email" id="email" placeholder="j.s@syndeoo.com" oninput="updateAll()">
+          <label>Email *</label>
+          <input type="email" id="email" placeholder="j.sunderland@club.com" oninput="updateAll()" required>
         </div>
         <div class="s-form-group">
-          <label>Phone</label>
-          <input type="tel" id="phone" placeholder="+39 0432 000000" oninput="updateAll()">
+          <label>Phone *</label>
+          <input type="tel" id="phone" placeholder="+44 7700 900000" oninput="updateAll()" required>
         </div>
         <div class="s-form-group">
           <label>Meeting / Calendar Link</label>
-          <input type="url" id="meeting" placeholder="https://cal.com/…" oninput="updateAll()">
+          <input type="text" id="meeting" placeholder="calendly.com/yourname" oninput="updateAll()">
         </div>
       </section>
 
@@ -661,6 +661,12 @@
 
   /* ── FIELDS ─────────────────────────────────────────────── */
   function getFields() {
+    var raw = document.getElementById('meeting').value.trim();
+    // Ensure meeting URL is absolute — prepend https:// if no protocol present
+    var meeting = '';
+    if (raw) {
+      meeting = /^https?:\/\//i.test(raw) ? raw : 'https://' + raw;
+    }
     return {
       fn:      document.getElementById('firstName').value.trim(),
       ln:      document.getElementById('lastName').value.trim(),
@@ -668,7 +674,7 @@
       org:     document.getElementById('org').value.trim(),
       email:   document.getElementById('email').value.trim(),
       phone:   document.getElementById('phone').value.trim(),
-      meeting: document.getElementById('meeting').value.trim(),
+      meeting: meeting,
     };
   }
 
@@ -768,9 +774,9 @@
       </div>
     </div>
     <div class="info">
-      ${f.phone   ? `<div><span class="lbl">PH</span><a href="tel:${f.phone.replace(/\s/g,'')}">${f.phone}</a></div>` : ''}
+      ${f.phone   ? `<div><span class="lbl">PH</span><a href="tel:${f.phone.replace(/[\s\-().]/g,'')}">${f.phone}</a></div>` : ''}
       ${f.email   ? `<div><span class="lbl">EM</span><a href="mailto:${f.email}">${f.email}</a></div>` : ''}
-      ${f.meeting ? `<div><span class="lbl">MT</span><a href="${f.meeting}">Book a Meeting</a></div>` : ''}
+      ${f.meeting ? `<div><span class="lbl">MT</span><a href="${f.meeting}" target="_blank" rel="noopener">Book a Meeting ↗</a></div>` : ''}
     </div>
   </div>
 </body>
