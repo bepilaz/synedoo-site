@@ -49,13 +49,20 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 36px;
+      gap: 40px;
       width: 100%;
       max-width: 360px;
       padding: 0 32px;
     }
 
-    /* Lock logo */
+    /* Lock logo block — logo + label stacked tightly as one unit */
+    .s-lock__brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
     .s-lock__logo {
       font-size: 3rem;
       font-weight: 800;
@@ -70,12 +77,11 @@
 
     .s-lock__label {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem;
+      font-size: 0.58rem;
       color: var(--petrol);
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       font-weight: 600;
-      margin-top: -28px;
     }
 
     .s-lock__field {
@@ -256,51 +262,73 @@
       gap: 0;
     }
 
-    /* QR container with initials overlay */
-    .s-qr-wrap {
+    /* QR outer frame — gives the refined border + shadow */
+    .s-qr-frame {
       position: relative;
-      width: 220px;
-      height: 220px;
-      margin-bottom: 32px;
-    }
-
-    #qr-canvas {
-      background: white;
-      border-radius: 4px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.07);
-      width: 220px;
-      height: 220px;
-      overflow: hidden;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-    }
-    #qr-canvas svg, #qr-canvas canvas {
-      width: 220px !important;
-      height: 220px !important;
+      background: var(--white);
+      border: 1.5px solid rgba(67,151,162,0.25);
+      border-radius: 6px;
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.06),
+        0 12px 40px rgba(67,151,162,0.10);
+      padding: 16px;
+      margin-bottom: 28px;
     }
 
-    /* Initials badge — centered over QR quiet zone */
+    /* Petrol corner accents — pure CSS */
+    .s-qr-frame::before,
+    .s-qr-frame::after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-color: var(--petrol);
+      border-style: solid;
+    }
+    .s-qr-frame::before {
+      top: -1px; left: -1px;
+      border-width: 2px 0 0 2px;
+      border-radius: 5px 0 0 0;
+    }
+    .s-qr-frame::after {
+      bottom: -1px; right: -1px;
+      border-width: 0 2px 2px 0;
+      border-radius: 0 0 5px 0;
+    }
+
+    /* Inner canvas div — let the lib set its own size */
+    #qr-canvas {
+      display: block;
+      line-height: 0;
+    }
+    #qr-canvas svg {
+      display: block;
+    }
+
+    /* Initials badge — centred over quiet zone */
     .s-qr-initials {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       background: var(--white);
-      border-radius: 2px;
+      border: 1.5px solid rgba(67,151,162,0.20);
+      border-radius: 3px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Inter', sans-serif;
       font-weight: 800;
-      font-size: 0.95rem;
-      letter-spacing: -0.04em;
+      font-size: 0.88rem;
+      letter-spacing: -0.03em;
       color: var(--petrol);
       text-transform: uppercase;
       pointer-events: none;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
       line-height: 1;
     }
 
@@ -432,7 +460,7 @@
 <!-- ── LOCK SCREEN ──────────────────────────────────────────── -->
 <div id="s-lock">
   <div class="s-lock__inner">
-    <div>
+    <div class="s-lock__brand">
       <div class="s-lock__logo">
         synde<span class="oo"><span class="o">o</span><span class="o">o</span></span>
       </div>
@@ -526,7 +554,7 @@
       <section class="s-preview">
 
         <!-- QR + initials -->
-        <div class="s-qr-wrap">
+        <div class="s-qr-frame">
           <div id="qr-canvas"></div>
           <div class="s-qr-initials" id="qr-initials">—</div>
         </div>
@@ -596,13 +624,13 @@
 
   function initApp() {
     qrCode = new QRCodeStyling({
-      width: 220, height: 220,
+      width: 200, height: 200,
       type: "svg",
       data: "https://syndeoo.com",
-      qrOptions: { errorCorrectionLevel: "H" }, // High — allows logo overlay up to 30%
+      qrOptions: { errorCorrectionLevel: "H" },
       dotsOptions: {
-        color: "#000000",
-        type: "rounded"
+        color: "#1a1a1a",
+        type: "classy-rounded"
       },
       cornersSquareOptions: {
         type: "extra-rounded",
@@ -613,7 +641,6 @@
         color: "#4397A2"
       },
       backgroundOptions: { color: "#ffffff" },
-      // No imageOptions here — we overlay initials via HTML
     });
     qrCode.append(document.getElementById("qr-canvas"));
 
